@@ -1,0 +1,35 @@
+{
+  "inspect_paper_repo": {
+    "training_readiness": {
+      "level": "ready",
+      "reason": "Training entry points are present and tied to dataset/config or run instructions.",
+      "evidence": ["tools/train.py", "configs/coco.yaml: coco"]
+    },
+    "evaluation_readiness": {
+      "level": "partial",
+      "reason": "Evaluation or result evidence exists, but the runnable evaluation path is incomplete.",
+      "evidence": ["README/instructions mention `evaluation`"]
+    },
+    "environment_reproducibility": {
+      "level": "locked",
+      "reason": "Dependency lockfile or package lock is present.",
+      "evidence": ["poetry.lock", "requirements.txt"]
+    },
+    "paper_identity_confidence": {
+      "level": "high",
+      "reason": "README/config text contains arXiv or DOI identity evidence.",
+      "evidence": ["arXiv:2304.02643"]
+    }
+  },
+  "compare_paper_repos": {
+    "best_for_direct_reproduction": "owner/runnable-repro",
+    "best_for_method_reference": "paper-authors/official-code",
+    "best_for_baseline": "owner/runnable-repro",
+    "not_recommended": ["owner/demo-only: training code, evaluation code"],
+    "decision_reasons": {
+      "direct_reproduction": "owner/runnable-repro is best for direct reproduction: training=ready, evaluation=ready, environment=locked, identity=high; evidence: direct_reproduction_candidate.",
+      "method_reference": "paper-authors/official-code is best for method reference: training=partial, evaluation=partial, environment=documented, identity=high; evidence: method_reference."
+    },
+    "recommendation_summary": "Use owner/runnable-repro for direct reproduction, paper-authors/official-code for implementation details, and owner/runnable-repro for baseline comparison; verify any flagged risks before running experiments."
+  }
+}

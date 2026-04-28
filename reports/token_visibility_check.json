@@ -1,0 +1,121 @@
+{
+  "summary": {
+    "total": 1,
+    "attempted": 1,
+    "evaluated": 1,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 0.0,
+    "top3_hit_rate": 0.0,
+    "official_top1_hit_rate": 0.0,
+    "official_top3_hit_rate": 0.0,
+    "distractor_top1_rate": 0.0
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 1,
+      "top1_hit": 0,
+      "top3_hit": 0,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 0.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {
+    "computer_vision": {
+      "count": 1,
+      "examples": [
+        "sam_2023"
+      ]
+    }
+  },
+  "failure_summary_by_cause": {
+    "official_repo_not_recalled": {
+      "count": 1,
+      "examples": [
+        "sam_2023"
+      ]
+    }
+  },
+  "failure_examples": [
+    {
+      "id": "sam_2023",
+      "paper_title": "Segment Anything",
+      "task": "computer_vision",
+      "retrieved": [
+        "yatenglg/isat_with_segment_anything"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/segment-anything"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "hedlen/awesome-segment-anything",
+        "idea-research/grounded-segment-anything",
+        "luca-medeiros/lang-segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 1
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    }
+  ],
+  "details": [
+    {
+      "id": "sam_2023",
+      "paper_title": "Segment Anything",
+      "task": "computer_vision",
+      "retrieved": [
+        "yatenglg/isat_with_segment_anything"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/segment-anything"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "hedlen/awesome-segment-anything",
+        "idea-research/grounded-segment-anything",
+        "luca-medeiros/lang-segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 1
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    }
+  ]
+}

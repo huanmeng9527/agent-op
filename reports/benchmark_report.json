@@ -1,0 +1,2556 @@
+{
+  "summary": {
+    "total": 53,
+    "attempted": 53,
+    "evaluated": 53,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 0.5472,
+    "top3_hit_rate": 0.6792,
+    "official_top1_hit_rate": 0.5283,
+    "official_top3_hit_rate": 0.6604,
+    "distractor_top1_rate": 0.0
+  },
+  "by_task": {
+    "biology": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "computer_vision": {
+      "total": 36,
+      "top1_hit": 20,
+      "top3_hit": 26,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.5556,
+      "top3_hit_rate": 0.7222,
+      "distractor_top1_rate": 0.0
+    },
+    "graph_learning": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "nlp": {
+      "total": 6,
+      "top1_hit": 5,
+      "top3_hit": 5,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.8333,
+      "top3_hit_rate": 0.8333,
+      "distractor_top1_rate": 0.0
+    },
+    "recommender": {
+      "total": 3,
+      "top1_hit": 0,
+      "top3_hit": 0,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 0.0,
+      "distractor_top1_rate": 0.0
+    },
+    "robotics": {
+      "total": 1,
+      "top1_hit": 0,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "speech": {
+      "total": 5,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.4,
+      "top3_hit_rate": 0.4,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {
+    "computer_vision": {
+      "count": 16,
+      "examples": [
+        "moco_2020",
+        "nerf_2020",
+        "instant_ngp_2022",
+        "vit_2020",
+        "simclr_2020"
+      ]
+    },
+    "nlp": {
+      "count": 1,
+      "examples": [
+        "t5_2019"
+      ]
+    },
+    "recommender": {
+      "count": 3,
+      "examples": [
+        "lightgcn_2020",
+        "implicit_mf_2008",
+        "deepfm_2017"
+      ]
+    },
+    "robotics": {
+      "count": 1,
+      "examples": [
+        "orb_slam3_2020"
+      ]
+    },
+    "speech": {
+      "count": 3,
+      "examples": [
+        "deepspeech2_2015",
+        "wav2vec2_2020",
+        "hubert_2021"
+      ]
+    }
+  },
+  "failure_summary_by_cause": {
+    "expected_repo_not_recalled": {
+      "count": 2,
+      "examples": [
+        "implicit_mf_2008",
+        "deepfm_2017"
+      ]
+    },
+    "official_recalled_not_top1": {
+      "count": 7,
+      "examples": [
+        "moco_2020",
+        "nerf_2020",
+        "simclr_2020",
+        "grounding_dino_2023",
+        "monodepth2_2019",
+        "orb_slam3_2020",
+        "mmdetection_2019"
+      ]
+    },
+    "official_repo_not_recalled": {
+      "count": 15,
+      "examples": [
+        "instant_ngp_2022",
+        "vit_2020",
+        "t5_2019",
+        "stable_diffusion_2022",
+        "ddpm_2020",
+        "guided_diffusion_2021",
+        "midas_2020",
+        "colmap_2016"
+      ]
+    }
+  },
+  "failure_examples": [
+    {
+      "id": "moco_2020",
+      "paper_title": "Momentum Contrast for Unsupervised Visual Representation Learning",
+      "task": "computer_vision",
+      "retrieved": [
+        "bl0/moco",
+        "leftthomas/moco",
+        "facebookresearch/moco"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/moco"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dino"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "nerf_2020",
+      "paper_title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+      "task": "computer_vision",
+      "retrieved": [
+        "sxyu/pixel-nerf",
+        "bmild/nerf",
+        "ayaanzhaque/instruct-nerf2nerf"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "bmild/nerf"
+      ],
+      "high_quality_reproduction_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "common_distractor_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "instant_ngp_2022",
+      "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
+      "task": "computer_vision",
+      "retrieved": [
+        "nvlabs/tiny-cuda-nn",
+        "niklasschmitz/sdf_jax",
+        "ailon-island/tiny-cuda-nn-old"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "vit_2020",
+      "paper_title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "task": "computer_vision",
+      "retrieved": [
+        "yunkun-zhang/cite",
+        "purdue-m2/ai-face-fairnessbench",
+        "brianpulfer/papersreimplementations"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/vision_transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "jeonsworld/vit-pytorch"
+      ],
+      "common_distractor_repos": [
+        "huggingface/pytorch-image-models"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "simclr_2020",
+      "paper_title": "A Simple Framework for Contrastive Learning of Visual Representations",
+      "task": "computer_vision",
+      "retrieved": [
+        "andrewatanov/simclr-pytorch",
+        "google-research/simclr",
+        "sthalles/simclr"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/simclr"
+      ],
+      "high_quality_reproduction_repos": [
+        "sthalles/simclr"
+      ],
+      "common_distractor_repos": [
+        "lightly-ai/lightly"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "t5_2019",
+      "paper_title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "task": "nlp",
+      "retrieved": [
+        "thu-ml/motus",
+        "yurakuratov/t5-experiments",
+        "google-research/t5x"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/text-to-text-transfer-transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "google-research/mt5"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "stable_diffusion_2022",
+      "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "abdur75648/utrnet-high-resolution-urdu-text-recognition",
+        "leoxiaobin/deep-high-resolution-net.pytorch",
+        "wangyx240/high-resolution-image-inpainting-gan"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "stability-ai/stablediffusion"
+      ],
+      "common_distractor_repos": [
+        "automatic1111/stable-diffusion-webui"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "ddpm_2020",
+      "paper_title": "Denoising Diffusion Probabilistic Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "sak-h/pytorch-denoising-diffusion-probabilistic-models",
+        "musawir124/denoising-diffusion-probabilistic-models",
+        "nicob15/trajectory-generation-control-and-safety-with-denoising-diffusion-probabilistic-models"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "hojonathanho/diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "lucidrains/denoising-diffusion-pytorch"
+      ],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "guided_diffusion_2021",
+      "paper_title": "Diffusion Models Beat GANs on Image Synthesis",
+      "task": "computer_vision",
+      "retrieved": [
+        "mchong6/gansnroses",
+        "tkarras/progressive_growing_of_gans",
+        "xingangpan/draggan"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "openai/guided-diffusion"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "grounding_dino_2023",
+      "paper_title": "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection",
+      "task": "computer_vision",
+      "retrieved": [
+        "dongdong-d/groundingdino-finetuning",
+        "longzw1997/open-groundingdino",
+        "idea-research/groundingdino"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "idea-research/groundingdino"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "idea-research/grounded-segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "monodepth2_2019",
+      "paper_title": "Digging Into Self-Supervised Monocular Depth Estimation",
+      "task": "computer_vision",
+      "retrieved": [
+        "eddiespade/monodepth2",
+        "icaruswizard/monodepth2-paddle",
+        "nianticlabs/monodepth2"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "nianticlabs/monodepth2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "isl-org/midas"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "midas_2020",
+      "paper_title": "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer",
+      "task": "computer_vision",
+      "retrieved": [
+        "kopperx/adv-diffusion",
+        "mq-zhang1/hoidiffusion",
+        "pollardlab/midas"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "isl-org/midas"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "nianticlabs/monodepth2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    }
+  ],
+  "details": [
+    {
+      "id": "sam_2023",
+      "paper_title": "Segment Anything",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/segment-anything",
+        "yatenglg/isat_with_segment_anything",
+        "z-x-yang/segment-and-track-anything"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/segment-anything"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "hedlen/awesome-segment-anything",
+        "idea-research/grounded-segment-anything",
+        "luca-medeiros/lang-segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "detr_2020",
+      "paper_title": "End-to-End Object Detection with Transformers",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/detr",
+        "allenai/detr",
+        "fundamentalvision/deformable-detr"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/detr"
+      ],
+      "high_quality_reproduction_repos": [
+        "fundamentalvision/deformable-detr"
+      ],
+      "common_distractor_repos": [
+        "idea-research/detrex"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "mae_2021",
+      "paper_title": "Masked Autoencoders Are Scalable Vision Learners",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/mae",
+        "pengzhiliang/mae-pytorch",
+        "icaruswizard/mae"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mae"
+      ],
+      "high_quality_reproduction_repos": [
+        "pengzhiliang/mae-pytorch"
+      ],
+      "common_distractor_repos": [
+        "huggingface/pytorch-image-models"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "moco_2020",
+      "paper_title": "Momentum Contrast for Unsupervised Visual Representation Learning",
+      "task": "computer_vision",
+      "retrieved": [
+        "bl0/moco",
+        "leftthomas/moco",
+        "facebookresearch/moco"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/moco"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dino"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "dino_2021",
+      "paper_title": "Emerging Properties in Self-Supervised Vision Transformers",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/dino",
+        "idea-research/dino",
+        "jiawei-yang/denoising-vit"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/dino"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dinov2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "dinov2_2023",
+      "paper_title": "DINOv2 Learning Robust Visual Features without Supervision",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/dinov2",
+        "itsprakhar/downstream-dinov2",
+        "mohammedsb/dinov2forradiology"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/dinov2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dino"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "clip_2021",
+      "paper_title": "Learning Transferable Visual Models From Natural Language Supervision",
+      "task": "computer_vision",
+      "retrieved": [
+        "openai/clip",
+        "microsoft/regionclip",
+        "mlfoundations/open_clip"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "openai/clip"
+      ],
+      "high_quality_reproduction_repos": [
+        "mlfoundations/open_clip"
+      ],
+      "common_distractor_repos": [
+        "huggingface/transformers"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "whisper_2022",
+      "paper_title": "Robust Speech Recognition via Large-Scale Weak Supervision",
+      "task": "speech",
+      "retrieved": [
+        "openai/whisper",
+        "vision-cair/minigpt4-video",
+        "quentinfuxa/whisperlivekit"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "openai/whisper"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "ggerganov/whisper.cpp",
+        "huggingface/transformers"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "nerf_2020",
+      "paper_title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
+      "task": "computer_vision",
+      "retrieved": [
+        "sxyu/pixel-nerf",
+        "bmild/nerf",
+        "ayaanzhaque/instruct-nerf2nerf"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "bmild/nerf"
+      ],
+      "high_quality_reproduction_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "common_distractor_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "instant_ngp_2022",
+      "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
+      "task": "computer_vision",
+      "retrieved": [
+        "nvlabs/tiny-cuda-nn",
+        "niklasschmitz/sdf_jax",
+        "ailon-island/tiny-cuda-nn-old"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "stylegan2_ada_2020",
+      "paper_title": "Training Generative Adversarial Networks with Limited Data",
+      "task": "computer_vision",
+      "retrieved": [
+        "nvlabs/stylegan2-ada-pytorch",
+        "woctezuma/steam-stylegan2-ada",
+        "jeffheaton/docker-stylegan2-ada"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "nvlabs/stylegan2-ada-pytorch"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "nvlabs/stylegan3"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "swin_2021",
+      "paper_title": "Swin Transformer: Hierarchical Vision Transformer using Shifted Windows",
+      "task": "computer_vision",
+      "retrieved": [
+        "microsoft/swin-transformer",
+        "wangfeng18/swin-transformer",
+        "maggiez0138/swin-transformer-tensorrt"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "microsoft/swin-transformer"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "microsoft/swin-transformer-object-detection"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "vit_2020",
+      "paper_title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "task": "computer_vision",
+      "retrieved": [
+        "yunkun-zhang/cite",
+        "purdue-m2/ai-face-fairnessbench",
+        "brianpulfer/papersreimplementations"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/vision_transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "jeonsworld/vit-pytorch"
+      ],
+      "common_distractor_repos": [
+        "huggingface/pytorch-image-models"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "simclr_2020",
+      "paper_title": "A Simple Framework for Contrastive Learning of Visual Representations",
+      "task": "computer_vision",
+      "retrieved": [
+        "andrewatanov/simclr-pytorch",
+        "google-research/simclr",
+        "sthalles/simclr"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/simclr"
+      ],
+      "high_quality_reproduction_repos": [
+        "sthalles/simclr"
+      ],
+      "common_distractor_repos": [
+        "lightly-ai/lightly"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "alphafold_2021",
+      "paper_title": "Highly accurate protein structure prediction with AlphaFold",
+      "task": "biology",
+      "retrieved": [
+        "google-deepmind/alphafold",
+        "lucidrains/alphafold3-pytorch",
+        "urinx/alphafold_pytorch"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-deepmind/alphafold"
+      ],
+      "high_quality_reproduction_repos": [
+        "aqlaboratory/openfold"
+      ],
+      "common_distractor_repos": [
+        "google-deepmind/alphafold3"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "bert_2018",
+      "paper_title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "task": "nlp",
+      "retrieved": [
+        "google-research/bert",
+        "ymcui/chinese-bert-wwm",
+        "bojone/bert4keras"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/bert"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "codertimo/bert-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "t5_2019",
+      "paper_title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+      "task": "nlp",
+      "retrieved": [
+        "thu-ml/motus",
+        "yurakuratov/t5-experiments",
+        "google-research/t5x"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/text-to-text-transfer-transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "google-research/mt5"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "longformer_2020",
+      "paper_title": "Longformer: The Long-Document Transformer",
+      "task": "nlp",
+      "retrieved": [
+        "allenai/longformer",
+        "markussagen/master-thesis-multilingual-longformer",
+        "schenliu/longformer-chinese"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "allenai/longformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "allenai/led"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "lora_2021",
+      "paper_title": "LoRA: Low-Rank Adaptation of Large Language Models",
+      "task": "nlp",
+      "retrieved": [
+        "microsoft/lora",
+        "tloen/alpaca-lora",
+        "stability-ai/stablecascade"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "microsoft/lora"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/peft"
+      ],
+      "common_distractor_repos": [
+        "cloneofsimo/lora"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "stable_diffusion_2022",
+      "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "abdur75648/utrnet-high-resolution-urdu-text-recognition",
+        "leoxiaobin/deep-high-resolution-net.pytorch",
+        "wangyx240/high-resolution-image-inpainting-gan"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "stability-ai/stablediffusion"
+      ],
+      "common_distractor_repos": [
+        "automatic1111/stable-diffusion-webui"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "ddpm_2020",
+      "paper_title": "Denoising Diffusion Probabilistic Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "sak-h/pytorch-denoising-diffusion-probabilistic-models",
+        "musawir124/denoising-diffusion-probabilistic-models",
+        "nicob15/trajectory-generation-control-and-safety-with-denoising-diffusion-probabilistic-models"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "hojonathanho/diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "lucidrains/denoising-diffusion-pytorch"
+      ],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "guided_diffusion_2021",
+      "paper_title": "Diffusion Models Beat GANs on Image Synthesis",
+      "task": "computer_vision",
+      "retrieved": [
+        "mchong6/gansnroses",
+        "tkarras/progressive_growing_of_gans",
+        "xingangpan/draggan"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "openai/guided-diffusion"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "controlnet_2023",
+      "paper_title": "Adding Conditional Control to Text-to-Image Diffusion Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "lllyasviel/controlnet",
+        "fannovel16/comfyui_controlnet_aux",
+        "stability-ai/stablecascade"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "lllyasviel/controlnet"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "mikubill/sd-webui-controlnet"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "grounding_dino_2023",
+      "paper_title": "Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection",
+      "task": "computer_vision",
+      "retrieved": [
+        "dongdong-d/groundingdino-finetuning",
+        "longzw1997/open-groundingdino",
+        "idea-research/groundingdino"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "idea-research/groundingdino"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "idea-research/grounded-segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "mask2former_2021",
+      "paper_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/mask2former",
+        "luckydog-lhy/tensorrt_mask2former",
+        "yarrowqiao/semask-mask2former"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "raft_2020",
+      "paper_title": "RAFT: Recurrent All-Pairs Field Transforms for Optical Flow",
+      "task": "computer_vision",
+      "retrieved": [
+        "princeton-vl/raft",
+        "dangeng/flowmag",
+        "david-zhao-1997/high-frequency-stereo-matching-network"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "princeton-vl/raft"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "open-mmlab/mmflow"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "monodepth2_2019",
+      "paper_title": "Digging Into Self-Supervised Monocular Depth Estimation",
+      "task": "computer_vision",
+      "retrieved": [
+        "eddiespade/monodepth2",
+        "icaruswizard/monodepth2-paddle",
+        "nianticlabs/monodepth2"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "nianticlabs/monodepth2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "isl-org/midas"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "midas_2020",
+      "paper_title": "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer",
+      "task": "computer_vision",
+      "retrieved": [
+        "kopperx/adv-diffusion",
+        "mq-zhang1/hoidiffusion",
+        "pollardlab/midas"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "isl-org/midas"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "nianticlabs/monodepth2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "openpose_2018",
+      "paper_title": "OpenPose: Realtime Multi-Person 2D Pose Estimation using Part Affinity Fields",
+      "task": "computer_vision",
+      "retrieved": [
+        "cmu-perceptual-computing-lab/openpose",
+        "muelea/shapy",
+        "geaxgx/tello-openpose"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "cmu-perceptual-computing-lab/openpose"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "open-mmlab/mmpose"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "orb_slam3_2020",
+      "paper_title": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
+      "task": "robotics",
+      "retrieved": [
+        "leaner-forever/segs-slam",
+        "thien94/orb_slam3_ros",
+        "uz-slamlab/orb_slam3"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "uz-slamlab/orb_slam3"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "raulmur/orb_slam2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "colmap_2016",
+      "paper_title": "Structure-from-Motion Revisited",
+      "task": "computer_vision",
+      "retrieved": [
+        "fangjinhuawang/patchmatchnet",
+        "xiaobaiiiiii/colmap-pcd",
+        "kai-46/colmapforvissat"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "colmap/colmap"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openmvg/openmvg"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "gaussian_splatting_2023",
+      "paper_title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+      "task": "computer_vision",
+      "retrieved": [
+        "anandpawara/real_time_image_animation",
+        "yerfor/genefaceplusplus",
+        "unknown-horizons/unknown-horizons"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "graphdeco-inria/gaussian-splatting"
+      ],
+      "high_quality_reproduction_repos": [
+        "joeyan/gaussian_splatting"
+      ],
+      "common_distractor_repos": [
+        "nerfstudio-project/gsplat"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "sam2_2024",
+      "paper_title": "SAM 2: Segment Anything in Images and Videos",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/sam2",
+        "hustvl/evf-sam",
+        "imprintlab/medical-sam2"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/sam2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/segment-anything"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "detectron2_2019",
+      "paper_title": "Detectron2",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/detectron2",
+        "conansherry/detectron2",
+        "jagin/detectron2-pipeline"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "open_clip_2023",
+      "paper_title": "Reproducible scaling laws for contrastive language-image learning",
+      "task": "computer_vision",
+      "retrieved": [
+        "mlfoundations/open_clip",
+        "laion-ai/scaling-laws-openclip",
+        "jzyztzn/openclip"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "mlfoundations/open_clip"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openai/clip"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "fairseq_2019",
+      "paper_title": "fairseq: A Fast, Extensible Toolkit for Sequence Modeling",
+      "task": "nlp",
+      "retrieved": [
+        "facebookresearch/fairseq",
+        "kanyun-inc/fairseq-gec",
+        "martiansideofthemoon/style-transfer-paraphrase"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/fairseq"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "huggingface/transformers"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "transformers_2020",
+      "paper_title": "Transformers: State-of-the-Art Natural Language Processing",
+      "task": "nlp",
+      "retrieved": [
+        "huggingface/transformers",
+        "mlfoundations/transformers",
+        "compvis/taming-transformers"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "huggingface/transformers"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "google-research/bert"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "graphormer_2021",
+      "paper_title": "Do Transformers Really Perform Bad for Graph Representation",
+      "task": "graph_learning",
+      "retrieved": [
+        "microsoft/graphormer",
+        "isfengg/graphormer",
+        "dpstart/graphormer_new"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "microsoft/graphormer"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "pyg-team/pytorch_geometric"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "lightgcn_2020",
+      "paper_title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+      "task": "recommender",
+      "retrieved": [
+        "lucapantea/lightgcn",
+        "kuandeng/lightgcn",
+        "geonwooko/mule"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": 2,
+      "official_repos": [
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "kuandeng/lightgcn"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "dreambooth_2022",
+      "paper_title": "DreamBooth: Fine Tuning Text-to-Image Diffusion Models for Subject-Driven Generation",
+      "task": "computer_vision",
+      "retrieved": [
+        "xavierxiao/dreambooth-stable-diffusion",
+        "zanilzanzan/dreambooth",
+        "joepenna/dreambooth-stable-diffusion"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "xavierxiao/dreambooth-stable-diffusion"
+      ],
+      "common_distractor_repos": [
+        "huggingface/diffusers"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "minigpt4_2023",
+      "paper_title": "MiniGPT-4: Enhancing Vision-Language Understanding with Advanced Large Language Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "vision-cair/minigpt-4",
+        "icey-zhang/minigpt4_guide",
+        "ziwei-zheng/nullu"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "vision-cair/minigpt-4"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "haotian-liu/llava"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "llava_2023",
+      "paper_title": "Visual Instruction Tuning",
+      "task": "computer_vision",
+      "retrieved": [
+        "microsoft/llava-med",
+        "tencentarc/smartedit",
+        "pku-yuangroup/llava-cot"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "haotian-liu/llava"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "vision-cair/minigpt-4"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "yolov7_2022",
+      "paper_title": "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors",
+      "task": "computer_vision",
+      "retrieved": [
+        "wongkinyiu/yolov7",
+        "dataxujing/yolov7",
+        "bubbliiiing/yolov7-pytorch"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "high_quality_reproduction_repos": [
+        "ultralytics/yolov5"
+      ],
+      "common_distractor_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "ultralytics_yolov8_2023",
+      "paper_title": "YOLOv8",
+      "task": "computer_vision",
+      "retrieved": [
+        "bubbliiiing/yolov8-pytorch",
+        "dataxujing/yolov8",
+        "derronqi/yolov8-face"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "mmdetection_2019",
+      "paper_title": "MMDetection: Open MMLab Detection Toolbox and Benchmark",
+      "task": "computer_vision",
+      "retrieved": [
+        "allenai/mmdetection",
+        "open-mmlab/mmdetection",
+        "hhaandroid/mmdetection-mini"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "open-mmlab/mmdetection"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "mmsegmentation_2020",
+      "paper_title": "MMSegmentation: OpenMMLab Semantic Segmentation Toolbox and Benchmark",
+      "task": "computer_vision",
+      "retrieved": [
+        "open-mmlab/mmsegmentation",
+        "tommyzihao/mmsegmentation_tutorials",
+        "rubeea/focal_phi_loss_mmsegmentation"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "open-mmlab/mmsegmentation"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "detectron_2018",
+      "paper_title": "Detectron",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/detectron",
+        "conansherry/detectron2",
+        "zhaoweicai/detectron-cascade-rcnn"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/detectron"
+      ],
+      "high_quality_reproduction_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "common_distractor_repos": [
+        "matterport/mask_rcnn"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "deepspeech2_2015",
+      "paper_title": "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
+      "task": "speech",
+      "retrieved": [
+        "fd873630/deep_speech_2_korean",
+        "lizhaokun/autosub-with-baidu-deepspeech2",
+        "sooftware/deepspeech2"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "paddlepaddle/deepspeech"
+      ],
+      "high_quality_reproduction_repos": [
+        "seannaren/deepspeech.pytorch"
+      ],
+      "common_distractor_repos": [
+        "mozilla/deepspeech"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "wav2vec2_2020",
+      "paper_title": "wav2vec 2.0: A Framework for Self-Supervised Learning of Speech Representations",
+      "task": "speech",
+      "retrieved": [
+        "ranchlai/wav2vec-2.0",
+        "speech-lab-iitm/ccc-wav2vec-2.0",
+        "sakibchowdhury131/finetune_wav2vec2.0"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/fairseq"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "facebookresearch/wav2letter"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "hubert_2021",
+      "paper_title": "HuBERT: Self-Supervised Speech Representation Learning by Masked Prediction of Hidden Units",
+      "task": "speech",
+      "retrieved": [
+        "wolfgitpr/hubertfa",
+        "ryota-komatsu/speaker_disentangled_hubert",
+        "bshall/hubert"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/fairseq"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "facebookresearch/wav2vec2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "fastspeech2_2020",
+      "paper_title": "FastSpeech 2: Fast and High-Quality End-to-End Text to Speech",
+      "task": "speech",
+      "retrieved": [
+        "ming024/fastspeech2",
+        "rishikksh20/fastspeech2",
+        "labmem-zhouyx/cdfse_fastspeech2"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "ming024/fastspeech2"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "tensorspeech/tensorflowtts"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "implicit_mf_2008",
+      "paper_title": "Collaborative Filtering for Implicit Feedback Datasets",
+      "task": "recommender",
+      "retrieved": [
+        "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets",
+        "piyushpathak03/recommendation-systems",
+        "silence28/collaborative-filtering-for-implicit-feedback-datasets"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "benfred/implicit"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "expected_repo_not_recalled"
+    },
+    {
+      "id": "deepfm_2017",
+      "paper_title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction",
+      "task": "recommender",
+      "retrieved": [
+        "chenxijun1029/deepfm_with_pytorch",
+        "rmanluo/mamdr",
+        "mtsang/interaction_interpretability"
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "shenweichen/deepctr"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "expected_repo_not_recalled"
+    }
+  ]
+}

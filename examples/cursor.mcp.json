@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "paper-reproduction-intelligence": {
+      "command": "python",
+      "args": [
+        "-m",
+        "app.main",
+        "--transport",
+        "stdio"
+      ],
+      "cwd": "/absolute/path/to/Paper-Reproduction-Intelligence"
+    }
+  }
+}

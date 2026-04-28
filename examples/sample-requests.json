@@ -1,0 +1,27 @@
+{
+  "search_paper_repos": {
+    "query": "Segment Anything paper code pytorch",
+    "paper_title": "Segment Anything",
+    "top_k": 5
+  },
+  "inspect_paper_repo": {
+    "repo": "facebookresearch/segment-anything",
+    "query": "Segment Anything paper code pytorch",
+    "include_readme": true,
+    "include_tree": true
+  },
+  "compare_paper_repos": {
+    "repos": [
+      "facebookresearch/segment-anything",
+      "IDEA-Research/GroundingDINO"
+    ],
+    "query": "vision foundation model reproduction",
+    "criteria": [
+      "training code",
+      "evaluation code",
+      "environment reproducibility",
+      "dataset/checkpoint guidance"
+    ],
+    "include_details": true
+  }
+}

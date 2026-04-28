@@ -1,0 +1,50 @@
+from __future__ import annotations
+
+from app.ranking.scorer import score_provider_result
+from app.schemas import ProviderSearchResult, QueryAnalysis, SAFETY_NOTE_TEXT, SearchResultItem
+from app.utils.text import truncate_text
+
+
+def normalize_provider_result(analysis: QueryAnalysis, result: ProviderSearchResult) -> SearchResultItem:
+    explanation = score_provider_result(analysis, result)
+    metadata = dict(result.metadata or {})
+    metadata["repo_role"] = explanation.repo_role
+    full_name = metadata.get("full_name")
+    return SearchResultItem(
+        title=result.title,
+        url=result.url,
+        repo=full_name,
+        source=result.source,
+        source_type=result.source_type,
+        snippet=truncate_text(result.snippet, 500),
+        task=analysis.task,
+        repo_role=explanation.repo_role,
+        tech_stack=explanation.tech_stack,
+        reproduction_signals=explanation.reproduction_signals,
+        reference_utility=explanation.reference_utility,
+        score=explanation.score,
+        value_level=explanation.value_level,
+        confidence_level=explanation.confidence_level,
+        cap_reason=explanation.cap_reason,
+        why_recommended=explanation.why_recommended,
+        positive_evidence=explanation.positive_evidence,
+        negative_evidence=explanation.negative_evidence,
+        risk_level=explanation.risk_level,
+        risk_note=SAFETY_NOTE_TEXT,
+        stars=metadata.get("stargazers_count"),
+        updated_at=metadata.get("updated_at"),
+        language=(metadata.get("languages") or [None])[0],
+        metadata=metadata,
+    )
+
+
+def dedupe_results(results: list[SearchResultItem]) -> list[SearchResultItem]:
+    seen: set[str] = set()
+    output: list[SearchResultItem] = []
+    for item in results:
+        key = (item.repo or item.url).rstrip("/").casefold()
+        if key in seen:
+            continue
+        seen.add(key)
+        output.append(item)
+    return output
