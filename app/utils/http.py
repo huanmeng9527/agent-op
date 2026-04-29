@@ -50,6 +50,9 @@ async def fetch_json(
                 try:
                     payload = exc.response.json()
                     detail = str(payload.get("message") or "")
+                    moved_url = payload.get("url")
+                    if moved_url:
+                        detail = f"{detail}; url={moved_url}" if detail else f"url={moved_url}"
                 except ValueError:
                     detail = exc.response.text[:160]
                 if exc.response.status_code in {403, 429} and attempt == 0:

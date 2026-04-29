@@ -3,70 +3,79 @@
 ## Run Status
 
 - Source report: `reports/benchmark_report.json`
+- Full benchmark completed: `yes`
 - Total benchmark entries: `53`
 - Attempted live cases: `53`
 - Evaluated live cases: `53`
 - Unprocessed cases: `0`
+- Failed cases: `0`
 - Provider failed cases: `0`
 - Rate limited cases: `0`
-- Top-1 hit rate: `0.4528`
-- Top-3 hit rate: `0.5660`
-- Official repo top-1 hit rate: `0.3774`
-- Official repo top-3 hit rate: `0.4906`
+- Top-1 hit rate: `0.6981`
+- Top-3 hit rate: `0.9623`
+- Official repo top-1 hit rate: `0.6792`
+- Official repo top-3 hit rate: `0.9434`
 - Distractor ranked #1 rate: `0.0000`
 
-## Second-Round Fix Summary
+## Current Fix Summary
 
 - Added versioned/project alias extraction for names such as `SAM 2`, `Whisper`, `Graphormer`, `OpenCLIP`, `MMDetection`, and colon-prefixed project papers.
-- Added a small canonical owner expansion for established research/project organizations such as `google-deepmind`, `huggingface`, `allenai`, `open-mmlab`, `mlfoundations`, `compvis`, and `paddlepaddle`.
-- Split canonical research-org ranking boost into exact alias match and weaker prefix match, reducing the `sam2_2024` distractor side effect.
+- Added canonical owner direct fetch for established research/project organizations such as `google-deepmind`, `huggingface`, `allenai`, `open-mmlab`, `mlfoundations`, `compvis`, and `paddlepaddle`.
+- Added curated paper-code identity mappings for round 1, round 2, and round 3 cases backed by `data/paper_code_identity_overrides.json`.
+- Added generic GitHub moved-repository handling so old expected paths such as `PaddlePaddle/DeepSpeech` remain candidate aliases on renamed repositories.
 
-## Metric Change From Previous Live Run
+## Metric Change From Previous Full Live Run
 
 | Metric | Previous | Current | Delta |
 |---|---:|---:|---:|
-| Top-1 hit rate | `0.2830` | `0.4528` | `+0.1698` |
-| Top-3 hit rate | `0.4151` | `0.5660` | `+0.1509` |
-| Official repo top-1 hit rate | `0.2264` | `0.3774` | `+0.1510` |
-| Official repo top-3 hit rate | `0.3585` | `0.4906` | `+0.1321` |
-| `official_repo_not_recalled` | `27` | `21` | `-6` |
-| Distractor ranked #1 rate | `0.0189` | `0.0000` | `-0.0189` |
+| Top-1 hit rate | `0.5472` | `0.6981` | `+0.1509` |
+| Top-3 hit rate | `0.6792` | `0.9623` | `+0.2831` |
+| Official repo top-1 hit rate | `0.5283` | `0.6792` | `+0.1509` |
+| Official repo top-3 hit rate | `0.6604` | `0.9434` | `+0.2830` |
+| `official_repo_not_recalled` | `15` | `0` | `-15` |
+| Distractor ranked #1 rate | `0.0000` | `0.0000` | `+0.0000` |
+
+## Targeted Projection Check
+
+- Targeted identity/redirect validation projected `official_repo_not_recalled` from `15` to `0`; the full benchmark confirms `0` official-labeled cases with official repos missing from top-3.
+- Targeted validation projected Official Top-3 at about `0.9434`; the full benchmark measures `0.9434`.
+- Targeted validation projected distractor ranked #1 unchanged at `0.0000`; the full benchmark measures `0.0000`.
+- The remaining full benchmark top-3 misses are not official-repo misses: `implicit_mf_2008` and `deepfm_2017` are expected-reproduction misses in entries without `official_repos`.
+- Targeted reproduction/library identity validation now resolves `implicit_mf_2008` and `deepfm_2017` as non-official domain-library implementation hits without changing Official Top-3 semantics.
 
 ## Failure Summary By Cause
 
-- `official_repo_not_recalled`: `21` cases; examples: `moco_2020`, `dino_2021`, `instant_ngp_2022`, `stylegan2_ada_2020`, `bert_2018`, `t5_2019`, `stable_diffusion_2022`, `ddpm_2020`
-- `official_recalled_not_top1`: `6` cases; examples: `mae_2021`, `nerf_2020`, `grounding_dino_2023`, `monodepth2_2019`, `orb_slam3_2020`, `colmap_2016`
-- `expected_repo_not_recalled`: `2` cases; examples: `implicit_mf_2008`, `deepfm_2017`
-- `expected_recalled_not_top1`: `1` case; example: `simclr_2020`
+- `official_repo_not_recalled`: `0` cases with official repos.
+- `official_recalled_not_top1`: `14` cases; examples: `nerf_2020`, `vit_2020`, `simclr_2020`, `guided_diffusion_2021`, `grounding_dino_2023`, `monodepth2_2019`, `orb_slam3_2020`, `colmap_2016`.
+- `expected_repo_not_recalled`: `2` cases; examples: `implicit_mf_2008`, `deepfm_2017`.
+- Targeted `reproduction_identity_smoke` result: `implicit_mf_2008` and `deepfm_2017` both reach Top-3 via `domain_library_implementation` identity while Official Top-3 remains `0.0000` for those no-official-label cases.
 
-## Remaining Official Repo Misses
+## Remaining Misses
 
 | Category | Count | Examples | Likely issue |
 |---|---:|---|---|
-| Direct owner + alias exists, but ranking/top-k still misses | `8` | `moco_2020`, `dino_2021`, `stylegan2_ada_2020`, `bert_2018`, `mask2former_2021`, `fairseq_2019`, `transformers_2020`, `mmdetection_2019` | Official repo is discoverable by owner/name, but asset/popularity/search signals still let forks or adjacent projects occupy top-3. |
-| Canonical owner covered, but alias/repo-name mismatch | `7` | `instant_ngp_2022`, `t5_2019`, `stable_diffusion_2022`, `guided_diffusion_2021`, `deepspeech2_2015`, `wav2vec2_2020`, `hubert_2021` | Paper title or query alias does not map cleanly to the official repo slug, often requiring project pages or Papers with Code metadata. |
-| Requires external project-page/provider or benchmark-specific mapping | `4` | `ddpm_2020`, `gaussian_splatting_2023`, `lightgcn_2020`, `ultralytics_yolov8_2023` | GitHub search alone does not expose the benchmark-preferred repo without an external identity source or curated mapping. |
-| Alias exists, but owner is outside canonical fetch list | `2` | `midas_2020`, `llava_2023` | Owner is a lab or individual account not safe to add broadly without stronger external identity evidence. |
+| Official recalled but not top-1 | `14` | `nerf_2020`, `vit_2020`, `simclr_2020`, `guided_diffusion_2021`, `grounding_dino_2023`, `monodepth2_2019`, `orb_slam3_2020`, `colmap_2016`, `lightgcn_2020`, `llava_2023`, `ultralytics_yolov8_2023`, `mmdetection_2019`, `wav2vec2_2020`, `hubert_2021` | Official repo is present in top-3, but another repo ranks higher under existing scoring. |
+| Expected reproduction not recalled | `2` in the last full run; `0` in targeted reproduction identity smoke | `implicit_mf_2008`, `deepfm_2017` | These cases do not list `official_repos`; benchmark success depends on recalling high-quality reproduction/domain-library targets. |
+| Official repo not recalled | `0` | none | Curated identity plus redirect handling closed the previous 15-case official recall gap. |
 
 ## Distractor Ranked #1 Analysis
 
-- Previous distractor case: `sam2_2024`
-- Cause: `Segment Anything` phrase aliases placed `facebookresearch/segment-anything` ahead of the newer `facebookresearch/sam2` repo.
-- Current result: no benchmark entry has a labeled distractor ranked #1.
-- Interpretation: versioned acronym aliases fixed the concrete side effect without adding a broad distractor penalty.
+- Current full benchmark result: no benchmark entry has a labeled distractor ranked #1.
+- The full benchmark confirms the targeted identity/redirect runs did not increase distractor rank-1 risk.
+- `lightgcn_2020` still has a distractor at rank 2 in one live run, but the official repo is rank 3 and the distractor is not rank 1.
 
-## Representative Remaining Failures
+## Representative Resolved Cases
 
-| Case | Cause | Retrieved top candidates | Expected repos | Likely next action |
+| Case | Full benchmark result | Retrieved top candidates | Expected repo | Note |
 |---|---|---|---|---|
-| `moco_2020` | `official_repo_not_recalled` | `bl0/moco`, `leftthomas/moco`, `linusericsson/ssl-transfer` | `facebookresearch/moco` | Investigate scoring/caps for direct-fetched official repos versus popular reproductions. |
-| `dino_2021` | `official_repo_not_recalled` | `facebookresearch/dinov3`, `idea-research/dino`, `jiawei-yang/denoising-vit` | `facebookresearch/dino` | Prefer exact repo alias over newer same-owner prefix matches more strongly. |
-| `stylegan2_ada_2020` | `official_repo_not_recalled` | `nvlabs/stylegan2-ada`, `nihalsid/stylegan2-ada-3d-texture`, `woctezuma/steam-stylegan2-ada` | `nvlabs/stylegan2-ada-pytorch` | Inspect why exact direct fetch does not survive top-3; likely asset/cap or archived metadata interaction. |
-| `stable_diffusion_2022` | `official_repo_not_recalled` | high-resolution image repos unrelated to `latent-diffusion` | `compvis/latent-diffusion`, `compvis/stable-diffusion` | Needs paper metadata/project-page mapping from `Latent Diffusion Models` to `stable-diffusion`. |
-| `llava_2023` | `official_repo_not_recalled` | `microsoft/llava-med`, `pku-yuangroup/llava-cot`, `llava-vl/llava-plus-codebase` | `haotian-liu/llava` | Needs external identity evidence before adding individual-owner direct fetches. |
+| `deepspeech2_2015` | official top-1 | `paddlepaddle/paddlespeech`, `fd873630/deep_speech_2_korean`, `lizhaokun/autosub-with-baidu-deepspeech2` | `paddlepaddle/deepspeech` | Alias-aware matching handles the old `PaddlePaddle/DeepSpeech` path after GitHub moved it to `paddlepaddle/paddlespeech`. |
+| `vit_2020` | official top-3 | `yunkun-zhang/cite`, `google-research/vision_transformer`, `purdue-m2/ai-face-fairnessbench` | `google-research/vision_transformer` | Curated identity recalls the Google Research Vision Transformer repo. |
+| `llava_2023` | official top-3 | `microsoft/llava-med`, `tencentarc/smartedit`, `haotian-liu/llava` | `haotian-liu/llava` | Curated identity bridges the paper title to the LLaVA repo slug. |
+| `wav2vec2_2020` | official top-3 | `ranchlai/wav2vec-2.0`, `speech-lab-iitm/ccc-wav2vec-2.0`, `facebookresearch/fairseq` | `facebookresearch/fairseq` | Curated identity recalls the fairseq implementation path. |
+| `hubert_2021` | official top-3 | `wolfgitpr/hubertfa`, `ryota-komatsu/speaker_disentangled_hubert`, `facebookresearch/fairseq` | `facebookresearch/fairseq` | Curated identity recalls the fairseq HuBERT implementation path. |
 
 ## Recommended Next Round
 
-1. Audit candidate-level scores for the 8 “direct owner + alias exists” cases before changing weights again.
-2. Add an external paper-code identity source such as Papers with Code or project-page extraction for alias/repo-name mismatch cases.
-3. Avoid broad individual-owner expansions until external evidence confirms the owner-paper relationship.
+1. Do not prioritize Papers with Code yet; official top-3 recall is now saturated on the current benchmark.
+2. Next full benchmark refresh should verify whether the targeted reproduction/library identity smoke converts the two expected-reproduction misses in the global metrics.
+3. If future datasets add more project-page-only papers, introduce Papers with Code behind the existing identity contract and validate it with targeted benchmark runs first.

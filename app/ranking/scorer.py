@@ -227,6 +227,13 @@ def _canonical_research_org_bonus(analysis: QueryAnalysis, metadata: dict[str, A
     return 0.0, []
 
 
+def _has_explicit_official_evidence(text: str, metadata: dict[str, Any]) -> bool:
+    identity = metadata.get("external_identity") if isinstance(metadata.get("external_identity"), dict) else {}
+    if identity.get("source") and identity.get("confidence") == "high":
+        return True
+    return any(contains_term(text, hint) for hint in OFFICIAL_HINTS)
+
+
 def _canonical_research_org_match(analysis: QueryAnalysis, metadata: dict[str, Any], title: str) -> str | None:
     owner = safe_lower(str(metadata.get("owner") or ""))
     if owner not in RESEARCH_ORG_HINTS:
@@ -402,6 +409,13 @@ def score_provider_result(analysis: QueryAnalysis, item: ProviderSearchResult) -
         - risk_penalty
     )
     protect_canonical_official = canonical_match == "exact" and repo_role == "official_implementation" and risk_level != "high"
+    archived_same_slug_without_official_evidence = (
+        protect_canonical_official
+        and bool(metadata.get("archived"))
+        and not _has_explicit_official_evidence(text, metadata)
+    )
+    if archived_same_slug_without_official_evidence:
+        protect_canonical_official = False
     cap, cap_reason = _score_cap(
         metadata=metadata,
         repo_role=repo_role,
@@ -418,6 +432,8 @@ def score_provider_result(analysis: QueryAnalysis, item: ProviderSearchResult) -
         positive.append(f"detects tech stack: {', '.join(tech_stack[:5])}")
     if repo_role != "unknown":
         positive.append(f"classified as {repo_role}")
+    if archived_same_slug_without_official_evidence:
+        negative.append("archived same-slug candidate lacks explicit official evidence")
     if cap_reason:
         negative.append(f"score capped by {cap_reason}")
     why = "Strong reproduction candidate with runnable-code signals." if score >= 0.76 else (

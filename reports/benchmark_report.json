@@ -9,10 +9,10 @@
     "rate_limited": 0,
     "stopped_early": false,
     "stop_reason": null,
-    "top1_hit_rate": 0.5472,
-    "top3_hit_rate": 0.6792,
-    "official_top1_hit_rate": 0.5283,
-    "official_top3_hit_rate": 0.6604,
+    "top1_hit_rate": 0.6981,
+    "top3_hit_rate": 0.9623,
+    "official_top1_hit_rate": 0.6792,
+    "official_top3_hit_rate": 0.9434,
     "distractor_top1_rate": 0.0
   },
   "by_task": {
@@ -27,11 +27,11 @@
     },
     "computer_vision": {
       "total": 36,
-      "top1_hit": 20,
-      "top3_hit": 26,
+      "top1_hit": 26,
+      "top3_hit": 36,
       "distractor_top1": 0,
-      "top1_hit_rate": 0.5556,
-      "top3_hit_rate": 0.7222,
+      "top1_hit_rate": 0.7222,
+      "top3_hit_rate": 1.0,
       "distractor_top1_rate": 0.0
     },
     "graph_learning": {
@@ -45,20 +45,20 @@
     },
     "nlp": {
       "total": 6,
-      "top1_hit": 5,
-      "top3_hit": 5,
+      "top1_hit": 6,
+      "top3_hit": 6,
       "distractor_top1": 0,
-      "top1_hit_rate": 0.8333,
-      "top3_hit_rate": 0.8333,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
       "distractor_top1_rate": 0.0
     },
     "recommender": {
       "total": 3,
       "top1_hit": 0,
-      "top3_hit": 0,
+      "top3_hit": 1,
       "distractor_top1": 0,
       "top1_hit_rate": 0.0,
-      "top3_hit_rate": 0.0,
+      "top3_hit_rate": 0.3333,
       "distractor_top1_rate": 0.0
     },
     "robotics": {
@@ -72,29 +72,23 @@
     },
     "speech": {
       "total": 5,
-      "top1_hit": 2,
-      "top3_hit": 2,
+      "top1_hit": 3,
+      "top3_hit": 5,
       "distractor_top1": 0,
-      "top1_hit_rate": 0.4,
-      "top3_hit_rate": 0.4,
+      "top1_hit_rate": 0.6,
+      "top3_hit_rate": 1.0,
       "distractor_top1_rate": 0.0
     }
   },
   "failure_summary_by_task": {
     "computer_vision": {
-      "count": 16,
+      "count": 10,
       "examples": [
-        "moco_2020",
         "nerf_2020",
-        "instant_ngp_2022",
         "vit_2020",
-        "simclr_2020"
-      ]
-    },
-    "nlp": {
-      "count": 1,
-      "examples": [
-        "t5_2019"
+        "simclr_2020",
+        "guided_diffusion_2021",
+        "grounding_dino_2023"
       ]
     },
     "recommender": {
@@ -112,9 +106,8 @@
       ]
     },
     "speech": {
-      "count": 3,
+      "count": 2,
       "examples": [
-        "deepspeech2_2015",
         "wav2vec2_2020",
         "hubert_2021"
       ]
@@ -129,68 +122,20 @@
       ]
     },
     "official_recalled_not_top1": {
-      "count": 7,
+      "count": 14,
       "examples": [
-        "moco_2020",
         "nerf_2020",
+        "vit_2020",
         "simclr_2020",
+        "guided_diffusion_2021",
         "grounding_dino_2023",
         "monodepth2_2019",
         "orb_slam3_2020",
-        "mmdetection_2019"
-      ]
-    },
-    "official_repo_not_recalled": {
-      "count": 15,
-      "examples": [
-        "instant_ngp_2022",
-        "vit_2020",
-        "t5_2019",
-        "stable_diffusion_2022",
-        "ddpm_2020",
-        "guided_diffusion_2021",
-        "midas_2020",
         "colmap_2016"
       ]
     }
   },
   "failure_examples": [
-    {
-      "id": "moco_2020",
-      "paper_title": "Momentum Contrast for Unsupervised Visual Representation Learning",
-      "task": "computer_vision",
-      "retrieved": [
-        "bl0/moco",
-        "leftthomas/moco",
-        "facebookresearch/moco"
-      ],
-      "top1_hit": false,
-      "top3_hit": true,
-      "official_top1_hit": false,
-      "official_top3_hit": true,
-      "distractor_top1": false,
-      "official_rank": 3,
-      "acceptable_rank": 3,
-      "distractor_rank": null,
-      "official_repos": [
-        "facebookresearch/moco"
-      ],
-      "high_quality_reproduction_repos": [],
-      "common_distractor_repos": [
-        "facebookresearch/dino"
-      ],
-      "warnings": [],
-      "provider_status": {
-        "github": {
-          "ok": true,
-          "result_count": 3
-        }
-      },
-      "provider_errors": [],
-      "provider_failed": false,
-      "rate_limited": false,
-      "failure_cause": "official_recalled_not_top1"
-    },
     {
       "id": "nerf_2020",
       "paper_title": "NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis",
@@ -199,6 +144,17 @@
         "sxyu/pixel-nerf",
         "bmild/nerf",
         "ayaanzhaque/instruct-nerf2nerf"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "sxyu/pixel-nerf"
+        ],
+        [
+          "bmild/nerf"
+        ],
+        [
+          "ayaanzhaque/instruct-nerf2nerf"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -219,6 +175,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -230,57 +191,32 @@
       "failure_cause": "official_recalled_not_top1"
     },
     {
-      "id": "instant_ngp_2022",
-      "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
-      "task": "computer_vision",
-      "retrieved": [
-        "nvlabs/tiny-cuda-nn",
-        "niklasschmitz/sdf_jax",
-        "ailon-island/tiny-cuda-nn-old"
-      ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
-      "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
-      "distractor_rank": null,
-      "official_repos": [
-        "nvlabs/instant-ngp"
-      ],
-      "high_quality_reproduction_repos": [],
-      "common_distractor_repos": [
-        "yenchenlin/nerf-pytorch"
-      ],
-      "warnings": [],
-      "provider_status": {
-        "github": {
-          "ok": true,
-          "result_count": 3
-        }
-      },
-      "provider_errors": [],
-      "provider_failed": false,
-      "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
-    },
-    {
       "id": "vit_2020",
       "paper_title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
       "task": "computer_vision",
       "retrieved": [
         "yunkun-zhang/cite",
-        "purdue-m2/ai-face-fairnessbench",
-        "brianpulfer/papersreimplementations"
+        "google-research/vision_transformer",
+        "purdue-m2/ai-face-fairnessbench"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "yunkun-zhang/cite"
+        ],
+        [
+          "google-research/vision_transformer"
+        ],
+        [
+          "purdue-m2/ai-face-fairnessbench"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "google-research/vision_transformer"
@@ -293,6 +229,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -301,7 +244,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "simclr_2020",
@@ -311,6 +254,17 @@
         "andrewatanov/simclr-pytorch",
         "google-research/simclr",
         "sthalles/simclr"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "andrewatanov/simclr-pytorch"
+        ],
+        [
+          "google-research/simclr"
+        ],
+        [
+          "sthalles/simclr"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -331,6 +285,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -342,136 +301,32 @@
       "failure_cause": "official_recalled_not_top1"
     },
     {
-      "id": "t5_2019",
-      "paper_title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
-      "task": "nlp",
-      "retrieved": [
-        "thu-ml/motus",
-        "yurakuratov/t5-experiments",
-        "google-research/t5x"
-      ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
-      "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
-      "distractor_rank": null,
-      "official_repos": [
-        "google-research/text-to-text-transfer-transformer"
-      ],
-      "high_quality_reproduction_repos": [
-        "huggingface/transformers"
-      ],
-      "common_distractor_repos": [
-        "google-research/mt5"
-      ],
-      "warnings": [],
-      "provider_status": {
-        "github": {
-          "ok": true,
-          "result_count": 3
-        }
-      },
-      "provider_errors": [],
-      "provider_failed": false,
-      "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
-    },
-    {
-      "id": "stable_diffusion_2022",
-      "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
-      "task": "computer_vision",
-      "retrieved": [
-        "abdur75648/utrnet-high-resolution-urdu-text-recognition",
-        "leoxiaobin/deep-high-resolution-net.pytorch",
-        "wangyx240/high-resolution-image-inpainting-gan"
-      ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
-      "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
-      "distractor_rank": null,
-      "official_repos": [
-        "compvis/latent-diffusion",
-        "compvis/stable-diffusion"
-      ],
-      "high_quality_reproduction_repos": [
-        "stability-ai/stablediffusion"
-      ],
-      "common_distractor_repos": [
-        "automatic1111/stable-diffusion-webui"
-      ],
-      "warnings": [],
-      "provider_status": {
-        "github": {
-          "ok": true,
-          "result_count": 3
-        }
-      },
-      "provider_errors": [],
-      "provider_failed": false,
-      "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
-    },
-    {
-      "id": "ddpm_2020",
-      "paper_title": "Denoising Diffusion Probabilistic Models",
-      "task": "computer_vision",
-      "retrieved": [
-        "sak-h/pytorch-denoising-diffusion-probabilistic-models",
-        "musawir124/denoising-diffusion-probabilistic-models",
-        "nicob15/trajectory-generation-control-and-safety-with-denoising-diffusion-probabilistic-models"
-      ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
-      "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
-      "distractor_rank": null,
-      "official_repos": [
-        "hojonathanho/diffusion"
-      ],
-      "high_quality_reproduction_repos": [
-        "lucidrains/denoising-diffusion-pytorch"
-      ],
-      "common_distractor_repos": [
-        "openai/improved-diffusion"
-      ],
-      "warnings": [],
-      "provider_status": {
-        "github": {
-          "ok": true,
-          "result_count": 3
-        }
-      },
-      "provider_errors": [],
-      "provider_failed": false,
-      "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
-    },
-    {
       "id": "guided_diffusion_2021",
       "paper_title": "Diffusion Models Beat GANs on Image Synthesis",
       "task": "computer_vision",
       "retrieved": [
         "mchong6/gansnroses",
-        "tkarras/progressive_growing_of_gans",
-        "xingangpan/draggan"
+        "openai/guided-diffusion",
+        "tkarras/progressive_growing_of_gans"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "mchong6/gansnroses"
+        ],
+        [
+          "openai/guided-diffusion"
+        ],
+        [
+          "tkarras/progressive_growing_of_gans"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "openai/guided-diffusion"
@@ -482,6 +337,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "openai/guided-diffusion"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -490,7 +352,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "grounding_dino_2023",
@@ -500,6 +362,17 @@
         "dongdong-d/groundingdino-finetuning",
         "longzw1997/open-groundingdino",
         "idea-research/groundingdino"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "dongdong-d/groundingdino-finetuning"
+        ],
+        [
+          "longzw1997/open-groundingdino"
+        ],
+        [
+          "idea-research/groundingdino"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -518,6 +391,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -537,6 +415,17 @@
         "icaruswizard/monodepth2-paddle",
         "nianticlabs/monodepth2"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "eddiespade/monodepth2"
+        ],
+        [
+          "icaruswizard/monodepth2-paddle"
+        ],
+        [
+          "nianticlabs/monodepth2"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": true,
       "official_top1_hit": false,
@@ -554,6 +443,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -565,31 +459,47 @@
       "failure_cause": "official_recalled_not_top1"
     },
     {
-      "id": "midas_2020",
-      "paper_title": "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer",
-      "task": "computer_vision",
+      "id": "orb_slam3_2020",
+      "paper_title": "ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM",
+      "task": "robotics",
       "retrieved": [
-        "kopperx/adv-diffusion",
-        "mq-zhang1/hoidiffusion",
-        "pollardlab/midas"
+        "leaner-forever/segs-slam",
+        "thien94/orb_slam3_ros",
+        "uz-slamlab/orb_slam3"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "leaner-forever/segs-slam"
+        ],
+        [
+          "thien94/orb_slam3_ros"
+        ],
+        [
+          "uz-slamlab/orb_slam3"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 3,
+      "acceptable_rank": 3,
       "distractor_rank": null,
       "official_repos": [
-        "isl-org/midas"
+        "uz-slamlab/orb_slam3"
       ],
       "high_quality_reproduction_repos": [],
       "common_distractor_repos": [
-        "nianticlabs/monodepth2"
+        "raulmur/orb_slam2"
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -598,7 +508,275 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "colmap_2016",
+      "paper_title": "Structure-from-Motion Revisited",
+      "task": "computer_vision",
+      "retrieved": [
+        "fangjinhuawang/patchmatchnet",
+        "colmap/colmap",
+        "xiaobaiiiiii/colmap-pcd"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "fangjinhuawang/patchmatchnet"
+        ],
+        [
+          "colmap/colmap"
+        ],
+        [
+          "xiaobaiiiiii/colmap-pcd"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "colmap/colmap"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openmvg/openmvg"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "colmap/colmap"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "lightgcn_2020",
+      "paper_title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+      "task": "recommender",
+      "retrieved": [
+        "lucapantea/lightgcn",
+        "kuandeng/lightgcn",
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "lucapantea/lightgcn"
+        ],
+        [
+          "kuandeng/lightgcn"
+        ],
+        [
+          "gusye1234/lightgcn-pytorch"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": 2,
+      "official_repos": [
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "kuandeng/lightgcn"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "gusye1234/LightGCN-PyTorch"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "llava_2023",
+      "paper_title": "Visual Instruction Tuning",
+      "task": "computer_vision",
+      "retrieved": [
+        "microsoft/llava-med",
+        "tencentarc/smartedit",
+        "haotian-liu/llava"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "microsoft/llava-med"
+        ],
+        [
+          "tencentarc/smartedit"
+        ],
+        [
+          "haotian-liu/llava"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "haotian-liu/llava"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "vision-cair/minigpt-4"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "haotian-liu/LLaVA"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "ultralytics_yolov8_2023",
+      "paper_title": "YOLOv8",
+      "task": "computer_vision",
+      "retrieved": [
+        "dataxujing/yolov8",
+        "ultralytics/ultralytics",
+        "derronqi/yolov8-face"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "dataxujing/yolov8"
+        ],
+        [
+          "ultralytics/ultralytics"
+        ],
+        [
+          "derronqi/yolov8-face"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "ultralytics/ultralytics"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "mmdetection_2019",
+      "paper_title": "MMDetection: Open MMLab Detection Toolbox and Benchmark",
+      "task": "computer_vision",
+      "retrieved": [
+        "allenai/mmdetection",
+        "open-mmlab/mmdetection",
+        "hhaandroid/mmdetection-mini"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "allenai/mmdetection"
+        ],
+        [
+          "open-mmlab/mmdetection"
+        ],
+        [
+          "hhaandroid/mmdetection-mini"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "open-mmlab/mmdetection"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
     }
   ],
   "details": [
@@ -610,6 +788,17 @@
         "facebookresearch/segment-anything",
         "yatenglg/isat_with_segment_anything",
         "z-x-yang/segment-and-track-anything"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/segment-anything"
+        ],
+        [
+          "yatenglg/isat_with_segment_anything"
+        ],
+        [
+          "z-x-yang/segment-and-track-anything"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -630,6 +819,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -648,6 +842,17 @@
         "facebookresearch/detr",
         "allenai/detr",
         "fundamentalvision/deformable-detr"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/detr"
+        ],
+        [
+          "allenai/detr"
+        ],
+        [
+          "fundamentalvision/deformable-detr"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -668,6 +873,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -685,7 +895,18 @@
       "retrieved": [
         "facebookresearch/mae",
         "pengzhiliang/mae-pytorch",
-        "icaruswizard/mae"
+        "jiawei-yang/denoising-vit"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/mae"
+        ],
+        [
+          "pengzhiliang/mae-pytorch"
+        ],
+        [
+          "jiawei-yang/denoising-vit"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -706,6 +927,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -721,17 +947,28 @@
       "paper_title": "Momentum Contrast for Unsupervised Visual Representation Learning",
       "task": "computer_vision",
       "retrieved": [
-        "bl0/moco",
-        "leftthomas/moco",
-        "facebookresearch/moco"
+        "facebookresearch/moco",
+        "linusericsson/ssl-transfer",
+        "megvii-research/ssql-eccv2022"
       ],
-      "top1_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/moco"
+        ],
+        [
+          "linusericsson/ssl-transfer"
+        ],
+        [
+          "megvii-research/ssql-eccv2022"
+        ]
+      ],
+      "top1_hit": true,
       "top3_hit": true,
-      "official_top1_hit": false,
+      "official_top1_hit": true,
       "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": 3,
-      "acceptable_rank": 3,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "facebookresearch/moco"
@@ -742,6 +979,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -750,7 +992,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_recalled_not_top1"
+      "failure_cause": "success"
     },
     {
       "id": "dino_2021",
@@ -759,7 +1001,18 @@
       "retrieved": [
         "facebookresearch/dino",
         "idea-research/dino",
-        "jiawei-yang/denoising-vit"
+        "google-research/vision_transformer"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/dino"
+        ],
+        [
+          "idea-research/dino"
+        ],
+        [
+          "google-research/vision_transformer"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -778,6 +1031,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -797,6 +1057,17 @@
         "itsprakhar/downstream-dinov2",
         "mohammedsb/dinov2forradiology"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/dinov2"
+        ],
+        [
+          "itsprakhar/downstream-dinov2"
+        ],
+        [
+          "mohammedsb/dinov2forradiology"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -814,6 +1085,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -832,6 +1108,17 @@
         "openai/clip",
         "microsoft/regionclip",
         "mlfoundations/open_clip"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "openai/clip"
+        ],
+        [
+          "microsoft/regionclip"
+        ],
+        [
+          "mlfoundations/open_clip"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -852,6 +1139,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -871,6 +1163,17 @@
         "vision-cair/minigpt4-video",
         "quentinfuxa/whisperlivekit"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "openai/whisper"
+        ],
+        [
+          "vision-cair/minigpt4-video"
+        ],
+        [
+          "quentinfuxa/whisperlivekit"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -889,6 +1192,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -907,6 +1215,17 @@
         "sxyu/pixel-nerf",
         "bmild/nerf",
         "ayaanzhaque/instruct-nerf2nerf"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "sxyu/pixel-nerf"
+        ],
+        [
+          "bmild/nerf"
+        ],
+        [
+          "ayaanzhaque/instruct-nerf2nerf"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -927,6 +1246,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -942,17 +1266,28 @@
       "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
       "task": "computer_vision",
       "retrieved": [
+        "nvlabs/instant-ngp",
         "nvlabs/tiny-cuda-nn",
-        "niklasschmitz/sdf_jax",
-        "ailon-island/tiny-cuda-nn-old"
+        "qsong2001/nerfprotector-code"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "nvlabs/instant-ngp"
+        ],
+        [
+          "nvlabs/tiny-cuda-nn"
+        ],
+        [
+          "qsong2001/nerfprotector-code"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "nvlabs/instant-ngp"
@@ -963,6 +1298,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "NVlabs/instant-ngp"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -971,7 +1313,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "stylegan2_ada_2020",
@@ -979,8 +1321,19 @@
       "task": "computer_vision",
       "retrieved": [
         "nvlabs/stylegan2-ada-pytorch",
-        "woctezuma/steam-stylegan2-ada",
-        "jeffheaton/docker-stylegan2-ada"
+        "nihalsid/stylegan2-ada-lightning",
+        "woctezuma/steam-stylegan2-ada"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "nvlabs/stylegan2-ada-pytorch"
+        ],
+        [
+          "nihalsid/stylegan2-ada-lightning"
+        ],
+        [
+          "woctezuma/steam-stylegan2-ada"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -999,6 +1352,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1016,7 +1374,18 @@
       "retrieved": [
         "microsoft/swin-transformer",
         "wangfeng18/swin-transformer",
-        "maggiez0138/swin-transformer-tensorrt"
+        "google-research/vision_transformer"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "microsoft/swin-transformer"
+        ],
+        [
+          "wangfeng18/swin-transformer"
+        ],
+        [
+          "google-research/vision_transformer"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1035,6 +1404,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1051,16 +1427,27 @@
       "task": "computer_vision",
       "retrieved": [
         "yunkun-zhang/cite",
-        "purdue-m2/ai-face-fairnessbench",
-        "brianpulfer/papersreimplementations"
+        "google-research/vision_transformer",
+        "purdue-m2/ai-face-fairnessbench"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "yunkun-zhang/cite"
+        ],
+        [
+          "google-research/vision_transformer"
+        ],
+        [
+          "purdue-m2/ai-face-fairnessbench"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "google-research/vision_transformer"
@@ -1073,6 +1460,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1081,7 +1475,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "simclr_2020",
@@ -1091,6 +1485,17 @@
         "andrewatanov/simclr-pytorch",
         "google-research/simclr",
         "sthalles/simclr"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "andrewatanov/simclr-pytorch"
+        ],
+        [
+          "google-research/simclr"
+        ],
+        [
+          "sthalles/simclr"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -1111,6 +1516,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1129,6 +1539,17 @@
         "google-deepmind/alphafold",
         "lucidrains/alphafold3-pytorch",
         "urinx/alphafold_pytorch"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "google-deepmind/alphafold"
+        ],
+        [
+          "lucidrains/alphafold3-pytorch"
+        ],
+        [
+          "urinx/alphafold_pytorch"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1149,6 +1570,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1167,6 +1593,17 @@
         "google-research/bert",
         "ymcui/chinese-bert-wwm",
         "bojone/bert4keras"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "google-research/bert"
+        ],
+        [
+          "ymcui/chinese-bert-wwm"
+        ],
+        [
+          "bojone/bert4keras"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1187,6 +1624,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1202,17 +1644,28 @@
       "paper_title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
       "task": "nlp",
       "retrieved": [
+        "google-research/text-to-text-transfer-transformer",
         "thu-ml/motus",
-        "yurakuratov/t5-experiments",
-        "google-research/t5x"
+        "yurakuratov/t5-experiments"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "google-research/text-to-text-transfer-transformer"
+        ],
+        [
+          "thu-ml/motus"
+        ],
+        [
+          "yurakuratov/t5-experiments"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "google-research/text-to-text-transfer-transformer"
@@ -1225,6 +1678,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/text-to-text-transfer-transformer"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1233,7 +1693,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "longformer_2020",
@@ -1241,8 +1701,19 @@
       "task": "nlp",
       "retrieved": [
         "allenai/longformer",
-        "markussagen/master-thesis-multilingual-longformer",
-        "schenliu/longformer-chinese"
+        "schenliu/longformer-chinese",
+        "microsoft/vision-longformer"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "allenai/longformer"
+        ],
+        [
+          "schenliu/longformer-chinese"
+        ],
+        [
+          "microsoft/vision-longformer"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1263,6 +1734,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1281,6 +1757,17 @@
         "microsoft/lora",
         "tloen/alpaca-lora",
         "stability-ai/stablecascade"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "microsoft/lora"
+        ],
+        [
+          "tloen/alpaca-lora"
+        ],
+        [
+          "stability-ai/stablecascade"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1301,6 +1788,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1316,17 +1808,28 @@
       "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
       "task": "computer_vision",
       "retrieved": [
-        "abdur75648/utrnet-high-resolution-urdu-text-recognition",
-        "leoxiaobin/deep-high-resolution-net.pytorch",
-        "wangyx240/high-resolution-image-inpainting-gan"
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion",
+        "abdur75648/utrnet-high-resolution-urdu-text-recognition"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "compvis/latent-diffusion"
+        ],
+        [
+          "compvis/stable-diffusion"
+        ],
+        [
+          "abdur75648/utrnet-high-resolution-urdu-text-recognition"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "compvis/latent-diffusion",
@@ -1340,6 +1843,14 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 2,
+          "matched_repos": [
+            "CompVis/latent-diffusion",
+            "CompVis/stable-diffusion"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1348,24 +1859,35 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "ddpm_2020",
       "paper_title": "Denoising Diffusion Probabilistic Models",
       "task": "computer_vision",
       "retrieved": [
+        "hojonathanho/diffusion",
         "sak-h/pytorch-denoising-diffusion-probabilistic-models",
-        "musawir124/denoising-diffusion-probabilistic-models",
-        "nicob15/trajectory-generation-control-and-safety-with-denoising-diffusion-probabilistic-models"
+        "yang-song/score_sde"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "hojonathanho/diffusion"
+        ],
+        [
+          "sak-h/pytorch-denoising-diffusion-probabilistic-models"
+        ],
+        [
+          "yang-song/score_sde"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "hojonathanho/diffusion"
@@ -1378,6 +1900,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "hojonathanho/diffusion"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1386,7 +1915,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "guided_diffusion_2021",
@@ -1394,16 +1923,27 @@
       "task": "computer_vision",
       "retrieved": [
         "mchong6/gansnroses",
-        "tkarras/progressive_growing_of_gans",
-        "xingangpan/draggan"
+        "openai/guided-diffusion",
+        "tkarras/progressive_growing_of_gans"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "mchong6/gansnroses"
+        ],
+        [
+          "openai/guided-diffusion"
+        ],
+        [
+          "tkarras/progressive_growing_of_gans"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "openai/guided-diffusion"
@@ -1414,6 +1954,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "openai/guided-diffusion"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1422,7 +1969,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "controlnet_2023",
@@ -1432,6 +1979,17 @@
         "lllyasviel/controlnet",
         "fannovel16/comfyui_controlnet_aux",
         "stability-ai/stablecascade"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "lllyasviel/controlnet"
+        ],
+        [
+          "fannovel16/comfyui_controlnet_aux"
+        ],
+        [
+          "stability-ai/stablecascade"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1450,6 +2008,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1469,6 +2032,17 @@
         "longzw1997/open-groundingdino",
         "idea-research/groundingdino"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "dongdong-d/groundingdino-finetuning"
+        ],
+        [
+          "longzw1997/open-groundingdino"
+        ],
+        [
+          "idea-research/groundingdino"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": true,
       "official_top1_hit": false,
@@ -1486,6 +2060,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1505,6 +2084,17 @@
         "luckydog-lhy/tensorrt_mask2former",
         "yarrowqiao/semask-mask2former"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/mask2former"
+        ],
+        [
+          "luckydog-lhy/tensorrt_mask2former"
+        ],
+        [
+          "yarrowqiao/semask-mask2former"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -1522,6 +2112,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1541,6 +2136,17 @@
         "dangeng/flowmag",
         "david-zhao-1997/high-frequency-stereo-matching-network"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "princeton-vl/raft"
+        ],
+        [
+          "dangeng/flowmag"
+        ],
+        [
+          "david-zhao-1997/high-frequency-stereo-matching-network"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -1558,6 +2164,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1577,6 +2188,17 @@
         "icaruswizard/monodepth2-paddle",
         "nianticlabs/monodepth2"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "eddiespade/monodepth2"
+        ],
+        [
+          "icaruswizard/monodepth2-paddle"
+        ],
+        [
+          "nianticlabs/monodepth2"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": true,
       "official_top1_hit": false,
@@ -1594,6 +2216,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1609,17 +2236,28 @@
       "paper_title": "Towards Robust Monocular Depth Estimation: Mixing Datasets for Zero-shot Cross-dataset Transfer",
       "task": "computer_vision",
       "retrieved": [
+        "isl-org/midas",
         "kopperx/adv-diffusion",
-        "mq-zhang1/hoidiffusion",
-        "pollardlab/midas"
+        "mq-zhang1/hoidiffusion"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "isl-org/midas"
+        ],
+        [
+          "kopperx/adv-diffusion"
+        ],
+        [
+          "mq-zhang1/hoidiffusion"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "isl-org/midas"
@@ -1630,6 +2268,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "isl-org/MiDaS"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1638,7 +2283,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "openpose_2018",
@@ -1648,6 +2293,17 @@
         "cmu-perceptual-computing-lab/openpose",
         "muelea/shapy",
         "geaxgx/tello-openpose"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "cmu-perceptual-computing-lab/openpose"
+        ],
+        [
+          "muelea/shapy"
+        ],
+        [
+          "geaxgx/tello-openpose"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1666,6 +2322,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1685,6 +2346,17 @@
         "thien94/orb_slam3_ros",
         "uz-slamlab/orb_slam3"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "leaner-forever/segs-slam"
+        ],
+        [
+          "thien94/orb_slam3_ros"
+        ],
+        [
+          "uz-slamlab/orb_slam3"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": true,
       "official_top1_hit": false,
@@ -1702,6 +2374,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1718,16 +2395,27 @@
       "task": "computer_vision",
       "retrieved": [
         "fangjinhuawang/patchmatchnet",
-        "xiaobaiiiiii/colmap-pcd",
-        "kai-46/colmapforvissat"
+        "colmap/colmap",
+        "xiaobaiiiiii/colmap-pcd"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "fangjinhuawang/patchmatchnet"
+        ],
+        [
+          "colmap/colmap"
+        ],
+        [
+          "xiaobaiiiiii/colmap-pcd"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "colmap/colmap"
@@ -1738,6 +2426,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "colmap/colmap"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1746,24 +2441,35 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "gaussian_splatting_2023",
       "paper_title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
       "task": "computer_vision",
       "retrieved": [
-        "anandpawara/real_time_image_animation",
+        "graphdeco-inria/gaussian-splatting",
         "yerfor/genefaceplusplus",
-        "unknown-horizons/unknown-horizons"
+        "anandpawara/real_time_image_animation"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "graphdeco-inria/gaussian-splatting"
+        ],
+        [
+          "yerfor/genefaceplusplus"
+        ],
+        [
+          "anandpawara/real_time_image_animation"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "graphdeco-inria/gaussian-splatting"
@@ -1776,6 +2482,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "graphdeco-inria/gaussian-splatting"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1784,7 +2497,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "sam2_2024",
@@ -1794,6 +2507,17 @@
         "facebookresearch/sam2",
         "hustvl/evf-sam",
         "imprintlab/medical-sam2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/sam2"
+        ],
+        [
+          "hustvl/evf-sam"
+        ],
+        [
+          "imprintlab/medical-sam2"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1812,6 +2536,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1829,7 +2558,18 @@
       "retrieved": [
         "facebookresearch/detectron2",
         "conansherry/detectron2",
-        "jagin/detectron2-pipeline"
+        "tztztztztz/eql.detectron2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/detectron2"
+        ],
+        [
+          "conansherry/detectron2"
+        ],
+        [
+          "tztztztztz/eql.detectron2"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1848,6 +2588,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1867,6 +2612,17 @@
         "laion-ai/scaling-laws-openclip",
         "jzyztzn/openclip"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "mlfoundations/open_clip"
+        ],
+        [
+          "laion-ai/scaling-laws-openclip"
+        ],
+        [
+          "jzyztzn/openclip"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -1884,6 +2640,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1903,6 +2664,17 @@
         "kanyun-inc/fairseq-gec",
         "martiansideofthemoon/style-transfer-paraphrase"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/fairseq"
+        ],
+        [
+          "kanyun-inc/fairseq-gec"
+        ],
+        [
+          "martiansideofthemoon/style-transfer-paraphrase"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -1920,6 +2692,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1937,7 +2714,19 @@
       "retrieved": [
         "huggingface/transformers",
         "mlfoundations/transformers",
-        "compvis/taming-transformers"
+        "microsoft/huggingface-transformers"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "huggingface/transformers"
+        ],
+        [
+          "mlfoundations/transformers"
+        ],
+        [
+          "microsoft/huggingface-transformers",
+          "microsoft/transformers"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1956,6 +2745,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -1972,8 +2766,19 @@
       "task": "graph_learning",
       "retrieved": [
         "microsoft/graphormer",
-        "isfengg/graphormer",
-        "dpstart/graphormer_new"
+        "dpstart/graphormer_new",
+        "lsj2408/graphormer-gd"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "microsoft/graphormer"
+        ],
+        [
+          "dpstart/graphormer_new"
+        ],
+        [
+          "lsj2408/graphormer-gd"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -1992,6 +2797,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2009,15 +2819,26 @@
       "retrieved": [
         "lucapantea/lightgcn",
         "kuandeng/lightgcn",
-        "geonwooko/mule"
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "lucapantea/lightgcn"
+        ],
+        [
+          "kuandeng/lightgcn"
+        ],
+        [
+          "gusye1234/lightgcn-pytorch"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 3,
+      "acceptable_rank": 3,
       "distractor_rank": 2,
       "official_repos": [
         "gusye1234/lightgcn-pytorch"
@@ -2028,6 +2849,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "gusye1234/LightGCN-PyTorch"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2036,7 +2864,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "dreambooth_2022",
@@ -2046,6 +2874,17 @@
         "xavierxiao/dreambooth-stable-diffusion",
         "zanilzanzan/dreambooth",
         "joepenna/dreambooth-stable-diffusion"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "xavierxiao/dreambooth-stable-diffusion"
+        ],
+        [
+          "zanilzanzan/dreambooth"
+        ],
+        [
+          "joepenna/dreambooth-stable-diffusion"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -2064,6 +2903,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2083,6 +2927,17 @@
         "icey-zhang/minigpt4_guide",
         "ziwei-zheng/nullu"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "vision-cair/minigpt-4"
+        ],
+        [
+          "icey-zhang/minigpt4_guide"
+        ],
+        [
+          "ziwei-zheng/nullu"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -2100,6 +2955,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2117,15 +2977,26 @@
       "retrieved": [
         "microsoft/llava-med",
         "tencentarc/smartedit",
-        "pku-yuangroup/llava-cot"
+        "haotian-liu/llava"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "microsoft/llava-med"
+        ],
+        [
+          "tencentarc/smartedit"
+        ],
+        [
+          "haotian-liu/llava"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 3,
+      "acceptable_rank": 3,
       "distractor_rank": null,
       "official_repos": [
         "haotian-liu/llava"
@@ -2136,6 +3007,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "haotian-liu/LLaVA"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2144,7 +3022,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "yolov7_2022",
@@ -2154,6 +3032,17 @@
         "wongkinyiu/yolov7",
         "dataxujing/yolov7",
         "bubbliiiing/yolov7-pytorch"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "wongkinyiu/yolov7"
+        ],
+        [
+          "dataxujing/yolov7"
+        ],
+        [
+          "bubbliiiing/yolov7-pytorch"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -2174,6 +3063,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2189,17 +3083,28 @@
       "paper_title": "YOLOv8",
       "task": "computer_vision",
       "retrieved": [
-        "bubbliiiing/yolov8-pytorch",
         "dataxujing/yolov8",
+        "ultralytics/ultralytics",
         "derronqi/yolov8-face"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "dataxujing/yolov8"
+        ],
+        [
+          "ultralytics/ultralytics"
+        ],
+        [
+          "derronqi/yolov8-face"
+        ]
+      ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 2,
+      "acceptable_rank": 2,
       "distractor_rank": null,
       "official_repos": [
         "ultralytics/ultralytics"
@@ -2210,6 +3115,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "ultralytics/ultralytics"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2218,7 +3130,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "mmdetection_2019",
@@ -2228,6 +3140,17 @@
         "allenai/mmdetection",
         "open-mmlab/mmdetection",
         "hhaandroid/mmdetection-mini"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "allenai/mmdetection"
+        ],
+        [
+          "open-mmlab/mmdetection"
+        ],
+        [
+          "hhaandroid/mmdetection-mini"
+        ]
       ],
       "top1_hit": false,
       "top3_hit": true,
@@ -2246,6 +3169,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2265,6 +3193,17 @@
         "tommyzihao/mmsegmentation_tutorials",
         "rubeea/focal_phi_loss_mmsegmentation"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "open-mmlab/mmsegmentation"
+        ],
+        [
+          "tommyzihao/mmsegmentation_tutorials"
+        ],
+        [
+          "rubeea/focal_phi_loss_mmsegmentation"
+        ]
+      ],
       "top1_hit": true,
       "top3_hit": true,
       "official_top1_hit": true,
@@ -2282,6 +3221,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2298,8 +3242,19 @@
       "task": "computer_vision",
       "retrieved": [
         "facebookresearch/detectron",
-        "conansherry/detectron2",
-        "zhaoweicai/detectron-cascade-rcnn"
+        "tztztztztz/eql.detectron2",
+        "conansherry/detectron2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/detectron"
+        ],
+        [
+          "tztztztztz/eql.detectron2"
+        ],
+        [
+          "conansherry/detectron2"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -2320,6 +3275,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2335,17 +3295,29 @@
       "paper_title": "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
       "task": "speech",
       "retrieved": [
+        "paddlepaddle/paddlespeech",
         "fd873630/deep_speech_2_korean",
-        "lizhaokun/autosub-with-baidu-deepspeech2",
-        "sooftware/deepspeech2"
+        "lizhaokun/autosub-with-baidu-deepspeech2"
       ],
-      "top1_hit": false,
-      "top3_hit": false,
-      "official_top1_hit": false,
-      "official_top3_hit": false,
+      "retrieved_repo_aliases": [
+        [
+          "paddlepaddle/deepspeech",
+          "paddlepaddle/paddlespeech"
+        ],
+        [
+          "fd873630/deep_speech_2_korean"
+        ],
+        [
+          "lizhaokun/autosub-with-baidu-deepspeech2"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 1,
+      "acceptable_rank": 1,
       "distractor_rank": null,
       "official_repos": [
         "paddlepaddle/deepspeech"
@@ -2358,6 +3330,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "PaddlePaddle/DeepSpeech"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2366,7 +3345,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "success"
     },
     {
       "id": "wav2vec2_2020",
@@ -2375,15 +3354,26 @@
       "retrieved": [
         "ranchlai/wav2vec-2.0",
         "speech-lab-iitm/ccc-wav2vec-2.0",
-        "sakibchowdhury131/finetune_wav2vec2.0"
+        "facebookresearch/fairseq"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "ranchlai/wav2vec-2.0"
+        ],
+        [
+          "speech-lab-iitm/ccc-wav2vec-2.0"
+        ],
+        [
+          "facebookresearch/fairseq"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 3,
+      "acceptable_rank": 3,
       "distractor_rank": null,
       "official_repos": [
         "facebookresearch/fairseq"
@@ -2396,6 +3386,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "facebookresearch/fairseq"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2404,7 +3401,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "hubert_2021",
@@ -2413,15 +3410,26 @@
       "retrieved": [
         "wolfgitpr/hubertfa",
         "ryota-komatsu/speaker_disentangled_hubert",
-        "bshall/hubert"
+        "facebookresearch/fairseq"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "wolfgitpr/hubertfa"
+        ],
+        [
+          "ryota-komatsu/speaker_disentangled_hubert"
+        ],
+        [
+          "facebookresearch/fairseq"
+        ]
       ],
       "top1_hit": false,
-      "top3_hit": false,
+      "top3_hit": true,
       "official_top1_hit": false,
-      "official_top3_hit": false,
+      "official_top3_hit": true,
       "distractor_top1": false,
-      "official_rank": null,
-      "acceptable_rank": null,
+      "official_rank": 3,
+      "acceptable_rank": 3,
       "distractor_rank": null,
       "official_repos": [
         "facebookresearch/fairseq"
@@ -2434,6 +3442,13 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "facebookresearch/fairseq"
+          ]
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2442,7 +3457,7 @@
       "provider_errors": [],
       "provider_failed": false,
       "rate_limited": false,
-      "failure_cause": "official_repo_not_recalled"
+      "failure_cause": "official_recalled_not_top1"
     },
     {
       "id": "fastspeech2_2020",
@@ -2452,6 +3467,17 @@
         "ming024/fastspeech2",
         "rishikksh20/fastspeech2",
         "labmem-zhouyx/cdfse_fastspeech2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "ming024/fastspeech2"
+        ],
+        [
+          "rishikksh20/fastspeech2"
+        ],
+        [
+          "labmem-zhouyx/cdfse_fastspeech2"
+        ]
       ],
       "top1_hit": true,
       "top3_hit": true,
@@ -2470,6 +3496,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2489,6 +3520,17 @@
         "piyushpathak03/recommendation-systems",
         "silence28/collaborative-filtering-for-implicit-feedback-datasets"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets"
+        ],
+        [
+          "piyushpathak03/recommendation-systems"
+        ],
+        [
+          "silence28/collaborative-filtering-for-implicit-feedback-datasets"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": false,
       "official_top1_hit": false,
@@ -2506,6 +3548,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3
@@ -2525,6 +3572,17 @@
         "rmanluo/mamdr",
         "mtsang/interaction_interpretability"
       ],
+      "retrieved_repo_aliases": [
+        [
+          "chenxijun1029/deepfm_with_pytorch"
+        ],
+        [
+          "rmanluo/mamdr"
+        ],
+        [
+          "mtsang/interaction_interpretability"
+        ]
+      ],
       "top1_hit": false,
       "top3_hit": false,
       "official_top1_hit": false,
@@ -2542,6 +3600,11 @@
       ],
       "warnings": [],
       "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
         "github": {
           "ok": true,
           "result_count": 3

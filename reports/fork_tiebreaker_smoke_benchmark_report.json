@@ -1,0 +1,90 @@
+{
+  "summary": {
+    "total": 1,
+    "attempted": 1,
+    "evaluated": 1,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 1.0,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 1,
+    "selected_case_ids": [
+      "mmdetection_2019"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "mmdetection_2019",
+      "paper_title": "MMDetection: Open MMLab Detection Toolbox and Benchmark",
+      "task": "computer_vision",
+      "retrieved": [
+        "open-mmlab/mmdetection",
+        "milleniums/underwater-object-detection-mmdetection",
+        "allenai/mmdetection"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "open-mmlab/mmdetection"
+        ],
+        [
+          "milleniums/underwater-object-detection-mmdetection"
+        ],
+        [
+          "allenai/mmdetection"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "open-mmlab/mmdetection"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

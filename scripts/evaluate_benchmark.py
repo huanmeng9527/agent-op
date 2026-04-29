@@ -14,6 +14,9 @@ from app.tools.paper_tools import search_paper_repos_tool
 DEFAULT_BENCHMARK = Path(__file__).resolve().parents[1] / "benchmarks" / "paper_repro_benchmark.json"
 DEFAULT_JSON_REPORT = Path(__file__).resolve().parents[1] / "reports" / "benchmark_report.json"
 DEFAULT_MARKDOWN_REPORT = Path(__file__).resolve().parents[1] / "reports" / "benchmark_report.md"
+DEFAULT_TARGETED_JSON_REPORT = Path(__file__).resolve().parents[1] / "reports" / "targeted_benchmark_report.json"
+DEFAULT_TARGETED_MARKDOWN_REPORT = Path(__file__).resolve().parents[1] / "reports" / "targeted_benchmark_report.md"
+DEFAULT_IDENTITY_OVERRIDES = Path(__file__).resolve().parents[1] / "data" / "paper_code_identity_overrides.json"
 
 
 @dataclass
@@ -49,8 +52,118 @@ def load_benchmark(path: Path) -> list[dict[str, Any]]:
     return entries
 
 
-def _hit(retrieved: list[str], expected: set[str], k: int) -> bool:
-    return any(repo in expected for repo in retrieved[:k])
+def _unique_preserve_order(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    output: list[str] = []
+    for value in values:
+        normalized = value.strip()
+        key = normalized.casefold()
+        if not normalized or key in seen:
+            continue
+        seen.add(key)
+        output.append(normalized)
+    return output
+
+
+def _split_case_ids(raw_value: str | None) -> list[str]:
+    if not raw_value:
+        return []
+    return [item.strip() for item in raw_value.split(",") if item.strip()]
+
+
+def load_case_ids_file(path: Path) -> list[str]:
+    lines = path.read_text(encoding="utf-8").splitlines()
+    case_ids = []
+    for line in lines:
+        clean = line.split("#", 1)[0].strip()
+        if clean:
+            case_ids.extend(_split_case_ids(clean))
+    return case_ids
+
+
+def load_identity_override_case_ids(path: Path = DEFAULT_IDENTITY_OVERRIDES) -> list[str]:
+    if not path.exists():
+        raise ValueError(f"identity overrides file not found: {path}")
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, list):
+        raise ValueError("identity overrides must be a JSON list")
+    return [
+        str(entry.get("paper_id")).strip()
+        for entry in payload
+        if isinstance(entry, dict) and str(entry.get("paper_id") or "").strip()
+    ]
+
+
+def selected_case_ids_from_args(args: argparse.Namespace) -> list[str]:
+    case_ids: list[str] = []
+    for case_id in args.case_id or []:
+        case_ids.extend(_split_case_ids(case_id))
+    case_ids.extend(_split_case_ids(args.case_ids))
+    if args.case_ids_file:
+        case_ids.extend(load_case_ids_file(args.case_ids_file))
+    if args.identity_overrides:
+        case_ids.extend(load_identity_override_case_ids(DEFAULT_IDENTITY_OVERRIDES))
+    return _unique_preserve_order(case_ids)
+
+
+def select_benchmark_entries(entries: list[dict[str, Any]], case_ids: list[str]) -> list[dict[str, Any]]:
+    if not case_ids:
+        return entries
+    by_id = {str(entry.get("id")): entry for entry in entries}
+    missing = [case_id for case_id in case_ids if case_id not in by_id]
+    if missing:
+        raise ValueError(f"case id(s) not found in benchmark: {', '.join(missing)}")
+    return [by_id[case_id] for case_id in case_ids]
+
+
+def resolve_report_paths(args: argparse.Namespace, *, targeted: bool) -> tuple[Path | None, Path | None]:
+    if args.report_prefix:
+        reports_dir = Path(__file__).resolve().parents[1] / "reports"
+        return (
+            args.output or reports_dir / f"{args.report_prefix}_benchmark_report.json",
+            args.markdown_output or reports_dir / f"{args.report_prefix}_benchmark_report.md",
+        )
+    if targeted:
+        return (
+            args.output or DEFAULT_TARGETED_JSON_REPORT,
+            args.markdown_output or DEFAULT_TARGETED_MARKDOWN_REPORT,
+        )
+    return (
+        args.output or DEFAULT_JSON_REPORT,
+        args.markdown_output or DEFAULT_MARKDOWN_REPORT,
+    )
+
+
+def annotate_targeted_report(report: dict[str, Any], case_ids: list[str]) -> dict[str, Any]:
+    if not case_ids:
+        return report
+    summary = report.setdefault("summary", {})
+    summary["selected_case_count"] = len(case_ids)
+    summary["selected_case_ids"] = case_ids
+    return report
+
+
+def _candidate_aliases(item: Any) -> set[str]:
+    aliases = [_normalize_repo(getattr(item, "repo", None))]
+    aliases.extend(_normalize_repo(alias) for alias in (getattr(item, "repo_aliases", None) or []))
+    metadata = getattr(item, "metadata", None) or {}
+    aliases.extend(_normalize_repo(alias) for alias in (metadata.get("repo_aliases") or []))
+    return {alias for alias in aliases if alias}
+
+
+def _candidate_identity(item: Any) -> dict[str, Any]:
+    metadata = getattr(item, "metadata", None) or {}
+    external_identity = metadata.get("external_identity") if isinstance(metadata.get("external_identity"), dict) else {}
+    return {
+        "source": getattr(item, "identity_source", None) or external_identity.get("source"),
+        "confidence": getattr(item, "identity_confidence", None) or external_identity.get("confidence"),
+        "identity_type": getattr(item, "identity_type", None) or external_identity.get("identity_type"),
+        "evidence": list(getattr(item, "identity_evidence", None) or []),
+    }
+
+
+def _hit(retrieved_aliases: list[set[str]], expected: set[str], k: int) -> bool:
+    return any(aliases & expected for aliases in retrieved_aliases[:k])
 
 
 def _provider_errors(provider_status: dict[str, Any]) -> list[str]:
@@ -66,9 +179,9 @@ def _is_rate_limit_error(errors: list[str]) -> bool:
     return "rate limit" in joined or "http 403" in joined
 
 
-def _rank_of(retrieved: list[str], expected: set[str]) -> int | None:
-    for index, repo in enumerate(retrieved, start=1):
-        if repo in expected:
+def _rank_of(retrieved_aliases: list[set[str]], expected: set[str]) -> int | None:
+    for index, aliases in enumerate(retrieved_aliases, start=1):
+        if aliases & expected:
             return index
     return None
 
@@ -114,14 +227,15 @@ async def evaluate_entry(entry: dict[str, Any], *, top_k: int) -> dict[str, Any]
         include_unofficial=True,
     )
     retrieved = [_normalize_repo(item.repo) for item in result.results]
+    retrieved_aliases = [_candidate_aliases(item) for item in result.results]
     official = {_normalize_repo(repo) for repo in entry.get("official_repos", [])}
     reproductions = {_normalize_repo(repo) for repo in entry.get("high_quality_reproduction_repos", [])}
     distractors = {_normalize_repo(repo) for repo in entry.get("common_distractor_repos", [])}
     acceptable = official | reproductions
     provider_errors = _provider_errors(result.provider_status)
-    official_rank = _rank_of(retrieved, official)
-    acceptable_rank = _rank_of(retrieved, acceptable)
-    distractor_rank = _rank_of(retrieved, distractors)
+    official_rank = _rank_of(retrieved_aliases, official)
+    acceptable_rank = _rank_of(retrieved_aliases, acceptable)
+    distractor_rank = _rank_of(retrieved_aliases, distractors)
     provider_failed = bool(provider_errors)
     rate_limited = _is_rate_limit_error(provider_errors)
     return {
@@ -129,11 +243,13 @@ async def evaluate_entry(entry: dict[str, Any], *, top_k: int) -> dict[str, Any]
         "paper_title": entry["paper_title"],
         "task": entry.get("task") or "unknown",
         "retrieved": retrieved,
-        "top1_hit": _hit(retrieved, acceptable, 1),
-        "top3_hit": _hit(retrieved, acceptable, min(3, top_k)),
-        "official_top1_hit": _hit(retrieved, official, 1) if official else False,
-        "official_top3_hit": _hit(retrieved, official, min(3, top_k)) if official else False,
-        "distractor_top1": bool(retrieved and retrieved[0] in distractors),
+        "retrieved_repo_aliases": [sorted(aliases) for aliases in retrieved_aliases],
+        "retrieved_identity": [_candidate_identity(item) for item in result.results],
+        "top1_hit": _hit(retrieved_aliases, acceptable, 1),
+        "top3_hit": _hit(retrieved_aliases, acceptable, min(3, top_k)),
+        "official_top1_hit": _hit(retrieved_aliases, official, 1) if official else False,
+        "official_top3_hit": _hit(retrieved_aliases, official, min(3, top_k)) if official else False,
+        "distractor_top1": bool(retrieved_aliases and retrieved_aliases[0] & distractors),
         "official_rank": official_rank,
         "acceptable_rank": acceptable_rank,
         "distractor_rank": distractor_rank,
@@ -304,6 +420,7 @@ def build_skipped_report(entries: list[dict[str, Any]], *, reason: str) -> dict[
 
 def render_markdown_report(report: dict[str, Any], *, benchmark_path: Path, top_k: int) -> str:
     summary = report.get("summary", {})
+    is_targeted = "selected_case_count" in summary
     try:
         display_path = benchmark_path.resolve().relative_to(Path.cwd().resolve())
     except ValueError:
@@ -314,6 +431,7 @@ def render_markdown_report(report: dict[str, Any], *, benchmark_path: Path, top_
         f"- Benchmark file: `{display_path}`",
         f"- Top-k: `{top_k}`",
         f"- Total cases: `{summary.get('total', 0)}`",
+        *([f"- Selected cases: `{summary.get('selected_case_count', 0)}`"] if is_targeted else []),
         f"- Attempted live cases: `{summary.get('attempted', 0)}`",
         f"- Evaluated cases: `{summary.get('evaluated', 0)}`",
         f"- Unprocessed cases: `{summary.get('unprocessed', 0)}`",
@@ -377,6 +495,23 @@ def render_markdown_report(report: dict[str, Any], *, benchmark_path: Path, top_
             f"| {task} | {values.get('total', 0)} | {values.get('top1_hit_rate', 0)} | "
             f"{values.get('top3_hit_rate', 0)} | {values.get('distractor_top1_rate', 0)} |"
         )
+    if is_targeted and report.get("details"):
+        lines.extend(
+            [
+                "",
+                "## Per-Case Results",
+                "",
+                "| Case | Top-1 | Top-3 | Official Top-1 | Official Top-3 | Distractor #1 | Cause | Retrieved |",
+                "|---|---:|---:|---:|---:|---:|---|---|",
+            ]
+        )
+        for detail in report.get("details") or []:
+            retrieved = ", ".join(f"`{repo}`" for repo in detail.get("retrieved") or [])
+            lines.append(
+                f"| `{detail.get('id')}` | `{bool(detail.get('top1_hit'))}` | `{bool(detail.get('top3_hit'))}` | "
+                f"`{bool(detail.get('official_top1_hit'))}` | `{bool(detail.get('official_top3_hit'))}` | "
+                f"`{bool(detail.get('distractor_top1'))}` | `{detail.get('failure_cause') or 'unknown'}` | {retrieved} |"
+            )
     failures = report.get("failure_examples") or []
     failure_summary_by_cause = report.get("failure_summary_by_cause") or {}
     lines.extend(["", "## Failure Summary By Cause", ""])
@@ -412,9 +547,14 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Evaluate paper reproduction retrieval quality.")
     parser.add_argument("--benchmark", type=Path, default=DEFAULT_BENCHMARK)
     parser.add_argument("--limit", type=int, default=None)
+    parser.add_argument("--case-id", action="append", default=[], help="Run one benchmark case id. Can be repeated.")
+    parser.add_argument("--case-ids", default=None, help="Comma-separated benchmark case ids to run.")
+    parser.add_argument("--case-ids-file", type=Path, default=None, help="File with case ids, one per line or comma-separated.")
+    parser.add_argument("--identity-overrides", action="store_true", help="Run paper ids listed in data/paper_code_identity_overrides.json.")
+    parser.add_argument("--report-prefix", default=None, help="Write reports/<prefix>_benchmark_report.json and .md unless explicit outputs are set.")
     parser.add_argument("--top-k", type=int, default=3)
-    parser.add_argument("--output", type=Path, default=DEFAULT_JSON_REPORT)
-    parser.add_argument("--markdown-output", type=Path, default=DEFAULT_MARKDOWN_REPORT)
+    parser.add_argument("--output", type=Path, default=None)
+    parser.add_argument("--markdown-output", type=Path, default=None)
     parser.add_argument("--sleep-seconds", type=float, default=1.0)
     parser.add_argument("--allow-unauthenticated", action="store_true")
     parser.add_argument("--validate-only", action="store_true")
@@ -424,11 +564,20 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     entries = load_benchmark(args.benchmark)
+    case_ids = selected_case_ids_from_args(args)
+    try:
+        entries = select_benchmark_entries(entries, case_ids)
+    except ValueError as exc:
+        raise SystemExit(str(exc)) from exc
     if args.limit:
         entries = entries[: args.limit]
     if args.validate_only:
-        print(json.dumps({"entries": len(entries), "status": "ok"}, ensure_ascii=False, indent=2))
+        payload: dict[str, Any] = {"entries": len(entries), "status": "ok"}
+        if case_ids:
+            payload["selected_case_ids"] = case_ids
+        print(json.dumps(payload, ensure_ascii=False, indent=2))
         return
+    output_path, markdown_output_path = resolve_report_paths(args, targeted=bool(case_ids))
     settings = get_settings()
     if not settings.github_token and not args.allow_unauthenticated:
         report = build_skipped_report(
@@ -438,13 +587,14 @@ def main() -> None:
     else:
         stats, details = asyncio.run(evaluate(entries, top_k=args.top_k, sleep_seconds=max(0.0, args.sleep_seconds)))
         report = build_report(stats, details)
+    report = annotate_targeted_report(report, case_ids)
     rendered = json.dumps(report, ensure_ascii=False, indent=2)
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(rendered, encoding="utf-8")
-    if args.markdown_output:
-        args.markdown_output.parent.mkdir(parents=True, exist_ok=True)
-        args.markdown_output.write_text(
+    if output_path:
+        output_path.parent.mkdir(parents=True, exist_ok=True)
+        output_path.write_text(rendered, encoding="utf-8")
+    if markdown_output_path:
+        markdown_output_path.parent.mkdir(parents=True, exist_ok=True)
+        markdown_output_path.write_text(
             render_markdown_report(report, benchmark_path=args.benchmark, top_k=args.top_k),
             encoding="utf-8",
         )

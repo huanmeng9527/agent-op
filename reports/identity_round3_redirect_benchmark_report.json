@@ -1,0 +1,579 @@
+{
+  "summary": {
+    "total": 5,
+    "attempted": 5,
+    "evaluated": 5,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 0.2,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 0.2,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 5,
+    "selected_case_ids": [
+      "vit_2020",
+      "colmap_2016",
+      "lightgcn_2020",
+      "ultralytics_yolov8_2023",
+      "deepspeech2_2015"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 3,
+      "top1_hit": 0,
+      "top3_hit": 3,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "recommender": {
+      "total": 1,
+      "top1_hit": 0,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "speech": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {
+    "computer_vision": {
+      "count": 3,
+      "examples": [
+        "vit_2020",
+        "colmap_2016",
+        "ultralytics_yolov8_2023"
+      ]
+    },
+    "recommender": {
+      "count": 1,
+      "examples": [
+        "lightgcn_2020"
+      ]
+    }
+  },
+  "failure_summary_by_cause": {
+    "official_recalled_not_top1": {
+      "count": 4,
+      "examples": [
+        "vit_2020",
+        "colmap_2016",
+        "lightgcn_2020",
+        "ultralytics_yolov8_2023"
+      ]
+    }
+  },
+  "failure_examples": [
+    {
+      "id": "vit_2020",
+      "paper_title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "task": "computer_vision",
+      "retrieved": [
+        "yunkun-zhang/cite",
+        "google-research/vision_transformer",
+        "purdue-m2/ai-face-fairnessbench"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "yunkun-zhang/cite"
+        ],
+        [
+          "google-research/vision_transformer"
+        ],
+        [
+          "purdue-m2/ai-face-fairnessbench"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/vision_transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "jeonsworld/vit-pytorch"
+      ],
+      "common_distractor_repos": [
+        "huggingface/pytorch-image-models"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "colmap_2016",
+      "paper_title": "Structure-from-Motion Revisited",
+      "task": "computer_vision",
+      "retrieved": [
+        "fangjinhuawang/patchmatchnet",
+        "colmap/colmap",
+        "xiaobaiiiiii/colmap-pcd"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "fangjinhuawang/patchmatchnet"
+        ],
+        [
+          "colmap/colmap"
+        ],
+        [
+          "xiaobaiiiiii/colmap-pcd"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "colmap/colmap"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openmvg/openmvg"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "colmap/colmap"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "lightgcn_2020",
+      "paper_title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+      "task": "recommender",
+      "retrieved": [
+        "lucapantea/lightgcn",
+        "gusye1234/lightgcn-pytorch",
+        "geonwooko/mule"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "lucapantea/lightgcn"
+        ],
+        [
+          "gusye1234/lightgcn-pytorch"
+        ],
+        [
+          "geonwooko/mule"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "kuandeng/lightgcn"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "gusye1234/LightGCN-PyTorch"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "ultralytics_yolov8_2023",
+      "paper_title": "YOLOv8",
+      "task": "computer_vision",
+      "retrieved": [
+        "bubbliiiing/yolov8-pytorch",
+        "dataxujing/yolov8",
+        "ultralytics/ultralytics"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "bubbliiiing/yolov8-pytorch"
+        ],
+        [
+          "dataxujing/yolov8"
+        ],
+        [
+          "ultralytics/ultralytics"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "ultralytics/ultralytics"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    }
+  ],
+  "details": [
+    {
+      "id": "vit_2020",
+      "paper_title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+      "task": "computer_vision",
+      "retrieved": [
+        "yunkun-zhang/cite",
+        "google-research/vision_transformer",
+        "purdue-m2/ai-face-fairnessbench"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "yunkun-zhang/cite"
+        ],
+        [
+          "google-research/vision_transformer"
+        ],
+        [
+          "purdue-m2/ai-face-fairnessbench"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/vision_transformer"
+      ],
+      "high_quality_reproduction_repos": [
+        "jeonsworld/vit-pytorch"
+      ],
+      "common_distractor_repos": [
+        "huggingface/pytorch-image-models"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "google-research/vision_transformer"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "colmap_2016",
+      "paper_title": "Structure-from-Motion Revisited",
+      "task": "computer_vision",
+      "retrieved": [
+        "fangjinhuawang/patchmatchnet",
+        "colmap/colmap",
+        "xiaobaiiiiii/colmap-pcd"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "fangjinhuawang/patchmatchnet"
+        ],
+        [
+          "colmap/colmap"
+        ],
+        [
+          "xiaobaiiiiii/colmap-pcd"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "colmap/colmap"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "openmvg/openmvg"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "colmap/colmap"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "lightgcn_2020",
+      "paper_title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+      "task": "recommender",
+      "retrieved": [
+        "lucapantea/lightgcn",
+        "gusye1234/lightgcn-pytorch",
+        "geonwooko/mule"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "lucapantea/lightgcn"
+        ],
+        [
+          "gusye1234/lightgcn-pytorch"
+        ],
+        [
+          "geonwooko/mule"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "gusye1234/lightgcn-pytorch"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "kuandeng/lightgcn"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "gusye1234/LightGCN-PyTorch"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "ultralytics_yolov8_2023",
+      "paper_title": "YOLOv8",
+      "task": "computer_vision",
+      "retrieved": [
+        "bubbliiiing/yolov8-pytorch",
+        "dataxujing/yolov8",
+        "ultralytics/ultralytics"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "bubbliiiing/yolov8-pytorch"
+        ],
+        [
+          "dataxujing/yolov8"
+        ],
+        [
+          "ultralytics/ultralytics"
+        ]
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "ultralytics/ultralytics"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "deepspeech2_2015",
+      "paper_title": "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
+      "task": "speech",
+      "retrieved": [
+        "paddlepaddle/paddlespeech",
+        "fd873630/deep_speech_2_korean",
+        "lizhaokun/autosub-with-baidu-deepspeech2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "paddlepaddle/deepspeech",
+          "paddlepaddle/paddlespeech"
+        ],
+        [
+          "fd873630/deep_speech_2_korean"
+        ],
+        [
+          "lizhaokun/autosub-with-baidu-deepspeech2"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "paddlepaddle/deepspeech"
+      ],
+      "high_quality_reproduction_repos": [
+        "seannaren/deepspeech.pytorch"
+      ],
+      "common_distractor_repos": [
+        "mozilla/deepspeech"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "PaddlePaddle/DeepSpeech"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

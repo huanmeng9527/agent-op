@@ -4,6 +4,7 @@ import asyncio
 
 from app.core.normalizer import dedupe_results, normalize_provider_result
 from app.core.query_analyzer import analyze_query
+from app.providers.paper_code_identity import PaperCodeIdentityProvider
 from app.providers.paper_metadata import PaperMetadataProvider
 from app.providers.registry import ProviderRegistry
 from app.schemas import (
@@ -15,6 +16,7 @@ from app.schemas import (
     InspectPaperRepoOutput,
     SearchPaperReposInput,
     SearchPaperReposOutput,
+    SearchResultItem,
 )
 from app.utils.text import contains_term, unique_preserve_order
 
@@ -30,9 +32,15 @@ DEFAULT_COMPARE_CRITERIA = [
 
 
 class PaperReproductionIntelligenceService:
-    def __init__(self) -> None:
-        self.registry = ProviderRegistry()
-        self.paper_metadata_provider = PaperMetadataProvider()
+    def __init__(
+        self,
+        registry: ProviderRegistry | None = None,
+        paper_metadata_provider: PaperMetadataProvider | None = None,
+        paper_code_identity_provider: PaperCodeIdentityProvider | None = None,
+    ) -> None:
+        self.registry = registry or ProviderRegistry()
+        self.paper_metadata_provider = paper_metadata_provider or PaperMetadataProvider()
+        self.paper_code_identity_provider = paper_code_identity_provider or PaperCodeIdentityProvider()
 
     @property
     def github(self):
@@ -49,6 +57,22 @@ class PaperReproductionIntelligenceService:
         )
         provider_status = {}
         normalized = []
+        try:
+            identity_matches = self.paper_code_identity_provider.resolve(analysis, paper_metadata=paper_metadata)
+            identity_results = await self.github.fetch_identity_candidates(identity_matches) if identity_matches else []
+            provider_status[self.paper_code_identity_provider.name] = {
+                "ok": True,
+                "result_count": len(identity_results),
+                "matched_repos": [match.repo for match in identity_matches],
+                "matched_identity_types": [match.identity_type for match in identity_matches],
+            }
+            normalized.extend(normalize_provider_result(analysis, result) for result in identity_results)
+        except Exception as exc:
+            provider_status[self.paper_code_identity_provider.name] = {
+                "ok": False,
+                "error": str(exc),
+                "result_count": 0,
+            }
         for provider in self.registry.for_capability("repository_search"):
             try:
                 provider_results = await provider.search(analysis, top_k=payload.top_k)
@@ -65,6 +89,7 @@ class PaperReproductionIntelligenceService:
                 and not contains_term(" ".join([item.title, item.snippet, *item.positive_evidence]), "unofficial")
             ]
         results.sort(key=lambda item: item.score, reverse=True)
+        results = self._retain_high_confidence_identity_candidates(results, top_k=payload.top_k)
         warnings = []
         if not results:
             warnings.append("No stable paper reproduction candidates found; try adding the exact paper title, venue, year, or framework.")
@@ -76,6 +101,47 @@ class PaperReproductionIntelligenceService:
             provider_status=provider_status,
             warnings=warnings,
         )
+
+    def _retain_high_confidence_identity_candidates(
+        self,
+        results: list[SearchResultItem],
+        *,
+        top_k: int,
+    ) -> list[SearchResultItem]:
+        if top_k <= 0 or len(results) <= top_k:
+            return results
+        selected = list(results[:top_k])
+        selected_keys = {self._result_key(item) for item in selected}
+        replacement_indices = [
+            index
+            for index, item in enumerate(selected)
+            if item.identity_confidence != "high"
+        ]
+        if not replacement_indices:
+            return results
+        changed = False
+        for candidate in results[top_k:]:
+            if candidate.identity_confidence != "high":
+                continue
+            candidate_key = self._result_key(candidate)
+            if candidate_key in selected_keys:
+                continue
+            replace_index = replacement_indices.pop()
+            selected_keys.discard(self._result_key(selected[replace_index]))
+            selected[replace_index] = candidate
+            selected_keys.add(candidate_key)
+            changed = True
+            if not replacement_indices:
+                break
+        if not changed:
+            return results
+        selected.sort(key=lambda item: item.score, reverse=True)
+        selected_keys = {self._result_key(item) for item in selected}
+        remainder = [item for item in results if self._result_key(item) not in selected_keys]
+        return [*selected, *remainder]
+
+    def _result_key(self, item: SearchResultItem) -> str:
+        return (item.repo or item.url or item.title).rstrip("/").casefold()
 
     async def inspect_paper_repo(self, payload: InspectPaperRepoInput) -> InspectPaperRepoOutput:
         result = await self.github.inspect_repository(

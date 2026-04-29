@@ -1,3 +1,5 @@
+import asyncio
+
 from app.core.query_analyzer import analyze_query
 from app.core.retrieval_profiles import build_repo_aliases
 from app.providers.github import GitHubProvider
@@ -79,3 +81,36 @@ def test_canonical_repo_pairs_include_extended_research_orgs() -> None:
     pairs = GitHubProvider()._canonical_repo_pairs(analysis)
 
     assert ("mlfoundations", "open_clip") in pairs
+
+
+def test_fetch_repository_follows_moved_repo_and_preserves_alias(monkeypatch) -> None:
+    calls: list[str] = []
+
+    async def fake_fetch_json(url, *, params=None, headers=None, timeout=None):
+        calls.append(url)
+        if url.endswith("/repos/OldOwner/OldRepo"):
+            raise RuntimeError("HTTP 301: Moved Permanently; url=https://api.github.com/repositories/123")
+        if url == "https://api.github.com/repositories/123":
+            return {
+                "full_name": "NewOwner/NewRepo",
+                "name": "NewRepo",
+                "html_url": "https://github.com/NewOwner/NewRepo",
+                "owner": {"login": "NewOwner"},
+                "description": "Moved repository",
+                "language": "Python",
+            }
+        raise AssertionError(f"unexpected URL: {url}")
+
+    monkeypatch.setattr("app.providers.github.fetch_json", fake_fetch_json)
+    provider = GitHubProvider()
+
+    payload = asyncio.run(provider._fetch_repository("OldOwner", "OldRepo"))
+
+    assert payload["full_name"] == "NewOwner/NewRepo"
+    assert payload["repo_aliases"] == ["OldOwner/OldRepo", "NewOwner/NewRepo"]
+    assert provider._repo_cache["oldowner/oldrepo"]["full_name"] == "NewOwner/NewRepo"
+    assert provider._repo_cache["newowner/newrepo"]["repo_aliases"] == ["OldOwner/OldRepo", "NewOwner/NewRepo"]
+    assert calls == [
+        "https://api.github.com/repos/OldOwner/OldRepo",
+        "https://api.github.com/repositories/123",
+    ]

@@ -226,6 +226,76 @@ def test_canonical_official_repo_is_not_over_capped_for_archival_status() -> Non
     assert explanation.score >= 0.75
 
 
+def test_archived_same_slug_candidate_needs_explicit_official_evidence_for_cap_protection() -> None:
+    analysis = analyze_query(
+        "MMDetection Open MMLab Detection Toolbox and Benchmark paper code",
+        paper_title="MMDetection: Open MMLab Detection Toolbox and Benchmark",
+    )
+    fork_like = ProviderSearchResult(
+        title="allenai/mmdetection",
+        url="https://github.com/allenai/mmdetection",
+        source="github",
+        source_type="github",
+        snippet="MMDetection object detection toolbox",
+        metadata={
+            "full_name": "allenai/mmdetection",
+            "owner": "allenai",
+            "archived": True,
+            "stargazers_count": 0,
+            "updated_at": "2026-01-01T00:00:00Z",
+            "root_paths": ["tools/train.py", "tools/test.py", "configs/default.py", "requirements.txt"],
+            "readme_text": "MMDetection object detection toolbox based on PyTorch.",
+        },
+    )
+    canonical = fork_like.model_copy(
+        update={
+            "title": "open-mmlab/mmdetection",
+            "metadata": {
+                **fork_like.metadata,
+                "full_name": "open-mmlab/mmdetection",
+                "owner": "open-mmlab",
+                "archived": False,
+                "stargazers_count": 30000,
+            },
+        }
+    )
+
+    fork_explanation = score_provider_result(analysis, fork_like)
+    canonical_explanation = score_provider_result(analysis, canonical)
+
+    assert fork_explanation.cap_reason == "archived_cap"
+    assert "archived same-slug candidate lacks explicit official evidence" in fork_explanation.negative_evidence
+    assert canonical_explanation.score > fork_explanation.score
+
+
+def test_non_archived_third_party_same_slug_is_not_archived_tiebroken() -> None:
+    analysis = analyze_query(
+        "LightGCN Simplifying and Powering Graph Convolution Network for Recommendation code",
+        paper_title="LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+    )
+    item = ProviderSearchResult(
+        title="lucapantea/lightgcn",
+        url="https://github.com/lucapantea/lightgcn",
+        source="github",
+        source_type="github",
+        snippet="LightGCN implementation with training and evaluation",
+        metadata={
+            "full_name": "lucapantea/lightgcn",
+            "owner": "lucapantea",
+            "archived": False,
+            "stargazers_count": 5,
+            "updated_at": "2026-01-01T00:00:00Z",
+            "root_paths": ["train.py", "eval.py", "requirements.txt", "config.yaml"],
+            "readme_text": "LightGCN implementation with training and evaluation.",
+        },
+    )
+
+    explanation = score_provider_result(analysis, item)
+
+    assert explanation.cap_reason != "archived_cap"
+    assert "archived same-slug candidate lacks explicit official evidence" not in explanation.negative_evidence
+
+
 def test_canonical_official_library_is_not_demoted_to_paper_collection() -> None:
     analysis = analyze_query(
         "Transformers State-of-the-Art Natural Language Processing library paper code",

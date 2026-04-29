@@ -1,0 +1,197 @@
+{
+  "summary": {
+    "total": 2,
+    "attempted": 2,
+    "evaluated": 2,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 0.0,
+    "official_top3_hit_rate": 0.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 2,
+    "selected_case_ids": [
+      "implicit_mf_2008",
+      "deepfm_2017"
+    ]
+  },
+  "by_task": {
+    "recommender": {
+      "total": 2,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "implicit_mf_2008",
+      "paper_title": "Collaborative Filtering for Implicit Feedback Datasets",
+      "task": "recommender",
+      "retrieved": [
+        "benfred/implicit",
+        "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets",
+        "piyushpathak03/recommendation-systems"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "benfred/implicit"
+        ],
+        [
+          "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets"
+        ],
+        [
+          "piyushpathak03/recommendation-systems"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": "curated_override",
+          "confidence": "medium",
+          "identity_type": "domain_library_implementation",
+          "evidence": [
+            "curated_override maps this paper identity to benfred/implicit; identity_type: domain_library_implementation; title: Collaborative Filtering for Implicit Feedback Datasets; The benfred/implicit repository implements implicit-feedback recommendation algorithms and is the benchmark high-quality reproduction/domain-library target for \"Collaborative Filtering for Implicit Feedback Datasets\". Source: https://github.com/benfred/implicit; Non-official reproduction/library identity: this mapping targets a mature implicit-feedback recommendation library, not an official paper-author repository."
+          ]
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "benfred/implicit"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "benfred/implicit"
+          ],
+          "matched_identity_types": [
+            "domain_library_implementation"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "deepfm_2017",
+      "paper_title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction",
+      "task": "recommender",
+      "retrieved": [
+        "shenweichen/deepctr",
+        "rmanluo/mamdr",
+        "mtsang/interaction_interpretability"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "shenweichen/deepctr"
+        ],
+        [
+          "rmanluo/mamdr"
+        ],
+        [
+          "mtsang/interaction_interpretability"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": "curated_override",
+          "confidence": "medium-high",
+          "identity_type": "domain_library_implementation",
+          "evidence": [
+            "curated_override maps this paper identity to shenweichen/DeepCTR; identity_type: domain_library_implementation; title: DeepFM: A Factorization-Machine based Neural Network for CTR Prediction; The shenweichen/DeepCTR repository is a deep-learning CTR prediction package that includes DeepFM / CTR model implementations and is the benchmark high-quality reproduction/domain-library target. Source: https://github.com/shenweichen/DeepCTR; Non-official reproduction/library identity: this mapping targets a domain library implementation, not an official paper-author repository."
+          ]
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "shenweichen/deepctr"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "shenweichen/DeepCTR"
+          ],
+          "matched_identity_types": [
+            "domain_library_implementation"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

@@ -55,6 +55,7 @@ class SearchResultItem(BaseModel):
     title: str
     url: str
     repo: str | None = None
+    repo_aliases: list[str] = Field(default_factory=list)
     source: str
     source_type: str
     snippet: str = ""
@@ -66,6 +67,10 @@ class SearchResultItem(BaseModel):
     score: float = 0.0
     value_level: str = "low"
     confidence_level: str = "low"
+    identity_source: str | None = None
+    identity_confidence: str | None = None
+    identity_type: str | None = None
+    identity_evidence: list[str] = Field(default_factory=list)
     cap_reason: str | None = None
     why_recommended: str = ""
     positive_evidence: list[str] = Field(default_factory=list)

@@ -1,0 +1,131 @@
+{
+  "summary": {
+    "total": 2,
+    "attempted": 2,
+    "evaluated": 2,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 1.0,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 2,
+    "selected_case_ids": [
+      "stable_diffusion_2022",
+      "ddpm_2020"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 2,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "stable_diffusion_2022",
+      "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion",
+        "abdur75648/utrnet-high-resolution-urdu-text-recognition"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "stability-ai/stablediffusion"
+      ],
+      "common_distractor_repos": [
+        "automatic1111/stable-diffusion-webui"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 2,
+          "matched_repos": [
+            "CompVis/latent-diffusion",
+            "CompVis/stable-diffusion"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "ddpm_2020",
+      "paper_title": "Denoising Diffusion Probabilistic Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "hojonathanho/diffusion",
+        "sak-h/pytorch-denoising-diffusion-probabilistic-models",
+        "musawir124/denoising-diffusion-probabilistic-models"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "hojonathanho/diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "lucidrains/denoising-diffusion-pytorch"
+      ],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "hojonathanho/diffusion"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

@@ -1,0 +1,360 @@
+{
+  "summary": {
+    "total": 5,
+    "attempted": 5,
+    "evaluated": 5,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 0.6,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 0.6,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 5,
+      "top1_hit": 3,
+      "top3_hit": 5,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.6,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {
+    "computer_vision": {
+      "count": 2,
+      "examples": [
+        "instant_ngp_2022",
+        "llava_2023"
+      ]
+    }
+  },
+  "failure_summary_by_cause": {
+    "official_recalled_not_top1": {
+      "count": 2,
+      "examples": [
+        "instant_ngp_2022",
+        "llava_2023"
+      ]
+    }
+  },
+  "failure_examples": [
+    {
+      "id": "instant_ngp_2022",
+      "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
+      "task": "computer_vision",
+      "retrieved": [
+        "liam6699/ts-nerf",
+        "nvlabs/instant-ngp",
+        "qsong2001/nerfprotector-code"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "NVlabs/instant-ngp"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "llava_2023",
+      "paper_title": "Visual Instruction Tuning",
+      "task": "computer_vision",
+      "retrieved": [
+        "microsoft/llava-med",
+        "pku-yuangroup/llava-cot",
+        "haotian-liu/llava"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "haotian-liu/llava"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "vision-cair/minigpt-4"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "haotian-liu/LLaVA"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    }
+  ],
+  "details": [
+    {
+      "id": "instant_ngp_2022",
+      "paper_title": "Instant Neural Graphics Primitives with a Multiresolution Hash Encoding",
+      "task": "computer_vision",
+      "retrieved": [
+        "liam6699/ts-nerf",
+        "nvlabs/instant-ngp",
+        "qsong2001/nerfprotector-code"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "nvlabs/instant-ngp"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "yenchenlin/nerf-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "NVlabs/instant-ngp"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "stable_diffusion_2022",
+      "paper_title": "High-Resolution Image Synthesis with Latent Diffusion Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion",
+        "wangyx240/high-resolution-image-inpainting-gan"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "compvis/latent-diffusion",
+        "compvis/stable-diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "stability-ai/stablediffusion"
+      ],
+      "common_distractor_repos": [
+        "automatic1111/stable-diffusion-webui"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 2,
+          "matched_repos": [
+            "CompVis/latent-diffusion",
+            "CompVis/stable-diffusion"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "ddpm_2020",
+      "paper_title": "Denoising Diffusion Probabilistic Models",
+      "task": "computer_vision",
+      "retrieved": [
+        "hojonathanho/diffusion",
+        "larsdoorenbos/ccdm-stochastic-segmentation",
+        "sndnyang/iddpm"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "hojonathanho/diffusion"
+      ],
+      "high_quality_reproduction_repos": [
+        "lucidrains/denoising-diffusion-pytorch"
+      ],
+      "common_distractor_repos": [
+        "openai/improved-diffusion"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "hojonathanho/diffusion"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "gaussian_splatting_2023",
+      "paper_title": "3D Gaussian Splatting for Real-Time Radiance Field Rendering",
+      "task": "computer_vision",
+      "retrieved": [
+        "graphdeco-inria/gaussian-splatting",
+        "dvornikita/blitznet",
+        "yerfor/genefaceplusplus"
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "graphdeco-inria/gaussian-splatting"
+      ],
+      "high_quality_reproduction_repos": [
+        "joeyan/gaussian_splatting"
+      ],
+      "common_distractor_repos": [
+        "nerfstudio-project/gsplat"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "graphdeco-inria/gaussian-splatting"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "llava_2023",
+      "paper_title": "Visual Instruction Tuning",
+      "task": "computer_vision",
+      "retrieved": [
+        "microsoft/llava-med",
+        "pku-yuangroup/llava-cot",
+        "haotian-liu/llava"
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 3,
+      "acceptable_rank": 3,
+      "distractor_rank": null,
+      "official_repos": [
+        "haotian-liu/llava"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "vision-cair/minigpt-4"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "haotian-liu/LLaVA"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    }
+  ]
+}

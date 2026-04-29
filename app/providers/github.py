@@ -10,6 +10,7 @@ from app.core.inspection import build_inspection_signals
 from app.core.query_analyzer import analyze_query
 from app.core.retrieval_profiles import build_github_search_queries, build_repo_aliases
 from app.providers.base import BaseProvider
+from app.providers.paper_code_identity import PaperCodeIdentityMatch
 from app.ranking.scorer import detect_reproduction_assets, score_provider_result
 from app.schemas import InspectPaperRepoOutput, ProviderSearchResult, SAFETY_NOTE_TEXT
 from app.utils.http import fetch_json
@@ -59,8 +60,11 @@ class GitHubProvider(BaseProvider):
 
     def _repo_to_result(self, repo: dict[str, Any]) -> ProviderSearchResult:
         language = repo.get("language")
+        full_name = repo.get("full_name")
+        repo_aliases = [full_name, *(repo.get("repo_aliases") or [])]
         metadata = {
-            "full_name": repo.get("full_name"),
+            "full_name": full_name,
+            "repo_aliases": [alias for alias in repo_aliases if alias],
             "owner": (repo.get("owner") or {}).get("login"),
             "description": repo.get("description") or "",
             "topics": repo.get("topics") or [],
@@ -90,6 +94,24 @@ class GitHubProvider(BaseProvider):
             snippet=truncate_text(snippet, 360),
             metadata=metadata,
         )
+
+    def _attach_repo_alias(self, payload: dict[str, Any], alias: str) -> dict[str, Any]:
+        aliases = [
+            value
+            for value in [alias, payload.get("full_name"), *(payload.get("repo_aliases") or [])]
+            if isinstance(value, str) and value.strip()
+        ]
+        seen: set[str] = set()
+        output: list[str] = []
+        for value in aliases:
+            key = value.strip().casefold()
+            if key in seen:
+                continue
+            seen.add(key)
+            output.append(value.strip())
+        payload = dict(payload)
+        payload["repo_aliases"] = output
+        return payload
 
     def _build_search_queries(self, analysis) -> list[str]:
         return build_github_search_queries(analysis)
@@ -141,6 +163,7 @@ class GitHubProvider(BaseProvider):
         if key in self._repo_cache:
             cached = self._repo_cache[key]
             return dict(cached) if cached else None
+        requested_full_name = f"{owner}/{repo}"
         try:
             payload = await fetch_json(
                 f"{self.settings.github_api_base}/repos/{owner}/{repo}",
@@ -148,12 +171,45 @@ class GitHubProvider(BaseProvider):
                 timeout=self.settings.github_timeout_seconds,
             )
         except Exception as exc:
+            moved_payload = await self._fetch_moved_repository(str(exc), requested_full_name)
+            if moved_payload is not None:
+                self._repo_cache[key] = dict(moved_payload)
+                canonical_name = str(moved_payload.get("full_name") or "")
+                if "/" in canonical_name:
+                    canonical_owner, canonical_repo = canonical_name.split("/", 1)
+                    self._repo_cache[self._repo_key(canonical_owner, canonical_repo)] = dict(moved_payload)
+                self._repo_errors.pop(key, None)
+                return dict(moved_payload)
             self._repo_errors[key] = str(exc)
             self._repo_cache[key] = None
             return None
+        payload = self._attach_repo_alias(dict(payload), requested_full_name)
         self._repo_cache[key] = dict(payload)
         self._repo_errors.pop(key, None)
         return dict(payload)
+
+    async def _fetch_moved_repository(self, error: str, requested_full_name: str) -> dict[str, Any] | None:
+        if "HTTP 301" not in error or "/repositories/" not in error:
+            return None
+        match = error.rsplit("url=", 1)
+        moved_url = match[-1].strip() if len(match) > 1 else ""
+        if not moved_url:
+            moved_url = error.rsplit("Source:", 1)[-1].strip()
+        if "/repositories/" not in moved_url:
+            moved_url = ""
+        if not moved_url:
+            return None
+        try:
+            payload = await fetch_json(
+                moved_url,
+                headers=self._headers(),
+                timeout=self.settings.github_timeout_seconds,
+            )
+        except Exception:
+            return None
+        if not isinstance(payload, dict) or not payload.get("full_name"):
+            return None
+        return self._attach_repo_alias(payload, requested_full_name)
 
     async def _fetch_readme(self, owner: str, repo: str) -> str:
         key = self._repo_key(owner, repo)
@@ -293,6 +349,64 @@ class GitHubProvider(BaseProvider):
             1600,
         )
         return result
+
+    def _attach_identity_evidence(
+        self,
+        result: ProviderSearchResult,
+        match: PaperCodeIdentityMatch,
+    ) -> ProviderSearchResult:
+        metadata = dict(result.metadata or {})
+        identity = match.to_metadata()
+        metadata["external_identity"] = identity
+        metadata["external_identity_source"] = match.source
+        metadata["external_identity_confidence"] = match.confidence
+        metadata["external_identity_evidence"] = match.evidence
+        result.metadata = metadata
+        result.snippet = truncate_text(
+            " | ".join(
+                part
+                for part in [
+                    f"External paper identity evidence: {match.evidence}; confidence={match.confidence}",
+                    result.snippet,
+                ]
+                if part
+            ),
+            1000,
+        )
+        return result
+
+    async def fetch_identity_candidates(
+        self,
+        matches: list[PaperCodeIdentityMatch],
+    ) -> list[ProviderSearchResult]:
+        results: list[ProviderSearchResult] = []
+        seen: set[str] = set()
+        for match in matches:
+            if "/" not in match.repo:
+                continue
+            owner, repo = match.repo.split("/", 1)
+            payload = await self._fetch_identity_repository(owner, repo)
+            if not payload:
+                continue
+            key = str(payload.get("full_name") or match.repo).casefold()
+            if key in seen:
+                continue
+            seen.add(key)
+            results.append(self._attach_identity_evidence(self._repo_to_result(payload), match))
+        return await asyncio.gather(*(self._enrich(result) for result in results))
+
+    async def _fetch_identity_repository(self, owner: str, repo: str) -> dict[str, Any] | None:
+        key = self._repo_key(owner, repo)
+        for attempt in range(5):
+            payload = await self._fetch_repository(owner, repo)
+            if payload:
+                return payload
+            error = self._repo_errors.get(key, "")
+            if "network error" not in error and "timed out" not in error:
+                return None
+            self._repo_cache.pop(key, None)
+            await asyncio.sleep(min(1.0, 0.25 * (attempt + 1)))
+        return None
 
     def _diversify_by_owner(self, results: list[ProviderSearchResult], *, top_k: int) -> list[ProviderSearchResult]:
         selected: list[ProviderSearchResult] = []

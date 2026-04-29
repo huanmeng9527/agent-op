@@ -1,0 +1,95 @@
+{
+  "summary": {
+    "total": 1,
+    "attempted": 1,
+    "evaluated": 1,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 1.0,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 1,
+    "selected_case_ids": [
+      "deepspeech2_2015"
+    ]
+  },
+  "by_task": {
+    "speech": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "deepspeech2_2015",
+      "paper_title": "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
+      "task": "speech",
+      "retrieved": [
+        "paddlepaddle/paddlespeech",
+        "fd873630/deep_speech_2_korean",
+        "lizhaokun/autosub-with-baidu-deepspeech2"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "paddlepaddle/deepspeech",
+          "paddlepaddle/paddlespeech"
+        ],
+        [
+          "fd873630/deep_speech_2_korean"
+        ],
+        [
+          "lizhaokun/autosub-with-baidu-deepspeech2"
+        ]
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "paddlepaddle/deepspeech"
+      ],
+      "high_quality_reproduction_repos": [
+        "seannaren/deepspeech.pytorch"
+      ],
+      "common_distractor_repos": [
+        "mozilla/deepspeech"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "PaddlePaddle/DeepSpeech"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}
