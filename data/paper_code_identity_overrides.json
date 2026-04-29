@@ -161,6 +161,18 @@
     "note": "The gusye1234/LightGCN-PyTorch repository describes itself as the official implementation of SIGIR 2020 paper \"LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation\". Source: https://github.com/gusye1234/LightGCN-PyTorch"
   },
   {
+    "paper_id": "yolov7_2022",
+    "title": "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors",
+    "identity_type": "official",
+    "official_repos": [
+      "WongKinYiu/yolov7"
+    ],
+    "source": "curated_override",
+    "confidence": "high",
+    "evidence": "The WongKinYiu/yolov7 repository describes itself as the implementation of paper \"YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors\" and is the benchmark expected official repository. Source: https://github.com/WongKinYiu/yolov7",
+    "note": "Official identity bridge for YOLOv7 because live GitHub search can omit the exact WongKinYiu/yolov7 repo even though direct fetch succeeds."
+  },
+  {
     "paper_id": "ultralytics_yolov8_2023",
     "title": "YOLOv8",
     "title_aliases": [

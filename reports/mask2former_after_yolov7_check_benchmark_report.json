@@ -1,0 +1,111 @@
+{
+  "summary": {
+    "total": 1,
+    "attempted": 1,
+    "evaluated": 1,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 1.0,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 1,
+    "selected_case_ids": [
+      "mask2former_2021"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 1,
+      "top1_hit": 1,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "mask2former_2021",
+      "paper_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/mask2former",
+        "luckydog-lhy/tensorrt_mask2former",
+        "yarrowqiao/semask-mask2former"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/mask2former"
+        ],
+        [
+          "luckydog-lhy/tensorrt_mask2former"
+        ],
+        [
+          "yarrowqiao/semask-mask2former"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

@@ -1,0 +1,345 @@
+{
+  "summary": {
+    "total": 4,
+    "attempted": 4,
+    "evaluated": 4,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 1.0,
+    "top3_hit_rate": 1.0,
+    "official_top1_hit_rate": 1.0,
+    "official_top3_hit_rate": 1.0,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 4,
+    "selected_case_ids": [
+      "dino_2021",
+      "bert_2018",
+      "mask2former_2021",
+      "transformers_2020"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 2,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "nlp": {
+      "total": 2,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {},
+  "failure_summary_by_cause": {},
+  "failure_examples": [],
+  "details": [
+    {
+      "id": "dino_2021",
+      "paper_title": "Emerging Properties in Self-Supervised Vision Transformers",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/dino",
+        "idea-research/dino",
+        "jiawei-yang/denoising-vit"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/dino"
+        ],
+        [
+          "idea-research/dino"
+        ],
+        [
+          "jiawei-yang/denoising-vit"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/dino"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dinov2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "bert_2018",
+      "paper_title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "task": "nlp",
+      "retrieved": [
+        "google-research/bert",
+        "ymcui/chinese-bert-wwm",
+        "bojone/bert4keras"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "google-research/bert"
+        ],
+        [
+          "ymcui/chinese-bert-wwm"
+        ],
+        [
+          "bojone/bert4keras"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/bert"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "codertimo/bert-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "mask2former_2021",
+      "paper_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/mask2former",
+        "yarrowqiao/semask-mask2former",
+        "carti-97/dinov3-mask2former"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/mask2former"
+        ],
+        [
+          "yarrowqiao/semask-mask2former"
+        ],
+        [
+          "carti-97/dinov3-mask2former"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "transformers_2020",
+      "paper_title": "Transformers: State-of-the-Art Natural Language Processing",
+      "task": "nlp",
+      "retrieved": [
+        "huggingface/transformers",
+        "mlfoundations/transformers",
+        "microsoft/huggingface-transformers"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "huggingface/transformers"
+        ],
+        [
+          "mlfoundations/transformers"
+        ],
+        [
+          "microsoft/huggingface-transformers",
+          "microsoft/transformers"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "huggingface/transformers"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "google-research/bert"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

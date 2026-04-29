@@ -1,0 +1,3262 @@
+{
+  "summary": {
+    "runs": 5,
+    "top_k": 3,
+    "target_case_ids": [
+      "nerf_2020",
+      "simclr_2020",
+      "alphafold_2021",
+      "raft_2020",
+      "monodepth2_2019"
+    ]
+  },
+  "aggregates": [
+    {
+      "case_id": "nerf_2020",
+      "runs": 5,
+      "top3_success_count": 5,
+      "provider_pool_success_count": 5,
+      "direct_fetch_success_count": 5,
+      "raw_search_seen_count": 5,
+      "canonical_direct_fetch_seen_count": 0,
+      "best_rank": 2,
+      "worst_rank": 2,
+      "classification_counts": {
+        "stable_top3": 5
+      },
+      "aggregate_classification": "stable_top3",
+      "recommendation": "No production fix recommended now; the full-benchmark miss looks like one-time live drift."
+    },
+    {
+      "case_id": "simclr_2020",
+      "runs": 5,
+      "top3_success_count": 5,
+      "provider_pool_success_count": 5,
+      "direct_fetch_success_count": 5,
+      "raw_search_seen_count": 0,
+      "canonical_direct_fetch_seen_count": 5,
+      "best_rank": 2,
+      "worst_rank": 2,
+      "classification_counts": {
+        "raw_search_drift_but_direct_fetch_recovers": 5
+      },
+      "aggregate_classification": "stable_top3",
+      "recommendation": "No production fix recommended now; the full-benchmark miss looks like one-time live drift. Raw GitHub search is not always enough, but direct/canonical fetch recovered the official repo in this check."
+    },
+    {
+      "case_id": "alphafold_2021",
+      "runs": 5,
+      "top3_success_count": 5,
+      "provider_pool_success_count": 5,
+      "direct_fetch_success_count": 5,
+      "raw_search_seen_count": 5,
+      "canonical_direct_fetch_seen_count": 5,
+      "best_rank": 1,
+      "worst_rank": 1,
+      "classification_counts": {
+        "stable_top3": 5
+      },
+      "aggregate_classification": "stable_top3",
+      "recommendation": "No production fix recommended now; the full-benchmark miss looks like one-time live drift."
+    },
+    {
+      "case_id": "raft_2020",
+      "runs": 5,
+      "top3_success_count": 5,
+      "provider_pool_success_count": 5,
+      "direct_fetch_success_count": 5,
+      "raw_search_seen_count": 5,
+      "canonical_direct_fetch_seen_count": 0,
+      "best_rank": 1,
+      "worst_rank": 1,
+      "classification_counts": {
+        "stable_top3": 5
+      },
+      "aggregate_classification": "stable_top3",
+      "recommendation": "No production fix recommended now; the full-benchmark miss looks like one-time live drift."
+    },
+    {
+      "case_id": "monodepth2_2019",
+      "runs": 5,
+      "top3_success_count": 5,
+      "provider_pool_success_count": 5,
+      "direct_fetch_success_count": 5,
+      "raw_search_seen_count": 5,
+      "canonical_direct_fetch_seen_count": 0,
+      "best_rank": 3,
+      "worst_rank": 3,
+      "classification_counts": {
+        "stable_top3": 5
+      },
+      "aggregate_classification": "stable_top3",
+      "recommendation": "No production fix recommended now; the full-benchmark miss looks like one-time live drift."
+    }
+  ],
+  "cases": [
+    {
+      "case_id": "nerf_2020",
+      "runs": [
+        {
+          "run": 1,
+          "case_id": "nerf_2020",
+          "expected_official_repos": [
+            "bmild/nerf"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "sxyu/pixel-nerf",
+            "bmild/nerf",
+            "ayaanzhaque/instruct-nerf2nerf"
+          ],
+          "top3_scores": [
+            0.7762,
+            0.734,
+            0.6526
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "bmild/nerf": {
+              "success": true,
+              "canonical_full_name": "bmild/nerf",
+              "aliases": [
+                "bmild/nerf"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 10864
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 29,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "bmild/nerf": "search_query_1"
+            },
+            "raw_search_hits": {
+              "bmild/nerf": [
+                {
+                  "query_index": 1,
+                  "query": "nerf in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "nerf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "bmild/nerf",
+                  "nerfstudio-project/nerfstudio",
+                  "awesome-nerf/awesome-nerf",
+                  "yenchenlin/nerf-pytorch",
+                  "nerfies/nerfies.github.io"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "nerf \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "yerfor/geneface",
+                  "yerfor/genefaceplusplus",
+                  "nvlabs/nvdiffrec",
+                  "19reborn/neus2",
+                  "autonomousvision/graf"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "ne_rf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "awesome-nerf/awesome-nerf",
+                  "yudongguo/ad-nerf",
+                  "tonirv/nerf-slam",
+                  "fictionarry/er-nerf",
+                  "ashawkey/rad-nerf"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 2,
+          "case_id": "nerf_2020",
+          "expected_official_repos": [
+            "bmild/nerf"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "sxyu/pixel-nerf",
+            "bmild/nerf",
+            "ayaanzhaque/instruct-nerf2nerf"
+          ],
+          "top3_scores": [
+            0.7762,
+            0.734,
+            0.6526
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "bmild/nerf": {
+              "success": true,
+              "canonical_full_name": "bmild/nerf",
+              "aliases": [
+                "bmild/nerf"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 10864
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 29,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "bmild/nerf": "search_query_1"
+            },
+            "raw_search_hits": {
+              "bmild/nerf": [
+                {
+                  "query_index": 1,
+                  "query": "nerf in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "nerf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "bmild/nerf",
+                  "nerfstudio-project/nerfstudio",
+                  "awesome-nerf/awesome-nerf",
+                  "yenchenlin/nerf-pytorch",
+                  "nerfies/nerfies.github.io"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "nerf \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "yerfor/geneface",
+                  "yerfor/genefaceplusplus",
+                  "nvlabs/nvdiffrec",
+                  "19reborn/neus2",
+                  "autonomousvision/graf"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "ne_rf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "awesome-nerf/awesome-nerf",
+                  "yudongguo/ad-nerf",
+                  "tonirv/nerf-slam",
+                  "fictionarry/er-nerf",
+                  "ashawkey/rad-nerf"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 3,
+          "case_id": "nerf_2020",
+          "expected_official_repos": [
+            "bmild/nerf"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "sxyu/pixel-nerf",
+            "bmild/nerf",
+            "ayaanzhaque/instruct-nerf2nerf"
+          ],
+          "top3_scores": [
+            0.7762,
+            0.734,
+            0.6526
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "bmild/nerf": {
+              "success": true,
+              "canonical_full_name": "bmild/nerf",
+              "aliases": [
+                "bmild/nerf"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 10864
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 29,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "bmild/nerf": "search_query_1"
+            },
+            "raw_search_hits": {
+              "bmild/nerf": [
+                {
+                  "query_index": 1,
+                  "query": "nerf in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "nerf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "bmild/nerf",
+                  "nerfstudio-project/nerfstudio",
+                  "awesome-nerf/awesome-nerf",
+                  "yenchenlin/nerf-pytorch",
+                  "nerfies/nerfies.github.io"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "nerf \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "yerfor/geneface",
+                  "yerfor/genefaceplusplus",
+                  "nvlabs/nvdiffrec",
+                  "19reborn/neus2",
+                  "autonomousvision/graf"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "ne_rf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "awesome-nerf/awesome-nerf",
+                  "yudongguo/ad-nerf",
+                  "tonirv/nerf-slam",
+                  "fictionarry/er-nerf",
+                  "ashawkey/rad-nerf"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 4,
+          "case_id": "nerf_2020",
+          "expected_official_repos": [
+            "bmild/nerf"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "sxyu/pixel-nerf",
+            "bmild/nerf",
+            "ayaanzhaque/instruct-nerf2nerf"
+          ],
+          "top3_scores": [
+            0.7762,
+            0.734,
+            0.6526
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "bmild/nerf": {
+              "success": true,
+              "canonical_full_name": "bmild/nerf",
+              "aliases": [
+                "bmild/nerf"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 10864
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 29,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "bmild/nerf": "search_query_1"
+            },
+            "raw_search_hits": {
+              "bmild/nerf": [
+                {
+                  "query_index": 1,
+                  "query": "nerf in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "nerf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "bmild/nerf",
+                  "nerfstudio-project/nerfstudio",
+                  "awesome-nerf/awesome-nerf",
+                  "yenchenlin/nerf-pytorch",
+                  "nerfies/nerfies.github.io"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "nerf \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "yerfor/geneface",
+                  "yerfor/genefaceplusplus",
+                  "nvlabs/nvdiffrec",
+                  "19reborn/neus2",
+                  "autonomousvision/graf"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "ne_rf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "awesome-nerf/awesome-nerf",
+                  "yudongguo/ad-nerf",
+                  "tonirv/nerf-slam",
+                  "fictionarry/er-nerf",
+                  "ashawkey/rad-nerf"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 5,
+          "case_id": "nerf_2020",
+          "expected_official_repos": [
+            "bmild/nerf"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "sxyu/pixel-nerf",
+            "bmild/nerf",
+            "ayaanzhaque/instruct-nerf2nerf"
+          ],
+          "top3_scores": [
+            0.7762,
+            0.734,
+            0.6526
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "bmild/nerf": {
+              "success": true,
+              "canonical_full_name": "bmild/nerf",
+              "aliases": [
+                "bmild/nerf"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 10864
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 29,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "bmild/nerf": "search_query_1"
+            },
+            "raw_search_hits": {
+              "bmild/nerf": [
+                {
+                  "query_index": 1,
+                  "query": "nerf in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "nerf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "bmild/nerf",
+                  "nerfstudio-project/nerfstudio",
+                  "awesome-nerf/awesome-nerf",
+                  "yenchenlin/nerf-pytorch",
+                  "nerfies/nerfies.github.io"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "nerf \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "yerfor/geneface",
+                  "yerfor/genefaceplusplus",
+                  "nvlabs/nvdiffrec",
+                  "19reborn/neus2",
+                  "autonomousvision/graf"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "ne_rf in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "awesome-nerf/awesome-nerf",
+                  "yudongguo/ad-nerf",
+                  "tonirv/nerf-slam",
+                  "fictionarry/er-nerf",
+                  "ashawkey/rad-nerf"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "case_id": "simclr_2020",
+      "runs": [
+        {
+          "run": 1,
+          "case_id": "simclr_2020",
+          "expected_official_repos": [
+            "google-research/simclr"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": false,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "andrewatanov/simclr-pytorch",
+            "google-research/simclr",
+            "sthalles/simclr"
+          ],
+          "top3_scores": [
+            0.8282,
+            0.7657,
+            0.7549
+          ],
+          "classification": "raw_search_drift_but_direct_fetch_recovers",
+          "direct_fetch": {
+            "google-research/simclr": {
+              "success": true,
+              "canonical_full_name": "google-research/simclr",
+              "aliases": [
+                "google-research/simclr"
+              ],
+              "error": null,
+              "archived": true,
+              "stars": 4486
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 26,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-research/simclr": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-research/simclr": []
+            },
+            "canonical_direct_names": [
+              "google-research/simclr"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "simclr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mdiephuis/simclr",
+                  "the-ai-summer/simclr"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "simclr \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "linusericsson/ssl-transfer",
+                  "pku-ml/non_neg",
+                  "junya-chen/flatclr",
+                  "vinsis/math-and-ml-notes",
+                  "vita-group/adversarial-contrastive-learning"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "sim_clr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mwdhont/simclrv1-keras-tensorflow",
+                  "mdiephuis/simclr"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 2,
+          "case_id": "simclr_2020",
+          "expected_official_repos": [
+            "google-research/simclr"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": false,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "andrewatanov/simclr-pytorch",
+            "google-research/simclr",
+            "sthalles/simclr"
+          ],
+          "top3_scores": [
+            0.8282,
+            0.7657,
+            0.7549
+          ],
+          "classification": "raw_search_drift_but_direct_fetch_recovers",
+          "direct_fetch": {
+            "google-research/simclr": {
+              "success": true,
+              "canonical_full_name": "google-research/simclr",
+              "aliases": [
+                "google-research/simclr"
+              ],
+              "error": null,
+              "archived": true,
+              "stars": 4486
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 26,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-research/simclr": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-research/simclr": []
+            },
+            "canonical_direct_names": [
+              "google-research/simclr"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "simclr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mdiephuis/simclr",
+                  "the-ai-summer/simclr"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "simclr \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "linusericsson/ssl-transfer",
+                  "pku-ml/non_neg",
+                  "junya-chen/flatclr",
+                  "vinsis/math-and-ml-notes",
+                  "vita-group/adversarial-contrastive-learning"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "sim_clr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mwdhont/simclrv1-keras-tensorflow",
+                  "mdiephuis/simclr"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 3,
+          "case_id": "simclr_2020",
+          "expected_official_repos": [
+            "google-research/simclr"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": false,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "andrewatanov/simclr-pytorch",
+            "google-research/simclr",
+            "sthalles/simclr"
+          ],
+          "top3_scores": [
+            0.8282,
+            0.7657,
+            0.7549
+          ],
+          "classification": "raw_search_drift_but_direct_fetch_recovers",
+          "direct_fetch": {
+            "google-research/simclr": {
+              "success": true,
+              "canonical_full_name": "google-research/simclr",
+              "aliases": [
+                "google-research/simclr"
+              ],
+              "error": null,
+              "archived": true,
+              "stars": 4486
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 26,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-research/simclr": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-research/simclr": []
+            },
+            "canonical_direct_names": [
+              "google-research/simclr"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "simclr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mdiephuis/simclr",
+                  "the-ai-summer/simclr"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "simclr \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "linusericsson/ssl-transfer",
+                  "pku-ml/non_neg",
+                  "junya-chen/flatclr",
+                  "vinsis/math-and-ml-notes",
+                  "vita-group/adversarial-contrastive-learning"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "sim_clr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mwdhont/simclrv1-keras-tensorflow",
+                  "mdiephuis/simclr"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 4,
+          "case_id": "simclr_2020",
+          "expected_official_repos": [
+            "google-research/simclr"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": false,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "andrewatanov/simclr-pytorch",
+            "google-research/simclr",
+            "sthalles/simclr"
+          ],
+          "top3_scores": [
+            0.8282,
+            0.7657,
+            0.7549
+          ],
+          "classification": "raw_search_drift_but_direct_fetch_recovers",
+          "direct_fetch": {
+            "google-research/simclr": {
+              "success": true,
+              "canonical_full_name": "google-research/simclr",
+              "aliases": [
+                "google-research/simclr"
+              ],
+              "error": null,
+              "archived": true,
+              "stars": 4486
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 26,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-research/simclr": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-research/simclr": []
+            },
+            "canonical_direct_names": [
+              "google-research/simclr"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "simclr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mdiephuis/simclr",
+                  "the-ai-summer/simclr"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "simclr \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "linusericsson/ssl-transfer",
+                  "pku-ml/non_neg",
+                  "junya-chen/flatclr",
+                  "vinsis/math-and-ml-notes",
+                  "vita-group/adversarial-contrastive-learning"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "sim_clr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mwdhont/simclrv1-keras-tensorflow",
+                  "mdiephuis/simclr"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 5,
+          "case_id": "simclr_2020",
+          "expected_official_repos": [
+            "google-research/simclr"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 2,
+          "official_from_raw_github_search": false,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "andrewatanov/simclr-pytorch",
+            "google-research/simclr",
+            "sthalles/simclr"
+          ],
+          "top3_scores": [
+            0.8282,
+            0.7657,
+            0.7549
+          ],
+          "classification": "raw_search_drift_but_direct_fetch_recovers",
+          "direct_fetch": {
+            "google-research/simclr": {
+              "success": true,
+              "canonical_full_name": "google-research/simclr",
+              "aliases": [
+                "google-research/simclr"
+              ],
+              "error": null,
+              "archived": true,
+              "stars": 4486
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 26,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-research/simclr": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-research/simclr": []
+            },
+            "canonical_direct_names": [
+              "google-research/simclr"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "simclr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mdiephuis/simclr",
+                  "the-ai-summer/simclr"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "simclr \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "linusericsson/ssl-transfer",
+                  "pku-ml/non_neg",
+                  "junya-chen/flatclr",
+                  "vinsis/math-and-ml-notes",
+                  "vita-group/adversarial-contrastive-learning"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "sim_clr in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "sthalles/simclr",
+                  "spijkervet/simclr",
+                  "leftthomas/simclr",
+                  "mwdhont/simclrv1-keras-tensorflow",
+                  "mdiephuis/simclr"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "case_id": "alphafold_2021",
+      "runs": [
+        {
+          "run": 1,
+          "case_id": "alphafold_2021",
+          "expected_official_repos": [
+            "google-deepmind/alphafold"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "google-deepmind/alphafold",
+            "lucidrains/alphafold3-pytorch",
+            "urinx/alphafold_pytorch"
+          ],
+          "top3_scores": [
+            0.75,
+            0.6245,
+            0.5521
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "google-deepmind/alphafold": {
+              "success": true,
+              "canonical_full_name": "google-deepmind/alphafold",
+              "aliases": [
+                "google-deepmind/alphafold"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 14540
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 28,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-deepmind/alphafold": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-deepmind/alphafold": [
+                {
+                  "query_index": 1,
+                  "query": "alphafold in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [
+              "google-deepmind/alphafold"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "alphafold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "google-deepmind/alphafold",
+                  "google-deepmind/alphafold3",
+                  "kuixu/alphafold",
+                  "lucidrains/alphafold2",
+                  "lucidrains/alphafold3-pytorch"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "alphafold \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "lucidrains/alphafold2",
+                  "lucidrains/invariant-point-attention",
+                  "jozhang97/ambient-proteins",
+                  "debbiemarkslab/priority-viruses",
+                  "zaixizhang/labos"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "alpha_fold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "ligo-biosciences/alphafold3",
+                  "chrishayduk/minalphafold2",
+                  "hanziwww/alphafold3-gui",
+                  "normandavey/alphafold2-idr-complex-prediction",
+                  "augmented-nature/alphafold-mcp-server"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 2,
+          "case_id": "alphafold_2021",
+          "expected_official_repos": [
+            "google-deepmind/alphafold"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "google-deepmind/alphafold",
+            "lucidrains/alphafold3-pytorch",
+            "urinx/alphafold_pytorch"
+          ],
+          "top3_scores": [
+            0.75,
+            0.6245,
+            0.5521
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "google-deepmind/alphafold": {
+              "success": true,
+              "canonical_full_name": "google-deepmind/alphafold",
+              "aliases": [
+                "google-deepmind/alphafold"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 14540
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 28,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-deepmind/alphafold": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-deepmind/alphafold": [
+                {
+                  "query_index": 1,
+                  "query": "alphafold in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [
+              "google-deepmind/alphafold"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "alphafold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "google-deepmind/alphafold",
+                  "google-deepmind/alphafold3",
+                  "kuixu/alphafold",
+                  "lucidrains/alphafold2",
+                  "lucidrains/alphafold3-pytorch"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "alphafold \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "lucidrains/alphafold2",
+                  "lucidrains/invariant-point-attention",
+                  "jozhang97/ambient-proteins",
+                  "debbiemarkslab/priority-viruses",
+                  "zaixizhang/labos"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "alpha_fold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "ligo-biosciences/alphafold3",
+                  "chrishayduk/minalphafold2",
+                  "hanziwww/alphafold3-gui",
+                  "normandavey/alphafold2-idr-complex-prediction",
+                  "augmented-nature/alphafold-mcp-server"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 3,
+          "case_id": "alphafold_2021",
+          "expected_official_repos": [
+            "google-deepmind/alphafold"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "google-deepmind/alphafold",
+            "lucidrains/alphafold3-pytorch",
+            "urinx/alphafold_pytorch"
+          ],
+          "top3_scores": [
+            0.75,
+            0.6245,
+            0.5521
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "google-deepmind/alphafold": {
+              "success": true,
+              "canonical_full_name": "google-deepmind/alphafold",
+              "aliases": [
+                "google-deepmind/alphafold"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 14540
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 28,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-deepmind/alphafold": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-deepmind/alphafold": [
+                {
+                  "query_index": 1,
+                  "query": "alphafold in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [
+              "google-deepmind/alphafold"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "alphafold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "google-deepmind/alphafold",
+                  "google-deepmind/alphafold3",
+                  "kuixu/alphafold",
+                  "lucidrains/alphafold2",
+                  "lucidrains/alphafold3-pytorch"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "alphafold \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "lucidrains/alphafold2",
+                  "lucidrains/invariant-point-attention",
+                  "jozhang97/ambient-proteins",
+                  "debbiemarkslab/priority-viruses",
+                  "zaixizhang/labos"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "alpha_fold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "ligo-biosciences/alphafold3",
+                  "chrishayduk/minalphafold2",
+                  "hanziwww/alphafold3-gui",
+                  "normandavey/alphafold2-idr-complex-prediction",
+                  "augmented-nature/alphafold-mcp-server"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 4,
+          "case_id": "alphafold_2021",
+          "expected_official_repos": [
+            "google-deepmind/alphafold"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "google-deepmind/alphafold",
+            "lucidrains/alphafold3-pytorch",
+            "urinx/alphafold_pytorch"
+          ],
+          "top3_scores": [
+            0.75,
+            0.6245,
+            0.5521
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "google-deepmind/alphafold": {
+              "success": true,
+              "canonical_full_name": "google-deepmind/alphafold",
+              "aliases": [
+                "google-deepmind/alphafold"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 14540
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 28,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-deepmind/alphafold": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-deepmind/alphafold": [
+                {
+                  "query_index": 1,
+                  "query": "alphafold in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [
+              "google-deepmind/alphafold"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "alphafold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "google-deepmind/alphafold",
+                  "google-deepmind/alphafold3",
+                  "kuixu/alphafold",
+                  "lucidrains/alphafold2",
+                  "lucidrains/alphafold3-pytorch"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "alphafold \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "lucidrains/alphafold2",
+                  "lucidrains/invariant-point-attention",
+                  "jozhang97/ambient-proteins",
+                  "debbiemarkslab/priority-viruses",
+                  "zaixizhang/labos"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "alpha_fold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "ligo-biosciences/alphafold3",
+                  "chrishayduk/minalphafold2",
+                  "hanziwww/alphafold3-gui",
+                  "normandavey/alphafold2-idr-complex-prediction",
+                  "augmented-nature/alphafold-mcp-server"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 5,
+          "case_id": "alphafold_2021",
+          "expected_official_repos": [
+            "google-deepmind/alphafold"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": true,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "google-deepmind/alphafold",
+            "lucidrains/alphafold3-pytorch",
+            "urinx/alphafold_pytorch"
+          ],
+          "top3_scores": [
+            0.75,
+            0.6245,
+            0.5521
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "google-deepmind/alphafold": {
+              "success": true,
+              "canonical_full_name": "google-deepmind/alphafold",
+              "aliases": [
+                "google-deepmind/alphafold"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 14540
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 28,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "google-deepmind/alphafold": "canonical_direct_fetch"
+            },
+            "raw_search_hits": {
+              "google-deepmind/alphafold": [
+                {
+                  "query_index": 1,
+                  "query": "alphafold in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [
+              "google-deepmind/alphafold"
+            ],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "alphafold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "google-deepmind/alphafold",
+                  "google-deepmind/alphafold3",
+                  "kuixu/alphafold",
+                  "lucidrains/alphafold2",
+                  "lucidrains/alphafold3-pytorch"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "alphafold \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "lucidrains/alphafold2",
+                  "lucidrains/invariant-point-attention",
+                  "jozhang97/ambient-proteins",
+                  "debbiemarkslab/priority-viruses",
+                  "zaixizhang/labos"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "alpha_fold in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "ligo-biosciences/alphafold3",
+                  "chrishayduk/minalphafold2",
+                  "hanziwww/alphafold3-gui",
+                  "normandavey/alphafold2-idr-complex-prediction",
+                  "augmented-nature/alphafold-mcp-server"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "case_id": "raft_2020",
+      "runs": [
+        {
+          "run": 1,
+          "case_id": "raft_2020",
+          "expected_official_repos": [
+            "princeton-vl/raft"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "princeton-vl/raft",
+            "dangeng/flowmag",
+            "david-zhao-1997/high-frequency-stereo-matching-network"
+          ],
+          "top3_scores": [
+            0.8171,
+            0.7012,
+            0.5897
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "princeton-vl/raft": {
+              "success": true,
+              "canonical_full_name": "princeton-vl/raft",
+              "aliases": [
+                "princeton-vl/raft"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4025
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 30,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "princeton-vl/raft": "search_query_1"
+            },
+            "raw_search_hits": {
+              "princeton-vl/raft": [
+                {
+                  "query_index": 1,
+                  "query": "raft in:name archived:false",
+                  "rank": 2
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "raft in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 2,
+                "top_repos": [
+                  "hashicorp/raft",
+                  "princeton-vl/raft",
+                  "willemt/raft",
+                  "etcd-io/raft",
+                  "eliben/raft"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "raft \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "david-zhao-1997/high-frequency-stereo-matching-network",
+                  "dangeng/flowmag",
+                  "mcg-nku/amt",
+                  "r-three/t-few",
+                  "mulns/pervfi"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "all-pairs in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "apple/ml-all-pairs",
+                  "phoenix24/google-all-pairs-similarity-search",
+                  "arzavj/spark-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-spring2025-all-pairs-shortest-paths-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-fall2024-all-pairs-shortest-paths-all-pairs-shortest-path"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 2,
+          "case_id": "raft_2020",
+          "expected_official_repos": [
+            "princeton-vl/raft"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "princeton-vl/raft",
+            "dangeng/flowmag",
+            "david-zhao-1997/high-frequency-stereo-matching-network"
+          ],
+          "top3_scores": [
+            0.8171,
+            0.7012,
+            0.5897
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "princeton-vl/raft": {
+              "success": true,
+              "canonical_full_name": "princeton-vl/raft",
+              "aliases": [
+                "princeton-vl/raft"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4025
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 30,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "princeton-vl/raft": "search_query_1"
+            },
+            "raw_search_hits": {
+              "princeton-vl/raft": [
+                {
+                  "query_index": 1,
+                  "query": "raft in:name archived:false",
+                  "rank": 2
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "raft in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 2,
+                "top_repos": [
+                  "hashicorp/raft",
+                  "princeton-vl/raft",
+                  "willemt/raft",
+                  "etcd-io/raft",
+                  "eliben/raft"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "raft \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "david-zhao-1997/high-frequency-stereo-matching-network",
+                  "dangeng/flowmag",
+                  "mcg-nku/amt",
+                  "r-three/t-few",
+                  "mulns/pervfi"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "all-pairs in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "apple/ml-all-pairs",
+                  "phoenix24/google-all-pairs-similarity-search",
+                  "arzavj/spark-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-spring2025-all-pairs-shortest-paths-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-fall2024-all-pairs-shortest-paths-all-pairs-shortest-path"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 3,
+          "case_id": "raft_2020",
+          "expected_official_repos": [
+            "princeton-vl/raft"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "princeton-vl/raft",
+            "dangeng/flowmag",
+            "david-zhao-1997/high-frequency-stereo-matching-network"
+          ],
+          "top3_scores": [
+            0.8171,
+            0.7012,
+            0.5897
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "princeton-vl/raft": {
+              "success": true,
+              "canonical_full_name": "princeton-vl/raft",
+              "aliases": [
+                "princeton-vl/raft"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4025
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 30,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "princeton-vl/raft": "search_query_1"
+            },
+            "raw_search_hits": {
+              "princeton-vl/raft": [
+                {
+                  "query_index": 1,
+                  "query": "raft in:name archived:false",
+                  "rank": 2
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "raft in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 2,
+                "top_repos": [
+                  "hashicorp/raft",
+                  "princeton-vl/raft",
+                  "willemt/raft",
+                  "etcd-io/raft",
+                  "eliben/raft"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "raft \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "david-zhao-1997/high-frequency-stereo-matching-network",
+                  "dangeng/flowmag",
+                  "mcg-nku/amt",
+                  "r-three/t-few",
+                  "mulns/pervfi"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "all-pairs in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "apple/ml-all-pairs",
+                  "phoenix24/google-all-pairs-similarity-search",
+                  "arzavj/spark-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-spring2025-all-pairs-shortest-paths-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-fall2024-all-pairs-shortest-paths-all-pairs-shortest-path"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 4,
+          "case_id": "raft_2020",
+          "expected_official_repos": [
+            "princeton-vl/raft"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "princeton-vl/raft",
+            "dangeng/flowmag",
+            "david-zhao-1997/high-frequency-stereo-matching-network"
+          ],
+          "top3_scores": [
+            0.8171,
+            0.7012,
+            0.5897
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "princeton-vl/raft": {
+              "success": true,
+              "canonical_full_name": "princeton-vl/raft",
+              "aliases": [
+                "princeton-vl/raft"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4025
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 30,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "princeton-vl/raft": "search_query_1"
+            },
+            "raw_search_hits": {
+              "princeton-vl/raft": [
+                {
+                  "query_index": 1,
+                  "query": "raft in:name archived:false",
+                  "rank": 2
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "raft in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 2,
+                "top_repos": [
+                  "hashicorp/raft",
+                  "princeton-vl/raft",
+                  "willemt/raft",
+                  "etcd-io/raft",
+                  "eliben/raft"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "raft \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "david-zhao-1997/high-frequency-stereo-matching-network",
+                  "dangeng/flowmag",
+                  "mcg-nku/amt",
+                  "r-three/t-few",
+                  "mulns/pervfi"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "all-pairs in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "apple/ml-all-pairs",
+                  "phoenix24/google-all-pairs-similarity-search",
+                  "arzavj/spark-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-spring2025-all-pairs-shortest-paths-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-fall2024-all-pairs-shortest-paths-all-pairs-shortest-path"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 5,
+          "case_id": "raft_2020",
+          "expected_official_repos": [
+            "princeton-vl/raft"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 1,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "princeton-vl/raft",
+            "dangeng/flowmag",
+            "david-zhao-1997/high-frequency-stereo-matching-network"
+          ],
+          "top3_scores": [
+            0.8171,
+            0.7012,
+            0.5897
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "princeton-vl/raft": {
+              "success": true,
+              "canonical_full_name": "princeton-vl/raft",
+              "aliases": [
+                "princeton-vl/raft"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4025
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 30,
+            "candidate_target": 24,
+            "stopped_after_query": 3,
+            "official_sources": {
+              "princeton-vl/raft": "search_query_1"
+            },
+            "raw_search_hits": {
+              "princeton-vl/raft": [
+                {
+                  "query_index": 1,
+                  "query": "raft in:name archived:false",
+                  "rank": 2
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "raft in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 2,
+                "top_repos": [
+                  "hashicorp/raft",
+                  "princeton-vl/raft",
+                  "willemt/raft",
+                  "etcd-io/raft",
+                  "eliben/raft"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "raft \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "david-zhao-1997/high-frequency-stereo-matching-network",
+                  "dangeng/flowmag",
+                  "mcg-nku/amt",
+                  "r-three/t-few",
+                  "mulns/pervfi"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "all-pairs in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "apple/ml-all-pairs",
+                  "phoenix24/google-all-pairs-similarity-search",
+                  "arzavj/spark-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-spring2025-all-pairs-shortest-paths-all-pairs-shortest-path",
+                  "cosc3020/cosc3020-fall2024-all-pairs-shortest-paths-all-pairs-shortest-path"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        }
+      ]
+    },
+    {
+      "case_id": "monodepth2_2019",
+      "runs": [
+        {
+          "run": 1,
+          "case_id": "monodepth2_2019",
+          "expected_official_repos": [
+            "nianticlabs/monodepth2"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 3,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "eddiespade/monodepth2",
+            "icaruswizard/monodepth2-paddle",
+            "nianticlabs/monodepth2"
+          ],
+          "top3_scores": [
+            0.726,
+            0.7118,
+            0.6657
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "nianticlabs/monodepth2": {
+              "success": true,
+              "canonical_full_name": "nianticlabs/monodepth2",
+              "aliases": [
+                "nianticlabs/monodepth2"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4479
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 24,
+            "candidate_target": 24,
+            "stopped_after_query": 7,
+            "official_sources": {
+              "nianticlabs/monodepth2": "search_query_1"
+            },
+            "raw_search_hits": {
+              "nianticlabs/monodepth2": [
+                {
+                  "query_index": 1,
+                  "query": "monodepth2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 3,
+                  "query": "monodepth_2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 5,
+                  "query": "monodepth-2 in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "monodepth2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "xxxvincent/monodepth2",
+                  "eddiespade/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "monodepth2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "naufalso/adversarial-manhole",
+                  "ecalpal/iterdepth"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "monodepth_2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 4,
+                "query": "monodepth_2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 5,
+                "query": "monodepth-2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 6,
+                "query": "monodepth-2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 7,
+                "query": "self-supervised in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "jason718/awesome-self-supervised-learning",
+                  "htdt/self-supervised",
+                  "chandlerbang/awesome-self-supervised-gnn",
+                  "lirongwu/awesome-graph-self-supervised-learning",
+                  "fangchangma/self-supervised-depth-completion"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 2,
+          "case_id": "monodepth2_2019",
+          "expected_official_repos": [
+            "nianticlabs/monodepth2"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 3,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "eddiespade/monodepth2",
+            "icaruswizard/monodepth2-paddle",
+            "nianticlabs/monodepth2"
+          ],
+          "top3_scores": [
+            0.726,
+            0.7118,
+            0.6657
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "nianticlabs/monodepth2": {
+              "success": true,
+              "canonical_full_name": "nianticlabs/monodepth2",
+              "aliases": [
+                "nianticlabs/monodepth2"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4479
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 24,
+            "candidate_target": 24,
+            "stopped_after_query": 7,
+            "official_sources": {
+              "nianticlabs/monodepth2": "search_query_1"
+            },
+            "raw_search_hits": {
+              "nianticlabs/monodepth2": [
+                {
+                  "query_index": 1,
+                  "query": "monodepth2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 3,
+                  "query": "monodepth_2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 5,
+                  "query": "monodepth-2 in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "monodepth2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "xxxvincent/monodepth2",
+                  "eddiespade/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "monodepth2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "naufalso/adversarial-manhole",
+                  "ecalpal/iterdepth"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "monodepth_2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 4,
+                "query": "monodepth_2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 5,
+                "query": "monodepth-2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 6,
+                "query": "monodepth-2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 7,
+                "query": "self-supervised in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "jason718/awesome-self-supervised-learning",
+                  "htdt/self-supervised",
+                  "chandlerbang/awesome-self-supervised-gnn",
+                  "lirongwu/awesome-graph-self-supervised-learning",
+                  "fangchangma/self-supervised-depth-completion"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 3,
+          "case_id": "monodepth2_2019",
+          "expected_official_repos": [
+            "nianticlabs/monodepth2"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 3,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "eddiespade/monodepth2",
+            "icaruswizard/monodepth2-paddle",
+            "nianticlabs/monodepth2"
+          ],
+          "top3_scores": [
+            0.726,
+            0.7118,
+            0.6657
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "nianticlabs/monodepth2": {
+              "success": true,
+              "canonical_full_name": "nianticlabs/monodepth2",
+              "aliases": [
+                "nianticlabs/monodepth2"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4479
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 24,
+            "candidate_target": 24,
+            "stopped_after_query": 7,
+            "official_sources": {
+              "nianticlabs/monodepth2": "search_query_1"
+            },
+            "raw_search_hits": {
+              "nianticlabs/monodepth2": [
+                {
+                  "query_index": 1,
+                  "query": "monodepth2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 3,
+                  "query": "monodepth_2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 5,
+                  "query": "monodepth-2 in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "monodepth2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "xxxvincent/monodepth2",
+                  "eddiespade/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "monodepth2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "naufalso/adversarial-manhole",
+                  "ecalpal/iterdepth"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "monodepth_2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 4,
+                "query": "monodepth_2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 5,
+                "query": "monodepth-2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 6,
+                "query": "monodepth-2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 7,
+                "query": "self-supervised in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "jason718/awesome-self-supervised-learning",
+                  "htdt/self-supervised",
+                  "chandlerbang/awesome-self-supervised-gnn",
+                  "lirongwu/awesome-graph-self-supervised-learning",
+                  "fangchangma/self-supervised-depth-completion"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 4,
+          "case_id": "monodepth2_2019",
+          "expected_official_repos": [
+            "nianticlabs/monodepth2"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 3,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "eddiespade/monodepth2",
+            "icaruswizard/monodepth2-paddle",
+            "nianticlabs/monodepth2"
+          ],
+          "top3_scores": [
+            0.726,
+            0.7118,
+            0.6657
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "nianticlabs/monodepth2": {
+              "success": true,
+              "canonical_full_name": "nianticlabs/monodepth2",
+              "aliases": [
+                "nianticlabs/monodepth2"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4479
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 24,
+            "candidate_target": 24,
+            "stopped_after_query": 7,
+            "official_sources": {
+              "nianticlabs/monodepth2": "search_query_1"
+            },
+            "raw_search_hits": {
+              "nianticlabs/monodepth2": [
+                {
+                  "query_index": 1,
+                  "query": "monodepth2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 3,
+                  "query": "monodepth_2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 5,
+                  "query": "monodepth-2 in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "monodepth2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "xxxvincent/monodepth2",
+                  "eddiespade/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "monodepth2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "naufalso/adversarial-manhole",
+                  "ecalpal/iterdepth"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "monodepth_2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 4,
+                "query": "monodepth_2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 5,
+                "query": "monodepth-2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 6,
+                "query": "monodepth-2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 7,
+                "query": "self-supervised in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "jason718/awesome-self-supervised-learning",
+                  "htdt/self-supervised",
+                  "chandlerbang/awesome-self-supervised-gnn",
+                  "lirongwu/awesome-graph-self-supervised-learning",
+                  "fangchangma/self-supervised-depth-completion"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        },
+        {
+          "run": 5,
+          "case_id": "monodepth2_2019",
+          "expected_official_repos": [
+            "nianticlabs/monodepth2"
+          ],
+          "official_in_provider_pool": true,
+          "official_in_final_top3": true,
+          "official_rank": 3,
+          "official_from_raw_github_search": true,
+          "official_from_canonical_direct_fetch": false,
+          "manual_direct_fetch_succeeded": true,
+          "top3_candidates": [
+            "eddiespade/monodepth2",
+            "icaruswizard/monodepth2-paddle",
+            "nianticlabs/monodepth2"
+          ],
+          "top3_scores": [
+            0.726,
+            0.7118,
+            0.6657
+          ],
+          "classification": "stable_top3",
+          "direct_fetch": {
+            "nianticlabs/monodepth2": {
+              "success": true,
+              "canonical_full_name": "nianticlabs/monodepth2",
+              "aliases": [
+                "nianticlabs/monodepth2"
+              ],
+              "error": null,
+              "archived": false,
+              "stars": 4479
+            }
+          },
+          "provider_pool": {
+            "candidate_count": 24,
+            "candidate_target": 24,
+            "stopped_after_query": 7,
+            "official_sources": {
+              "nianticlabs/monodepth2": "search_query_1"
+            },
+            "raw_search_hits": {
+              "nianticlabs/monodepth2": [
+                {
+                  "query_index": 1,
+                  "query": "monodepth2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 3,
+                  "query": "monodepth_2 in:name archived:false",
+                  "rank": 1
+                },
+                {
+                  "query_index": 5,
+                  "query": "monodepth-2 in:name archived:false",
+                  "rank": 1
+                }
+              ]
+            },
+            "canonical_direct_names": [],
+            "query_summaries": [
+              {
+                "index": 1,
+                "query": "monodepth2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "xxxvincent/monodepth2",
+                  "eddiespade/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 2,
+                "query": "monodepth2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "naufalso/adversarial-manhole",
+                  "ecalpal/iterdepth"
+                ],
+                "error": null
+              },
+              {
+                "index": 3,
+                "query": "monodepth_2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 4,
+                "query": "monodepth_2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 5,
+                "query": "monodepth-2 in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": true,
+                "official_rank": 1,
+                "top_repos": [
+                  "nianticlabs/monodepth2",
+                  "fangget/tf-monodepth2",
+                  "wang-xjtu/g2-monodepth",
+                  "eddiespade/monodepth2",
+                  "tengfeihan0/monodepth2.cpp"
+                ],
+                "error": null
+              },
+              {
+                "index": 6,
+                "query": "monodepth-2 \"official code\" in:name,description,readme archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [],
+                "error": null
+              },
+              {
+                "index": 7,
+                "query": "self-supervised in:name archived:false",
+                "included_in_provider_pool": true,
+                "official_present": false,
+                "official_rank": null,
+                "top_repos": [
+                  "jason718/awesome-self-supervised-learning",
+                  "htdt/self-supervised",
+                  "chandlerbang/awesome-self-supervised-gnn",
+                  "lirongwu/awesome-graph-self-supervised-learning",
+                  "fangchangma/self-supervised-depth-completion"
+                ],
+                "error": null
+              }
+            ],
+            "errors": []
+          },
+          "provider_status": {
+            "paper_code_identity": {
+              "ok": true,
+              "result_count": 0,
+              "matched_repos": [],
+              "matched_identity_types": []
+            },
+            "github": {
+              "ok": true,
+              "result_count": 3
+            }
+          },
+          "warnings": []
+        }
+      ]
+    }
+  ]
+}

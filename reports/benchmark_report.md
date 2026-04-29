@@ -13,9 +13,9 @@
 ## Summary
 
 - Top-1 hit rate: `0.6981`
-- Top-3 hit rate: `0.9623`
-- Official repo top-1 hit rate: `0.6792`
-- Official repo top-3 hit rate: `0.9434`
+- Top-3 hit rate: `0.9057`
+- Official repo top-1 hit rate: `0.6415`
+- Official repo top-3 hit rate: `0.8491`
 - Distractor ranked #1 rate: `0.0`
 - Stopped early: `False`
 - Stop reason: `none`
@@ -24,37 +24,39 @@
 
 | Task | Cases | Top-1 | Top-3 | Distractor #1 |
 |---|---:|---:|---:|---:|
-| biology | 1 | 1.0 | 1.0 | 0.0 |
-| computer_vision | 36 | 0.7222 | 1.0 | 0.0 |
+| biology | 1 | 0.0 | 0.0 | 0.0 |
+| computer_vision | 36 | 0.7222 | 0.8889 | 0.0 |
 | graph_learning | 1 | 1.0 | 1.0 | 0.0 |
-| nlp | 6 | 1.0 | 1.0 | 0.0 |
-| recommender | 3 | 0.0 | 0.3333 | 0.0 |
+| nlp | 6 | 0.8333 | 1.0 | 0.0 |
+| recommender | 3 | 0.6667 | 1.0 | 0.0 |
 | robotics | 1 | 0.0 | 1.0 | 0.0 |
 | speech | 5 | 0.6 | 1.0 | 0.0 |
 
 ## Failure Summary By Cause
 
-- `expected_repo_not_recalled`: 2 cases; examples: `implicit_mf_2008`, `deepfm_2017`
-- `official_recalled_not_top1`: 14 cases; examples: `nerf_2020`, `vit_2020`, `simclr_2020`, `guided_diffusion_2021`, `grounding_dino_2023`, `monodepth2_2019`, `orb_slam3_2020`, `colmap_2016`
+- `official_recalled_not_top1`: 11 cases; examples: `bert_2018`, `ddpm_2020`, `guided_diffusion_2021`, `grounding_dino_2023`, `orb_slam3_2020`, `colmap_2016`, `lightgcn_2020`, `llava_2023`
+- `official_repo_not_recalled`: 5 cases; examples: `nerf_2020`, `simclr_2020`, `alphafold_2021`, `raft_2020`, `monodepth2_2019`
 
 ## Failure Summary By Task
 
-- `computer_vision`: 10 cases; examples: `nerf_2020`, `vit_2020`, `simclr_2020`, `guided_diffusion_2021`, `grounding_dino_2023`
-- `recommender`: 3 cases; examples: `lightgcn_2020`, `implicit_mf_2008`, `deepfm_2017`
+- `biology`: 1 cases; examples: `alphafold_2021`
+- `computer_vision`: 10 cases; examples: `nerf_2020`, `simclr_2020`, `ddpm_2020`, `guided_diffusion_2021`, `grounding_dino_2023`
+- `nlp`: 1 cases; examples: `bert_2018`
+- `recommender`: 1 cases; examples: `lightgcn_2020`
 - `robotics`: 1 cases; examples: `orb_slam3_2020`
 - `speech`: 2 cases; examples: `wav2vec2_2020`, `hubert_2021`
 
 ## Failure Examples
 
-- `nerf_2020` NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis: official_recalled_not_top1; retrieved: sxyu/pixel-nerf, bmild/nerf, ayaanzhaque/instruct-nerf2nerf
-- `vit_2020` An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale: official_recalled_not_top1; retrieved: yunkun-zhang/cite, google-research/vision_transformer, purdue-m2/ai-face-fairnessbench
-- `simclr_2020` A Simple Framework for Contrastive Learning of Visual Representations: official_recalled_not_top1; retrieved: andrewatanov/simclr-pytorch, google-research/simclr, sthalles/simclr
-- `guided_diffusion_2021` Diffusion Models Beat GANs on Image Synthesis: official_recalled_not_top1; retrieved: mchong6/gansnroses, openai/guided-diffusion, tkarras/progressive_growing_of_gans
-- `grounding_dino_2023` Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection: official_recalled_not_top1; retrieved: dongdong-d/groundingdino-finetuning, longzw1997/open-groundingdino, idea-research/groundingdino
-- `monodepth2_2019` Digging Into Self-Supervised Monocular Depth Estimation: official_recalled_not_top1; retrieved: eddiespade/monodepth2, icaruswizard/monodepth2-paddle, nianticlabs/monodepth2
+- `nerf_2020` NeRF: Representing Scenes as Neural Radiance Fields for View Synthesis: official_repo_not_recalled; retrieved: quan-meng/gnerf, nvlabs/nvdiffrec, jia-lab-research/efficientnerf
+- `simclr_2020` A Simple Framework for Contrastive Learning of Visual Representations: official_repo_not_recalled; retrieved: spijkervet/simclr, leftthomas/simclr, sayakpaul/simclr-in-tensorflow-2
+- `alphafold_2021` Highly accurate protein structure prediction with AlphaFold: official_repo_not_recalled; retrieved: model3dbio/alphafold3-conda-install, lucidrains/itransformer, hanziwww/alphafold3-gui
+- `bert_2018` BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding: official_recalled_not_top1; retrieved: ymcui/chinese-bert-wwm, google-research/bert, bojone/bert4keras
+- `ddpm_2020` Denoising Diffusion Probabilistic Models: official_recalled_not_top1; retrieved: sak-h/pytorch-denoising-diffusion-probabilistic-models, hojonathanho/diffusion, musawir124/denoising-diffusion-probabilistic-models
+- `guided_diffusion_2021` Diffusion Models Beat GANs on Image Synthesis: official_recalled_not_top1; retrieved: mchong6/gansnroses, tkarras/progressive_growing_of_gans, openai/guided-diffusion
+- `grounding_dino_2023` Grounding DINO: Marrying DINO with Grounded Pre-Training for Open-Set Object Detection: official_recalled_not_top1; retrieved: dongdong-d/groundingdino-finetuning, idea-research/groundingdino, longzw1997/open-groundingdino
+- `raft_2020` RAFT: Recurrent All-Pairs Field Transforms for Optical Flow: official_repo_not_recalled; retrieved: mcg-nku/amt, yafeng19/hap-vr, depixels/tinyalign
+- `monodepth2_2019` Digging Into Self-Supervised Monocular Depth Estimation: official_repo_not_recalled; retrieved: icaruswizard/monodepth2-paddle, xxxvincent/monodepth2, fangget/tf-monodepth2
 - `orb_slam3_2020` ORB-SLAM3: An Accurate Open-Source Library for Visual, Visual-Inertial and Multi-Map SLAM: official_recalled_not_top1; retrieved: leaner-forever/segs-slam, thien94/orb_slam3_ros, uz-slamlab/orb_slam3
 - `colmap_2016` Structure-from-Motion Revisited: official_recalled_not_top1; retrieved: fangjinhuawang/patchmatchnet, colmap/colmap, xiaobaiiiiii/colmap-pcd
 - `lightgcn_2020` LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation: official_recalled_not_top1; retrieved: lucapantea/lightgcn, kuandeng/lightgcn, gusye1234/lightgcn-pytorch
-- `llava_2023` Visual Instruction Tuning: official_recalled_not_top1; retrieved: microsoft/llava-med, tencentarc/smartedit, haotian-liu/llava
-- `ultralytics_yolov8_2023` YOLOv8: official_recalled_not_top1; retrieved: dataxujing/yolov8, ultralytics/ultralytics, derronqi/yolov8-face
-- `mmdetection_2019` MMDetection: Open MMLab Detection Toolbox and Benchmark: official_recalled_not_top1; retrieved: allenai/mmdetection, open-mmlab/mmdetection, hhaandroid/mmdetection-mini

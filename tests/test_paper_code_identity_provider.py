@@ -316,6 +316,12 @@ def test_curated_identity_round3_targets_have_evidence_and_resolve() -> None:
             ["ultralytics/ultralytics"],
             "high",
         ),
+        "yolov7_2022": (
+            "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors",
+            "YOLOv7 Trainable bag-of-freebies real-time object detectors code",
+            ["WongKinYiu/yolov7"],
+            "high",
+        ),
         "deepspeech2_2015": (
             "Deep Speech 2: End-to-End Speech Recognition in English and Mandarin",
             "Deep Speech 2 End-to-End Speech Recognition English Mandarin code",
@@ -334,12 +340,113 @@ def test_curated_identity_round3_targets_have_evidence_and_resolve() -> None:
         matches = provider.resolve(analyze_query(query, paper_title=title))
 
         assert entry["official_repos"] == repos
+        assert entry.get("identity_type", "official") == "official"
         assert entry["source"] == "curated_override"
         assert entry["confidence"] == confidence
         assert entry["evidence"]
         assert [match.repo for match in matches] == repos
+        assert matches[0].identity_type == "official"
         assert matches[0].confidence == confidence
         assert "Source:" in matches[0].evidence
+
+
+def test_dino_style_identity_overlap_does_not_match_vision_transformer() -> None:
+    provider = PaperCodeIdentityProvider(DEFAULT_OVERRIDES_PATH)
+    matches = provider.resolve(
+        analyze_query(
+            "DINO Emerging Properties in Self-Supervised Vision Transformers paper code pytorch ICCV 2021",
+            paper_title="Emerging Properties in Self-Supervised Vision Transformers",
+        )
+    )
+
+    assert "google-research/vision_transformer" not in [match.repo.casefold() for match in matches]
+
+
+def test_identity_guard_keeps_vit_exact_title_match() -> None:
+    provider = PaperCodeIdentityProvider(DEFAULT_OVERRIDES_PATH)
+    matches = provider.resolve(
+        analyze_query(
+            "Vision Transformer An Image is Worth 16x16 Words paper code",
+            paper_title="An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+        )
+    )
+
+    assert [match.repo for match in matches] == ["google-research/vision_transformer"]
+
+
+def test_identity_guard_keeps_stable_diffusion_t5_and_reproduction_mappings() -> None:
+    provider = PaperCodeIdentityProvider(DEFAULT_OVERRIDES_PATH)
+    checks = [
+        (
+            "High-Resolution Image Synthesis with Latent Diffusion Models paper code",
+            "High-Resolution Image Synthesis with Latent Diffusion Models",
+            ["CompVis/latent-diffusion", "CompVis/stable-diffusion"],
+        ),
+        (
+            "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer code",
+            "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+            ["google-research/text-to-text-transfer-transformer"],
+        ),
+        (
+            "Collaborative Filtering for Implicit Feedback Datasets paper code",
+            "Collaborative Filtering for Implicit Feedback Datasets",
+            ["benfred/implicit"],
+        ),
+        (
+            "DeepFM Factorization-Machine Neural Network CTR Prediction code",
+            "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction",
+            ["shenweichen/DeepCTR"],
+        ),
+    ]
+
+    for query, title, repos in checks:
+        matches = provider.resolve(analyze_query(query, paper_title=title))
+        assert [match.repo for match in matches] == repos
+
+
+def test_exact_normalized_title_matches_without_case_id_or_arxiv(tmp_path) -> None:
+    overrides_path = _write_overrides(
+        tmp_path,
+        [
+            {
+                "paper_id": "case_1",
+                "title": "Exact Normalized Title",
+                "official_repos": ["example/exact-title"],
+                "source": "curated_override",
+                "confidence": "high",
+            }
+        ],
+    )
+    provider = PaperCodeIdentityProvider(overrides_path)
+
+    matches = provider.resolve(analyze_query("unrelated lookup", paper_title="Exact Normalized Title"))
+
+    assert [match.repo for match in matches] == ["example/exact-title"]
+
+
+def test_generic_token_overlap_alone_does_not_match_identity(tmp_path) -> None:
+    overrides_path = _write_overrides(
+        tmp_path,
+        [
+            {
+                "paper_id": "vision_transformer_case",
+                "title": "Vision Transformer",
+                "official_repos": ["example/vision-transformer"],
+                "source": "curated_override",
+                "confidence": "high",
+            }
+        ],
+    )
+    provider = PaperCodeIdentityProvider(overrides_path)
+
+    matches = provider.resolve(
+        analyze_query(
+            "Emerging Properties in Self-Supervised Vision Transformers paper code",
+            paper_title="Emerging Properties in Self-Supervised Vision Transformers",
+        )
+    )
+
+    assert matches == []
 
 
 def test_curated_reproduction_identity_targets_have_evidence_and_resolve() -> None:

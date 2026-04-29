@@ -226,6 +226,104 @@ def test_canonical_official_repo_is_not_over_capped_for_archival_status() -> Non
     assert explanation.score >= 0.75
 
 
+def test_archived_canonical_exact_alias_is_retained_above_prefix_variants() -> None:
+    analysis = analyze_query(
+        "DINO Emerging Properties in Self-Supervised Vision Transformers paper code pytorch ICCV 2021",
+        paper_title="Emerging Properties in Self-Supervised Vision Transformers",
+    )
+    official = ProviderSearchResult(
+        title="facebookresearch/dino",
+        url="https://github.com/facebookresearch/dino",
+        source="github",
+        source_type="github",
+        snippet="PyTorch implementation and pretrained models for DINO",
+        metadata={
+            "full_name": "facebookresearch/dino",
+            "owner": "facebookresearch",
+            "archived": True,
+            "stargazers_count": 7500,
+            "updated_at": "2024-01-01T00:00:00Z",
+            "root_paths": ["main_dino.py", "eval_linear.py", "requirements.txt"],
+            "readme_text": "PyTorch implementation and pretrained models for DINO.",
+        },
+    )
+    variants = [
+        official.model_copy(
+            update={
+                "title": "facebookresearch/dinov3",
+                "metadata": {
+                    **official.metadata,
+                    "full_name": "facebookresearch/dinov3",
+                    "archived": False,
+                    "stargazers_count": 10000,
+                    "readme_text": "DINOv3 self-supervised vision transformer models.",
+                },
+            }
+        ),
+        official.model_copy(
+            update={
+                "title": "idea-research/dino",
+                "metadata": {
+                    **official.metadata,
+                    "full_name": "idea-research/dino",
+                    "owner": "idea-research",
+                    "archived": False,
+                    "stargazers_count": 2800,
+                    "readme_text": "DINO detection model implementation.",
+                },
+            }
+        ),
+        official.model_copy(
+            update={
+                "title": "idea-research/groundingdino",
+                "metadata": {
+                    **official.metadata,
+                    "full_name": "idea-research/groundingdino",
+                    "owner": "idea-research",
+                    "archived": False,
+                    "stargazers_count": 10000,
+                    "readme_text": "GroundingDINO object detection implementation.",
+                },
+            }
+        ),
+    ]
+
+    ranked = sorted([official, *variants], key=lambda item: score_provider_result(analysis, item).score, reverse=True)
+    official_explanation = score_provider_result(analysis, official)
+
+    assert "facebookresearch/dino" in [
+        item.metadata["full_name"]
+        for item in ranked[:3]
+    ]
+    assert official_explanation.cap_reason is None
+    assert official_explanation.score >= 0.70
+    assert "archived canonical research-org exact alias retained above same-prefix variants" in official_explanation.positive_evidence
+
+
+def test_ordinary_archived_model_zoo_still_uses_archived_cap() -> None:
+    item = ProviderSearchResult(
+        title="owner/checkpoint-zoo",
+        url="https://github.com/owner/checkpoint-zoo",
+        source="github",
+        source_type="github",
+        snippet="Archived model zoo and pretrained weights for vision models",
+        metadata={
+            "full_name": "owner/checkpoint-zoo",
+            "owner": "owner",
+            "archived": True,
+            "stargazers_count": 10000,
+            "updated_at": "2025-01-01T00:00:00Z",
+            "root_paths": ["README.md", "weights/model.pth"],
+            "readme_text": "Model zoo with checkpoint and pretrained weights only.",
+        },
+    )
+
+    explanation = score_provider_result(analyze_query("paper code pytorch"), item)
+
+    assert explanation.cap_reason == "archived_cap"
+    assert explanation.score <= 0.60
+
+
 def test_archived_same_slug_candidate_needs_explicit_official_evidence_for_cap_protection() -> None:
     analysis = analyze_query(
         "MMDetection Open MMLab Detection Toolbox and Benchmark paper code",
@@ -268,6 +366,35 @@ def test_archived_same_slug_candidate_needs_explicit_official_evidence_for_cap_p
     assert canonical_explanation.score > fork_explanation.score
 
 
+def test_archived_fork_flag_without_official_evidence_is_not_protected() -> None:
+    analysis = analyze_query(
+        "DINO Emerging Properties in Self-Supervised Vision Transformers paper code pytorch ICCV 2021",
+        paper_title="Emerging Properties in Self-Supervised Vision Transformers",
+    )
+    fork_like = ProviderSearchResult(
+        title="facebookresearch/dino",
+        url="https://github.com/facebookresearch/dino",
+        source="github",
+        source_type="github",
+        snippet="Archived fork of DINO experiments",
+        metadata={
+            "full_name": "facebookresearch/dino",
+            "owner": "facebookresearch",
+            "archived": True,
+            "fork": True,
+            "stargazers_count": 100,
+            "updated_at": "2025-01-01T00:00:00Z",
+            "root_paths": ["train.py", "eval.py", "requirements.txt"],
+            "readme_text": "Archived fork of DINO experiments.",
+        },
+    )
+
+    explanation = score_provider_result(analysis, fork_like)
+
+    assert explanation.cap_reason == "archived_cap"
+    assert "archived canonical research-org exact alias retained above same-prefix variants" not in explanation.positive_evidence
+
+
 def test_non_archived_third_party_same_slug_is_not_archived_tiebroken() -> None:
     analysis = analyze_query(
         "LightGCN Simplifying and Powering Graph Convolution Network for Recommendation code",
@@ -294,6 +421,39 @@ def test_non_archived_third_party_same_slug_is_not_archived_tiebroken() -> None:
 
     assert explanation.cap_reason != "archived_cap"
     assert "archived same-slug candidate lacks explicit official evidence" not in explanation.negative_evidence
+
+
+def test_non_official_identity_does_not_trigger_archived_official_protection() -> None:
+    analysis = analyze_query(
+        "DINO Emerging Properties in Self-Supervised Vision Transformers paper code pytorch ICCV 2021",
+        paper_title="Emerging Properties in Self-Supervised Vision Transformers",
+    )
+    item = ProviderSearchResult(
+        title="facebookresearch/dino",
+        url="https://github.com/facebookresearch/dino",
+        source="github",
+        source_type="github",
+        snippet="Domain library implementation with training and evaluation",
+        metadata={
+            "full_name": "facebookresearch/dino",
+            "owner": "facebookresearch",
+            "archived": True,
+            "stargazers_count": 1000,
+            "updated_at": "2025-01-01T00:00:00Z",
+            "root_paths": ["train.py", "eval.py", "requirements.txt"],
+            "readme_text": "Domain library implementation with training and evaluation.",
+            "external_identity": {
+                "source": "curated_override",
+                "confidence": "high",
+                "identity_type": "domain_library_implementation",
+            },
+        },
+    )
+
+    explanation = score_provider_result(analysis, item)
+
+    assert explanation.cap_reason == "archived_cap"
+    assert "archived canonical research-org exact alias retained above same-prefix variants" not in explanation.positive_evidence
 
 
 def test_canonical_official_library_is_not_demoted_to_paper_collection() -> None:

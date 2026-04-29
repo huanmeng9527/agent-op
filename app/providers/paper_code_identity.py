@@ -13,6 +13,38 @@ from app.utils.text import unique_preserve_order
 
 DEFAULT_OVERRIDES_PATH = PROJECT_ROOT / "data" / "paper_code_identity_overrides.json"
 TITLE_STOPWORDS = {"a", "an", "and", "for", "in", "of", "on", "the", "to", "with"}
+GENERIC_TITLE_TOKENS = {
+    "algorithm",
+    "algorithms",
+    "approach",
+    "attention",
+    "code",
+    "data",
+    "datasets",
+    "deep",
+    "framework",
+    "image",
+    "images",
+    "implementation",
+    "language",
+    "learning",
+    "model",
+    "models",
+    "network",
+    "networks",
+    "paper",
+    "pre",
+    "recognition",
+    "representation",
+    "representations",
+    "scale",
+    "self",
+    "supervised",
+    "transformer",
+    "transformers",
+    "vision",
+    "words",
+}
 
 
 @dataclass(frozen=True)
@@ -49,6 +81,42 @@ def _content_tokens(value: str | None) -> set[str]:
     return {token for token in _normalize(value).split() if token not in TITLE_STOPWORDS}
 
 
+def _content_token_list(value: str | None) -> list[str]:
+    return [token for token in _normalize(value).split() if token not in TITLE_STOPWORDS]
+
+
+def _specific_tokens(tokens: set[str] | list[str]) -> set[str]:
+    return {
+        token
+        for token in tokens
+        if token not in GENERIC_TITLE_TOKENS and not token.isdigit() and len(token) >= 2
+    }
+
+
+def _contains_token_sequence(tokens: list[str], sequence: list[str]) -> bool:
+    if not sequence or len(sequence) > len(tokens):
+        return False
+    sequence_length = len(sequence)
+    return any(
+        tokens[index:index + sequence_length] == sequence
+        for index in range(len(tokens) - sequence_length + 1)
+    )
+
+
+def _is_specific_phrase(tokens: list[str]) -> bool:
+    specific = _specific_tokens(tokens)
+    return len(specific) >= 2
+
+
+def _has_strong_title_overlap(alias_tokens: set[str], lookup_tokens: set[str]) -> bool:
+    if len(alias_tokens) < 3:
+        return False
+    overlap = alias_tokens & lookup_tokens
+    if len(overlap) / len(alias_tokens) < 0.9:
+        return False
+    return len(_specific_tokens(overlap)) >= 2
+
+
 class PaperCodeIdentityProvider:
     name = "paper_code_identity"
 
@@ -74,17 +142,24 @@ class PaperCodeIdentityProvider:
         aliases = [title, *(entry.get("title_aliases") or [])]
         for alias in aliases:
             normalized_alias = _normalize(str(alias))
-            alias_tokens = _content_tokens(str(alias))
-            if not normalized_alias or len(alias_tokens) < 2:
+            alias_token_list = _content_token_list(str(alias))
+            alias_tokens = set(alias_token_list)
+            if not normalized_alias or not alias_tokens:
                 continue
             for lookup in lookup_values:
                 normalized_lookup = _normalize(lookup)
                 if not normalized_lookup:
                     continue
-                if normalized_alias == normalized_lookup or normalized_alias in normalized_lookup:
+                if normalized_alias == normalized_lookup:
+                    return True
+                lookup_token_list = _content_token_list(lookup)
+                if (
+                    _is_specific_phrase(alias_token_list)
+                    and _contains_token_sequence(lookup_token_list, alias_token_list)
+                ):
                     return True
                 lookup_tokens = _content_tokens(lookup)
-                if alias_tokens and len(alias_tokens & lookup_tokens) / len(alias_tokens) >= 0.8:
+                if _has_strong_title_overlap(alias_tokens, lookup_tokens):
                     return True
         return False
 

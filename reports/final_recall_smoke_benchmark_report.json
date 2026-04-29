@@ -1,0 +1,696 @@
+{
+  "summary": {
+    "total": 6,
+    "attempted": 6,
+    "evaluated": 6,
+    "unprocessed": 0,
+    "failed": 0,
+    "provider_failed": 0,
+    "rate_limited": 0,
+    "stopped_early": false,
+    "stop_reason": null,
+    "top1_hit_rate": 0.6667,
+    "top3_hit_rate": 0.8333,
+    "official_top1_hit_rate": 0.3333,
+    "official_top3_hit_rate": 0.5,
+    "distractor_top1_rate": 0.0,
+    "selected_case_count": 6,
+    "selected_case_ids": [
+      "yolov7_2022",
+      "dino_2021",
+      "bert_2018",
+      "mask2former_2021",
+      "implicit_mf_2008",
+      "deepfm_2017"
+    ]
+  },
+  "by_task": {
+    "computer_vision": {
+      "total": 3,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.6667,
+      "top3_hit_rate": 0.6667,
+      "distractor_top1_rate": 0.0
+    },
+    "nlp": {
+      "total": 1,
+      "top1_hit": 0,
+      "top3_hit": 1,
+      "distractor_top1": 0,
+      "top1_hit_rate": 0.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    },
+    "recommender": {
+      "total": 2,
+      "top1_hit": 2,
+      "top3_hit": 2,
+      "distractor_top1": 0,
+      "top1_hit_rate": 1.0,
+      "top3_hit_rate": 1.0,
+      "distractor_top1_rate": 0.0
+    }
+  },
+  "failure_summary_by_task": {
+    "computer_vision": {
+      "count": 1,
+      "examples": [
+        "mask2former_2021"
+      ]
+    },
+    "nlp": {
+      "count": 1,
+      "examples": [
+        "bert_2018"
+      ]
+    }
+  },
+  "failure_summary_by_cause": {
+    "official_recalled_not_top1": {
+      "count": 1,
+      "examples": [
+        "bert_2018"
+      ]
+    },
+    "official_repo_not_recalled": {
+      "count": 1,
+      "examples": [
+        "mask2former_2021"
+      ]
+    }
+  },
+  "failure_examples": [
+    {
+      "id": "bert_2018",
+      "paper_title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "task": "nlp",
+      "retrieved": [
+        "ymcui/chinese-bert-wwm",
+        "google-research/bert",
+        "jessevig/bertviz"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "ymcui/chinese-bert-wwm"
+        ],
+        [
+          "google-research/bert"
+        ],
+        [
+          "jessevig/bertviz"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/bert"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "codertimo/bert-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "mask2former_2021",
+      "paper_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "task": "computer_vision",
+      "retrieved": [
+        "nazirnayal8/rba",
+        "luckydog-lhy/tensorrt_mask2former",
+        "yarrowqiao/semask-mask2former"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "nazirnayal8/rba"
+        ],
+        [
+          "luckydog-lhy/tensorrt_mask2former"
+        ],
+        [
+          "yarrowqiao/semask-mask2former"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    }
+  ],
+  "details": [
+    {
+      "id": "yolov7_2022",
+      "paper_title": "YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors",
+      "task": "computer_vision",
+      "retrieved": [
+        "wongkinyiu/yolov7",
+        "dataxujing/yolov7",
+        "rizwanmunawar/yolov7-segmentation"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "wongkinyiu/yolov7"
+        ],
+        [
+          "dataxujing/yolov7"
+        ],
+        [
+          "rizwanmunawar/yolov7-segmentation"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": "curated_override",
+          "confidence": "high",
+          "identity_type": "official",
+          "evidence": [
+            "curated_override maps this paper identity to WongKinYiu/yolov7; identity_type: official; title: YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors; The WongKinYiu/yolov7 repository describes itself as the implementation of paper \"YOLOv7: Trainable bag-of-freebies sets new state-of-the-art for real-time object detectors\" and is the benchmark expected official repository. Source: https://github.com/WongKinYiu/yolov7; Official identity bridge for YOLOv7 because live GitHub search can omit the exact WongKinYiu/yolov7 repo even though direct fetch succeeds."
+          ]
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "wongkinyiu/yolov7"
+      ],
+      "high_quality_reproduction_repos": [
+        "ultralytics/yolov5"
+      ],
+      "common_distractor_repos": [
+        "ultralytics/ultralytics"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "WongKinYiu/yolov7"
+          ],
+          "matched_identity_types": [
+            "official"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "dino_2021",
+      "paper_title": "Emerging Properties in Self-Supervised Vision Transformers",
+      "task": "computer_vision",
+      "retrieved": [
+        "facebookresearch/dino",
+        "idea-research/dino",
+        "ustc-time-series/timedart"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "facebookresearch/dino"
+        ],
+        [
+          "idea-research/dino"
+        ],
+        [
+          "ustc-time-series/timedart"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": true,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 1,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/dino"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/dinov2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "bert_2018",
+      "paper_title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "task": "nlp",
+      "retrieved": [
+        "ymcui/chinese-bert-wwm",
+        "google-research/bert",
+        "jessevig/bertviz"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "ymcui/chinese-bert-wwm"
+        ],
+        [
+          "google-research/bert"
+        ],
+        [
+          "jessevig/bertviz"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": false,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": true,
+      "distractor_top1": false,
+      "official_rank": 2,
+      "acceptable_rank": 2,
+      "distractor_rank": null,
+      "official_repos": [
+        "google-research/bert"
+      ],
+      "high_quality_reproduction_repos": [
+        "huggingface/transformers"
+      ],
+      "common_distractor_repos": [
+        "codertimo/bert-pytorch"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_recalled_not_top1"
+    },
+    {
+      "id": "mask2former_2021",
+      "paper_title": "Masked-attention Mask Transformer for Universal Image Segmentation",
+      "task": "computer_vision",
+      "retrieved": [
+        "nazirnayal8/rba",
+        "luckydog-lhy/tensorrt_mask2former",
+        "yarrowqiao/semask-mask2former"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "nazirnayal8/rba"
+        ],
+        [
+          "luckydog-lhy/tensorrt_mask2former"
+        ],
+        [
+          "yarrowqiao/semask-mask2former"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": false,
+      "top3_hit": false,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": null,
+      "distractor_rank": null,
+      "official_repos": [
+        "facebookresearch/mask2former"
+      ],
+      "high_quality_reproduction_repos": [],
+      "common_distractor_repos": [
+        "facebookresearch/detectron2"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 0,
+          "matched_repos": [],
+          "matched_identity_types": []
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "official_repo_not_recalled"
+    },
+    {
+      "id": "implicit_mf_2008",
+      "paper_title": "Collaborative Filtering for Implicit Feedback Datasets",
+      "task": "recommender",
+      "retrieved": [
+        "benfred/implicit",
+        "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets",
+        "piyushpathak03/recommendation-systems"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "benfred/implicit"
+        ],
+        [
+          "federicovaona99/collaborative_filtering_for_implicit_feedback_datasets"
+        ],
+        [
+          "piyushpathak03/recommendation-systems"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": "curated_override",
+          "confidence": "medium",
+          "identity_type": "domain_library_implementation",
+          "evidence": [
+            "curated_override maps this paper identity to benfred/implicit; identity_type: domain_library_implementation; title: Collaborative Filtering for Implicit Feedback Datasets; The benfred/implicit repository implements implicit-feedback recommendation algorithms and is the benchmark high-quality reproduction/domain-library target for \"Collaborative Filtering for Implicit Feedback Datasets\". Source: https://github.com/benfred/implicit; Non-official reproduction/library identity: this mapping targets a mature implicit-feedback recommendation library, not an official paper-author repository."
+          ]
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "benfred/implicit"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "benfred/implicit"
+          ],
+          "matched_identity_types": [
+            "domain_library_implementation"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    },
+    {
+      "id": "deepfm_2017",
+      "paper_title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction",
+      "task": "recommender",
+      "retrieved": [
+        "shenweichen/deepctr",
+        "chenxijun1029/deepfm_with_pytorch",
+        "rmanluo/mamdr"
+      ],
+      "retrieved_repo_aliases": [
+        [
+          "shenweichen/deepctr"
+        ],
+        [
+          "chenxijun1029/deepfm_with_pytorch"
+        ],
+        [
+          "rmanluo/mamdr"
+        ]
+      ],
+      "retrieved_identity": [
+        {
+          "source": "curated_override",
+          "confidence": "medium-high",
+          "identity_type": "domain_library_implementation",
+          "evidence": [
+            "curated_override maps this paper identity to shenweichen/DeepCTR; identity_type: domain_library_implementation; title: DeepFM: A Factorization-Machine based Neural Network for CTR Prediction; The shenweichen/DeepCTR repository is a deep-learning CTR prediction package that includes DeepFM / CTR model implementations and is the benchmark high-quality reproduction/domain-library target. Source: https://github.com/shenweichen/DeepCTR; Non-official reproduction/library identity: this mapping targets a domain library implementation, not an official paper-author repository."
+          ]
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        },
+        {
+          "source": null,
+          "confidence": null,
+          "identity_type": null,
+          "evidence": []
+        }
+      ],
+      "top1_hit": true,
+      "top3_hit": true,
+      "official_top1_hit": false,
+      "official_top3_hit": false,
+      "distractor_top1": false,
+      "official_rank": null,
+      "acceptable_rank": 1,
+      "distractor_rank": null,
+      "official_repos": [],
+      "high_quality_reproduction_repos": [
+        "shenweichen/deepctr"
+      ],
+      "common_distractor_repos": [
+        "recommenders-team/recommenders"
+      ],
+      "warnings": [],
+      "provider_status": {
+        "paper_code_identity": {
+          "ok": true,
+          "result_count": 1,
+          "matched_repos": [
+            "shenweichen/DeepCTR"
+          ],
+          "matched_identity_types": [
+            "domain_library_implementation"
+          ]
+        },
+        "github": {
+          "ok": true,
+          "result_count": 3
+        }
+      },
+      "provider_errors": [],
+      "provider_failed": false,
+      "rate_limited": false,
+      "failure_cause": "success"
+    }
+  ]
+}

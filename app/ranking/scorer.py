@@ -57,6 +57,18 @@ RESEARCH_ORG_HINTS = [
     "compvis",
     "paddlepaddle",
 ]
+ARCHIVED_CANONICAL_OWNER_HINTS = {
+    "compvis",
+    "facebookresearch",
+    "google-deepmind",
+    "google-research",
+    "huggingface",
+    "microsoft",
+    "nvlabs",
+    "open-mmlab",
+    "openai",
+    "paddlepaddle",
+}
 
 SCORE_CAPS = {
     "archived_cap": 0.60,
@@ -67,6 +79,7 @@ SCORE_CAPS = {
     "model_zoo_cap": 0.76,
     "incomplete_execution_cap": 0.84,
 }
+ARCHIVED_CANONICAL_OFFICIAL_FLOOR = 0.70
 
 
 def _joined_text(item: ProviderSearchResult) -> str:
@@ -229,9 +242,22 @@ def _canonical_research_org_bonus(analysis: QueryAnalysis, metadata: dict[str, A
 
 def _has_explicit_official_evidence(text: str, metadata: dict[str, Any]) -> bool:
     identity = metadata.get("external_identity") if isinstance(metadata.get("external_identity"), dict) else {}
-    if identity.get("source") and identity.get("confidence") == "high":
+    if (
+        identity.get("source")
+        and identity.get("confidence") == "high"
+        and str(identity.get("identity_type") or "official").casefold() == "official"
+    ):
         return True
     return any(contains_term(text, hint) for hint in OFFICIAL_HINTS)
+
+
+def _has_archived_canonical_owner_evidence(canonical_match: str | None, metadata: dict[str, Any]) -> bool:
+    if canonical_match != "exact" or not metadata.get("archived") or metadata.get("fork"):
+        return False
+    identity = metadata.get("external_identity") if isinstance(metadata.get("external_identity"), dict) else {}
+    if identity.get("source") and str(identity.get("identity_type") or "official").casefold() != "official":
+        return False
+    return safe_lower(str(metadata.get("owner") or "")) in ARCHIVED_CANONICAL_OWNER_HINTS
 
 
 def _canonical_research_org_match(analysis: QueryAnalysis, metadata: dict[str, Any], title: str) -> str | None:
@@ -409,12 +435,14 @@ def score_provider_result(analysis: QueryAnalysis, item: ProviderSearchResult) -
         - risk_penalty
     )
     protect_canonical_official = canonical_match == "exact" and repo_role == "official_implementation" and risk_level != "high"
+    archived_canonical_owner_evidence = _has_archived_canonical_owner_evidence(canonical_match, metadata)
+    explicit_official_evidence = _has_explicit_official_evidence(text, metadata)
     archived_same_slug_without_official_evidence = (
         protect_canonical_official
         and bool(metadata.get("archived"))
-        and not _has_explicit_official_evidence(text, metadata)
+        and not explicit_official_evidence
     )
-    if archived_same_slug_without_official_evidence:
+    if archived_same_slug_without_official_evidence and not archived_canonical_owner_evidence:
         protect_canonical_official = False
     cap, cap_reason = _score_cap(
         metadata=metadata,
@@ -425,14 +453,21 @@ def score_provider_result(analysis: QueryAnalysis, item: ProviderSearchResult) -
     )
     score = round(max(0.0, min(cap, raw_score)), 4)
     if protect_canonical_official and not cap_reason:
-        score = max(score, 0.75)
+        score = max(
+            score,
+            ARCHIVED_CANONICAL_OFFICIAL_FLOOR
+            if archived_canonical_owner_evidence and not explicit_official_evidence
+            else 0.75,
+        )
     confidence = "high" if score >= 0.76 and len(asset_evidence) >= 4 and not cap_reason else _level(score)
     positive = unique_preserve_order([*query_evidence, *asset_evidence])
     if tech_stack:
         positive.append(f"detects tech stack: {', '.join(tech_stack[:5])}")
     if repo_role != "unknown":
         positive.append(f"classified as {repo_role}")
-    if archived_same_slug_without_official_evidence:
+    if archived_canonical_owner_evidence and not cap_reason:
+        positive.append("archived canonical research-org exact alias retained above same-prefix variants")
+    elif archived_same_slug_without_official_evidence:
         negative.append("archived same-slug candidate lacks explicit official evidence")
     if cap_reason:
         negative.append(f"score capped by {cap_reason}")
